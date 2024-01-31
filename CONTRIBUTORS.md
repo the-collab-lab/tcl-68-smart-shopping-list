@@ -7,6 +7,7 @@ Add yourself as a contributor to this project as a Markdown link that links your
 ## Cohort Participants
 
 - [Andrea Pang](https://github.com/andiedoescode) 🦝
+- [Devina Gillis](https://github.com/DevinaG007) 💥
 
 ## Mentors
 
