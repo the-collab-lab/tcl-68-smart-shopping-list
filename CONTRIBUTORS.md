@@ -7,5 +7,6 @@ Add yourself as a contributor to this project as a Markdown link that links your
 ## Cohort Participants
 
 ## Mentors
+- [Caitlin Floyd](https://github.com/cafloyd) 🌸
 
 ## Code of Conduct Contacts
