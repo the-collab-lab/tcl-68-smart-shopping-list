@@ -14,3 +14,5 @@ Add yourself as a contributor to this project as a Markdown link that links your
 - [Caitlin Floyd](https://github.com/cafloyd) 🌸
 
 ## Code of Conduct Contacts
+
+- [Ayu Adiati](https://github.com/adiati98) 🤩
