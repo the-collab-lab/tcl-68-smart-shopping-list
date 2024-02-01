@@ -8,6 +8,7 @@ Add yourself as a contributor to this project as a Markdown link that links your
 
 - [Andrea Pang](https://github.com/andiedoescode) 🦝
 - [Devina Gillis](https://github.com/DevinaG007) ⛩️
+- [Shane Misra](https://github.com/sdmisra) 🥓
 
 ## Mentors
 
