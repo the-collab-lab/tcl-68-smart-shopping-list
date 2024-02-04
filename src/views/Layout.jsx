@@ -19,7 +19,14 @@ export function Layout() {
 			<div className="Layout">
 				<header className="Layout-header">
 					<h1>Smart shopping list</h1>
-					{user ? <SignOutButton /> : <SignInButton />}
+					{!!user ? (
+						<div>
+							<span>Signed in as {auth.currentUser.displayName}</span> (
+							<SignOutButton />)
+						</div>
+					) : (
+						<SignInButton />
+					)}
 				</header>
 				<main className="Layout-main">
 					<Outlet />
