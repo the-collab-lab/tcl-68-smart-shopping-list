@@ -14,6 +14,7 @@ Add yourself as a contributor to this project as a Markdown link that links your
 ## Mentors
 
 - [Caitlin Floyd](https://github.com/cafloyd) 🌸
+- [Raynaldo Sutisna](https://github.com/raaynaldo) 🏂
 
 ## Code of Conduct Contacts
 
