@@ -1,16 +1,8 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, NavLink } from 'react-router-dom';
 
 import './Layout.css';
 import { auth } from '../api/config.js';
 import { useAuth, SignInButton, SignOutButton } from '../api/useAuth.jsx';
-
-/**
- * TODO: The links defined in this file don't work!
- *
- * Instead of anchor element, they should use a component
- * from `react-router-dom` to navigate to the routes
- * defined in `App.jsx`.
- */
 
 export function Layout() {
 	const { user } = useAuth();
@@ -33,15 +25,15 @@ export function Layout() {
 				</main>
 				<nav className="Nav">
 					<div className="Nav-container">
-						<a href="#" className="Nav-link">
+						<NavLink to="/" className="Nav-link">
 							Home
-						</a>
-						<a href="#" className="Nav-link">
+						</NavLink>
+						<NavLink to="/list" className="Nav-link">
 							List
-						</a>
-						<a href="#" className="Nav-link">
+						</NavLink>
+						<NavLink to="/manage-list" className="Nav-link">
 							Manage List
-						</a>
+						</NavLink>
 					</div>
 				</nav>
 			</div>
