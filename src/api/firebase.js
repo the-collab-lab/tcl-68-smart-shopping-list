@@ -105,6 +105,7 @@ export async function addUserToDatabase(user) {
 			email: user.email,
 			name: user.displayName,
 			uid: user.uid,
+			sharedLists: [],
 		});
 	}
 }
