@@ -36,12 +36,8 @@ export function useShoppingLists(userId, userEmail) {
 		onSnapshot(userDocRef, (docSnap) => {
 			if (docSnap.exists()) {
 				const listRefs = docSnap.data().sharedLists;
-				console.log('listRefs', listRefs);
 				const newData = listRefs.map((listRef) => {
 					// We keep the list's id and path so we can use them later.
-					console.log('listRef, ln 41', listRef);
-					console.log('list id', listRef.id);
-					console.log('list path', listRef.path);
 					return { name: listRef.id, path: listRef.path };
 				});
 				setData(newData);
