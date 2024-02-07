@@ -1,6 +1,7 @@
 import './SingleList.css';
 
 export function SingleList({ name, path, setListPath }) {
+	console.log(name);
 	function handleClick() {
 		setListPath(path);
 	}
