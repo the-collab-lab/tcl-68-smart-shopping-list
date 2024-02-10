@@ -29,8 +29,6 @@ export function App() {
 	const { user } = useAuth();
 	const userId = user?.uid;
 	const userEmail = user?.email;
-	// console.log('userID', userId);
-	// console.log('email', userEmail)
 	/**
 	 * This custom hook takes a user ID and email and fetches
 	 * the shopping lists that the user has access to.
