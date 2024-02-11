@@ -30,7 +30,6 @@ export function useShoppingLists(userId, userEmail) {
 
 		// When we get a userEmail, we use it to subscribe to real-time updates
 		const userDocRef = doc(db, 'users', userEmail);
-
 		onSnapshot(userDocRef, (docSnap) => {
 			if (docSnap.exists()) {
 				const listRefs = docSnap.data().sharedLists;

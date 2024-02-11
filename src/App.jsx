@@ -29,7 +29,6 @@ export function App() {
 	const { user } = useAuth();
 	const userId = user?.uid;
 	const userEmail = user?.email;
-
 	/**
 	 * This custom hook takes a user ID and email and fetches
 	 * the shopping lists that the user has access to.
@@ -41,7 +40,6 @@ export function App() {
 	 * Check ./api/firestore.js for its implementation.
 	 */
 	const data = useShoppingListData(listPath);
-
 	return (
 		<Router>
 			<Routes>
