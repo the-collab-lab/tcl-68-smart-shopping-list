@@ -1,23 +1,34 @@
 import { useState } from 'react';
+import { addItem } from '../api';
 
-export function ManageList() {
+export function ManageList({ listPath }) {
 	const initialFormState = {
 		itemName: '',
-		nextPurchase: '',
+		daysUntilNextPurchase: 0,
 	};
 	const [newItem, setNewItem] = useState(initialFormState);
 
 	const handleChange = ({ target }) => {
 		setNewItem({ ...newItem, [target.name]: target.value });
 	};
-	console.log(newItem);
+
+	const handleSubmit = async (event) => {
+		newItem.daysUntilNextPurchase = Number(newItem.daysUntilNextPurchase);
+		event.preventDefault();
+		try {
+			await addItem(listPath, newItem);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	return (
 		<>
 			<p>
 				Hello from the <code>/manage-list</code> page!
 			</p>
 			<section>
-				<form>
+				<form onSubmit={handleSubmit}>
 					<label htmlFor="itemName">
 						Item Name
 						<input
@@ -28,18 +39,18 @@ export function ManageList() {
 							onChange={handleChange}
 						></input>
 					</label>
-					<label htmlFor="nextPurchase">
+					<label htmlFor="daysUntilNextPurchase">
 						Next Purchase
 						<select
-							id="nextPurchase"
-							name="nextPurchase"
-							value={newItem.nextPurchase}
+							id="daysUntilNextPurchase"
+							name="daysUntilNextPurchase"
+							value={newItem.daysUntilNextPurchase}
 							onChange={handleChange}
 						>
-							<option value="">Select Next Purchase Date</option>
-							<option value="7">One Week</option>
-							<option value="14">Two Weeks</option>
-							<option value="30">One Month</option>
+							<option value={0}>Select Next Purchase Date</option>
+							<option value={7}>One Week</option>
+							<option value={14}>Two Weeks</option>
+							<option value={30}>One Month</option>
 						</select>
 					</label>
 					<button type="submit">Add Item</button>
