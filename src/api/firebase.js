@@ -117,6 +117,9 @@ export async function addUserToDatabase(user) {
  */
 export async function createList(userId, userEmail, listName) {
 	const listDocRef = doc(db, userId, listName);
+	console.log(listName);
+	console.log(userId);
+	console.log(userEmail);
 
 	await setDoc(listDocRef, {
 		owner: userId,
