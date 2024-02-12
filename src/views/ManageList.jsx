@@ -17,8 +17,10 @@ export function ManageList({ listPath }) {
 		event.preventDefault();
 		try {
 			await addItem(listPath, newItem);
+			alert('Item successfully added!');
 		} catch (error) {
 			console.log(error);
+			alert('Unable to add item');
 		}
 	};
 
