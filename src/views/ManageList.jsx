@@ -1,4 +1,16 @@
+import { useState } from 'react';
+
 export function ManageList() {
+	const initialFormState = {
+		itemName: '',
+		nextPurchase: '',
+	};
+	const [newItem, setNewItem] = useState(initialFormState);
+
+	const handleChange = ({ target }) => {
+		setNewItem({ ...newItem, [target.name]: target.value });
+	};
+	console.log(newItem);
 	return (
 		<>
 			<p>
@@ -6,13 +18,24 @@ export function ManageList() {
 			</p>
 			<section>
 				<form>
-					<label htmlFor="item-name">
+					<label htmlFor="itemName">
 						Item Name
-						<input id="item-name" name="item-name" type="text"></input>
+						<input
+							id="itemName"
+							name="itemName"
+							type="text"
+							value={newItem.itemName}
+							onChange={handleChange}
+						></input>
 					</label>
-					<label htmlFor="next-purchase">
+					<label htmlFor="nextPurchase">
 						Next Purchase
-						<select id="next-purchase" name="next-purchase">
+						<select
+							id="nextPurchase"
+							name="nextPurchase"
+							value={newItem.nextPurchase}
+							onChange={handleChange}
+						>
 							<option value="">Select Next Purchase Date</option>
 							<option value="7">One Week</option>
 							<option value="14">Two Weeks</option>
