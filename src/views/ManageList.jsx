@@ -50,9 +50,9 @@ export function ManageList({ listPath }) {
 							onChange={handleChange}
 						>
 							<option value={0}>Select Next Purchase Date</option>
-							<option value={7}>One Week</option>
-							<option value={14}>Two Weeks</option>
-							<option value={30}>One Month</option>
+							<option value={7}>Soon</option>
+							<option value={14}>Kind of soon</option>
+							<option value={30}>Not soon</option>
 						</select>
 					</label>
 					<button type="submit">Add Item</button>
