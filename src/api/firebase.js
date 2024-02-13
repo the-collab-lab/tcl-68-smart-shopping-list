@@ -116,20 +116,23 @@ export async function addUserToDatabase(user) {
  * @param {string} listName The name of the new list.
  */
 export async function createList(userId, userEmail, listName) {
-	const listDocRef = doc(db, userId, listName);
-	console.log(listName);
-	console.log(userId);
-	console.log(userEmail);
+	try {
+		const listDocRef = doc(db, userId, listName);
 
-	await setDoc(listDocRef, {
-		owner: userId,
-	});
+		await setDoc(listDocRef, {
+			owner: userId,
+		});
 
-	const userDocumentRef = doc(db, 'users', userEmail);
+		const userDocumentRef = doc(db, 'users', userEmail);
 
-	updateDoc(userDocumentRef, {
-		sharedLists: arrayUnion(listDocRef),
-	});
+		updateDoc(userDocumentRef, {
+			sharedLists: arrayUnion(listDocRef),
+		});
+
+		return listDocRef;
+	} catch (error) {
+		return false;
+	}
 }
 
 /**

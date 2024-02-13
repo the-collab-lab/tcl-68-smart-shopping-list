@@ -2,17 +2,25 @@ import './Home.css';
 import { SingleList } from '../components/SingleList.jsx';
 import { useState } from 'react';
 import { createList } from '../api/firebase.js';
+import { useEffect, useCallback } from 'react';
 
 export function Home({ data, userId, userEmail, setListPath }) {
 	const [newListName, setNewListName] = useState('');
+	const [newListSuccess, setNewListSuccess] = useState(null);
+	const [showMessage, setShowMessage] = useState(false);
+
+	const findNewList = (docRef) =>
+		docRef ? docRef._key.path.segments[1] === newListName : false;
 
 	const handleChange = (e) => {
 		setNewListName(e.target.value);
 	};
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		createList({ userId }, { userEmail }, { newListName });
+		const listDocRef = await createList(userId, userEmail, newListName);
+		setNewListSuccess(findNewList(listDocRef));
+		setShowMessage(true);
 		setNewListName('');
 	};
 
@@ -35,6 +43,13 @@ export function Home({ data, userId, userEmail, setListPath }) {
 				</label>
 				<button>Create</button>
 			</form>
+			{showMessage ? (
+				<div>
+					{newListSuccess
+						? 'List created successfully!'
+						: 'There was an error creating the list'}
+				</div>
+			) : null}
 			<ul>
 				{data.map((item, index) => {
 					return (
