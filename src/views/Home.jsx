@@ -4,15 +4,12 @@ import { useState, useEffect } from 'react';
 import { createList } from '../api/firebase.js';
 import { useNavigate } from 'react-router-dom';
 
-export function Home({ data, userId, userEmail, listPath, setListPath }) {
+export function Home({ data, userId, userEmail, setListPath }) {
 	const [newListName, setNewListName] = useState('');
 	const [newListSuccess, setNewListSuccess] = useState(null);
-	const [showMessage, setShowMessage] = useState(false);
+	const [message, setMessage] = useState(null);
 
 	const navigate = useNavigate();
-
-	const findNewList = (docRef) =>
-		docRef ? docRef._key.path.segments[1] === newListName : false;
 
 	const handleChange = (e) => {
 		setNewListName(e.target.value);
@@ -20,35 +17,45 @@ export function Home({ data, userId, userEmail, listPath, setListPath }) {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		setNewListSuccess(await createList(userId, userEmail, newListName));
-		// const listDocRef = await createList(userId, userEmail, newListName);
-		// await setNewListSuccess(findNewList(listDocRef));
-		updatePath();
-		// await setListPath(`${userId}/${newListName}`);
-		// navigate('/list');
-		setShowMessage(true);
+		const currentLists = data.map((list) => {
+			return list.name;
+		});
+
+		//Check if the new list has a title that already exists in db
+		if (currentLists.indexOf(newListName) > -1) {
+			alert('List already exists. Please enter a unique list name.');
+		} else {
+			//Create new list
+			const response = await createList(userId, userEmail, newListName);
+			//If list creation successful, set states
+			if (response) {
+				setNewListSuccess(true);
+				setMessage('List created successfully.');
+				//If list creation error, set states
+			} else {
+				setNewListSuccess(false);
+				setMessage('List could not be created.');
+			}
+		}
+
+		await setListPath(`${userId}/${newListName}`);
 		setNewListName('');
 	};
 
-	const updatePath = async () => {
-		if (newListSuccess) await setListPath(`${userId}/${newListName}`);
-	};
-
-	// console.log(newListSuccess);
-
-	// console.log(
-	// 	data.map((list) => {
-	// 		return list.name;
-	// 	}),
-	// );
+	useEffect(() => {
+		if (newListSuccess) {
+			alert(message);
+			navigate('/list');
+		} else if (newListSuccess === false) {
+			alert(message);
+		}
+	}, [newListSuccess, navigate]);
 
 	return (
 		<div className="Home">
 			<p>
 				Hello from the home (<code>/</code>) page!
 			</p>
-			{userId}
-			{userEmail}
 			<form onSubmit={handleSubmit}>
 				<label htmlFor="listName">
 					New list name:
@@ -64,13 +71,6 @@ export function Home({ data, userId, userEmail, listPath, setListPath }) {
 				</label>
 				<button>Create</button>
 			</form>
-			{showMessage ? (
-				<div>
-					{newListSuccess
-						? 'List created successfully!'
-						: 'There was an error creating the list'}
-				</div>
-			) : null}
 			<ul>
 				{data.map((item, index) => {
 					return (

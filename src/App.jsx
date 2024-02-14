@@ -22,7 +22,6 @@ export function App() {
 		null,
 	);
 
-	console.log('App.jsx, Ln 25', listPath);
 	/**
 	 * This custom hook holds info about the current signed in user.
 	 * Check ./api/useAuth.jsx for its implementation.
@@ -53,7 +52,6 @@ export function App() {
 								userId={userId}
 								userEmail={userEmail}
 								setListPath={setListPath}
-								listPath={listPath}
 							/>
 						}
 					/>
