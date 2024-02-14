@@ -1,13 +1,15 @@
 import './Home.css';
 import { SingleList } from '../components/SingleList.jsx';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { createList } from '../api/firebase.js';
-import { useEffect, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-export function Home({ data, userId, userEmail, setListPath }) {
+export function Home({ data, userId, userEmail, listPath, setListPath }) {
 	const [newListName, setNewListName] = useState('');
 	const [newListSuccess, setNewListSuccess] = useState(null);
 	const [showMessage, setShowMessage] = useState(false);
+
+	const navigate = useNavigate();
 
 	const findNewList = (docRef) =>
 		docRef ? docRef._key.path.segments[1] === newListName : false;
@@ -18,11 +20,27 @@ export function Home({ data, userId, userEmail, setListPath }) {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const listDocRef = await createList(userId, userEmail, newListName);
-		setNewListSuccess(findNewList(listDocRef));
+		setNewListSuccess(await createList(userId, userEmail, newListName));
+		// const listDocRef = await createList(userId, userEmail, newListName);
+		// await setNewListSuccess(findNewList(listDocRef));
+		updatePath();
+		// await setListPath(`${userId}/${newListName}`);
+		// navigate('/list');
 		setShowMessage(true);
 		setNewListName('');
 	};
+
+	const updatePath = async () => {
+		if (newListSuccess) await setListPath(`${userId}/${newListName}`);
+	};
+
+	// console.log(newListSuccess);
+
+	// console.log(
+	// 	data.map((list) => {
+	// 		return list.name;
+	// 	}),
+	// );
 
 	return (
 		<div className="Home">
@@ -31,7 +49,7 @@ export function Home({ data, userId, userEmail, setListPath }) {
 			</p>
 			{userId}
 			{userEmail}
-			<form method="POST" onSubmit={handleSubmit}>
+			<form onSubmit={handleSubmit}>
 				<label htmlFor="listName">
 					New list name:
 					<input
@@ -39,6 +57,9 @@ export function Home({ data, userId, userEmail, setListPath }) {
 						name="listName"
 						value={newListName}
 						onChange={handleChange}
+						onKeyDown={(e) => {
+							if (e.key === 'Enter') handleSubmit(e);
+						}}
 					/>
 				</label>
 				<button>Create</button>

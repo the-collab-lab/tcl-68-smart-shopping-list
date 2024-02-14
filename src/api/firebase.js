@@ -129,7 +129,7 @@ export async function createList(userId, userEmail, listName) {
 			sharedLists: arrayUnion(listDocRef),
 		});
 
-		return listDocRef;
+		return true;
 	} catch (error) {
 		return false;
 	}
