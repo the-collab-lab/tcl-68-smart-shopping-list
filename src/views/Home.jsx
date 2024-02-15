@@ -21,8 +21,14 @@ export function Home({ data, userId, userEmail, setListPath }) {
 			return list.name;
 		});
 
+		if (newListName.includes('/')) {
+			alert(
+				'Invalid list name. "/" is an unsupported character, please try a different list name.',
+			);
+			return;
+		}
 		//Check if the new list has a title that already exists in db
-		if (currentLists.indexOf(newListName) > -1) {
+		else if (currentLists.indexOf(newListName) > -1) {
 			alert('List already exists. Please enter a unique list name.');
 		} else {
 			//Create new list
@@ -49,7 +55,7 @@ export function Home({ data, userId, userEmail, setListPath }) {
 		} else if (newListSuccess === false) {
 			alert(message);
 		}
-	}, [newListSuccess, navigate]);
+	}, [newListSuccess, navigate, message]);
 
 	return (
 		<div className="Home">
