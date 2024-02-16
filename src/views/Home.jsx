@@ -1,13 +1,11 @@
 import './Home.css';
 import { SingleList } from '../components/SingleList.jsx';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { createList } from '../api/firebase.js';
 import { useNavigate } from 'react-router-dom';
 
 export function Home({ data, userId, userEmail, setListPath }) {
 	const [newListName, setNewListName] = useState('');
-	const [newListSuccess, setNewListSuccess] = useState(null);
-	const [message, setMessage] = useState(null);
 
 	const navigate = useNavigate();
 
@@ -28,34 +26,25 @@ export function Home({ data, userId, userEmail, setListPath }) {
 			return;
 		}
 		//Check if the new list has a title that already exists in db
-		else if (currentLists.indexOf(newListName) > -1) {
+		else if (currentLists.includes(newListName)) {
 			alert('List already exists. Please enter a unique list name.');
 		} else {
 			//Create new list
 			const response = await createList(userId, userEmail, newListName);
-			//If list creation successful, set states
+
+			//If list creation successful, show alert and navigate to new list view
 			if (response) {
-				setNewListSuccess(true);
-				setMessage('List created successfully.');
-				//If list creation error, set states
+				alert('List created successfully.');
+				setListPath(`${userId}/${newListName}`);
+				navigate('/list');
+				//If list creation error, show alert
 			} else {
-				setNewListSuccess(false);
-				setMessage('List could not be created.');
+				alert('List could not be created.');
 			}
 		}
 
-		await setListPath(`${userId}/${newListName}`);
 		setNewListName('');
 	};
-
-	useEffect(() => {
-		if (newListSuccess) {
-			alert(message);
-			navigate('/list');
-		} else if (newListSuccess === false) {
-			alert(message);
-		}
-	}, [newListSuccess, navigate, message]);
 
 	return (
 		<div className="Home">
@@ -70,9 +59,6 @@ export function Home({ data, userId, userEmail, setListPath }) {
 						name="listName"
 						value={newListName}
 						onChange={handleChange}
-						onKeyDown={(e) => {
-							if (e.key === 'Enter') handleSubmit(e);
-						}}
 					/>
 				</label>
 				<button>Create</button>
