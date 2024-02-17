@@ -15,9 +15,6 @@ export function Home({ data, userId, userEmail, setListPath }) {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const currentLists = data.map((list) => {
-			return list.name;
-		});
 
 		if (newListName.includes('/')) {
 			alert(
@@ -25,22 +22,27 @@ export function Home({ data, userId, userEmail, setListPath }) {
 			);
 			return;
 		}
-		//Check if the new list has a title that already exists in db
-		else if (currentLists.includes(newListName)) {
-			alert('List already exists. Please enter a unique list name.');
-		} else {
-			//Create new list
-			const response = await createList(userId, userEmail, newListName);
 
-			//If list creation successful, show alert and navigate to new list view
-			if (response) {
-				alert('List created successfully.');
-				setListPath(`${userId}/${newListName}`);
-				navigate('/list');
-				//If list creation error, show alert
-			} else {
-				alert('List could not be created.');
-			}
+		const currentLists = data.map((list) => {
+			return list.name;
+		});
+
+		//Check if the new list has a title that already exists in db
+		if (currentLists.includes(newListName)) {
+			alert('List already exists. Please enter a unique list name.');
+			return;
+		}
+
+		//Create new list
+		const response = await createList(userId, userEmail, newListName);
+		//If list creation successful, show alert and navigate to new list view
+		if (response) {
+			alert('List created successfully.');
+			setListPath(`${userId}/${newListName}`);
+			navigate('/list');
+			//If list creation error, show alert
+		} else {
+			alert('List could not be created.');
 		}
 
 		setNewListName('');
