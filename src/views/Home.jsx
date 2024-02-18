@@ -59,6 +59,7 @@ export function Home({ data, userId, userEmail, setListPath }) {
 					<input
 						type="text"
 						id="listName"
+						name="listName"
 						value={newListName}
 						onChange={handleChange}
 					/>
