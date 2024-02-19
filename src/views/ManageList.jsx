@@ -2,14 +2,18 @@ import { useState } from 'react';
 import { addItem } from '../api';
 
 export function ManageList({ listPath }) {
-	const initialFormState = {
+	const initialItemFormState = {
 		itemName: '',
 		daysUntilNextPurchase: 0,
 	};
-	const [newItem, setNewItem] = useState(initialFormState);
+	const [newItem, setNewItem] = useState(initialItemFormState);
+	const [shareName, setShareName] = useState('');
 
 	const handleItemChange = ({ target }) => {
 		setNewItem({ ...newItem, [target.name]: target.value });
+	};
+	const handleShareChange = ({ target }) => {
+		setShareName(target.value);
 	};
 
 	const handleItemSubmit = async (event) => {
@@ -59,7 +63,19 @@ export function ManageList({ listPath }) {
 				</form>
 			</section>
 			<section>
-				<form></form>
+				<form>
+					<label htmlFor="shareName">
+						Share with:
+						<input
+							id="shareName"
+							name="shareName"
+							type="text"
+							value={shareName}
+							onChange={handleShareChange}
+						></input>
+					</label>
+					<button type="submit">Send invite!</button>
+				</form>
 			</section>
 		</>
 	);
