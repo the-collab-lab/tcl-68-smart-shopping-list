@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { addItem } from '../api';
 
-export function ManageList({ listPath }) {
+export function ManageList({ listPath, userId }) {
 	const initialItemFormState = {
 		itemName: '',
 		daysUntilNextPurchase: 0,
@@ -26,6 +26,13 @@ export function ManageList({ listPath }) {
 			console.log(error);
 			alert('Unable to add item');
 		}
+	};
+
+	const handleShareSubmit = async (event) => {
+		event.preventDefault();
+		console.log('shareName', shareName);
+		console.log('userId', userId);
+		console.log('listPath', listPath);
 	};
 
 	return (
@@ -63,7 +70,7 @@ export function ManageList({ listPath }) {
 				</form>
 			</section>
 			<section>
-				<form>
+				<form onSubmit={handleShareSubmit}>
 					<label htmlFor="shareName">
 						Share with:
 						<input
