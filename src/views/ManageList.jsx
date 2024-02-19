@@ -8,11 +8,11 @@ export function ManageList({ listPath }) {
 	};
 	const [newItem, setNewItem] = useState(initialFormState);
 
-	const handleChange = ({ target }) => {
+	const handleItemChange = ({ target }) => {
 		setNewItem({ ...newItem, [target.name]: target.value });
 	};
 
-	const handleSubmit = async (event) => {
+	const handleItemSubmit = async (event) => {
 		newItem.daysUntilNextPurchase = Number(newItem.daysUntilNextPurchase);
 		event.preventDefault();
 		try {
@@ -30,7 +30,7 @@ export function ManageList({ listPath }) {
 				Hello from the <code>/manage-list</code> page!
 			</p>
 			<section>
-				<form onSubmit={handleSubmit}>
+				<form onSubmit={handleItemSubmit}>
 					<label htmlFor="itemName">
 						Item Name
 						<input
@@ -38,7 +38,7 @@ export function ManageList({ listPath }) {
 							name="itemName"
 							type="text"
 							value={newItem.itemName}
-							onChange={handleChange}
+							onChange={handleItemChange}
 						></input>
 					</label>
 					<label htmlFor="daysUntilNextPurchase">
@@ -47,7 +47,7 @@ export function ManageList({ listPath }) {
 							id="daysUntilNextPurchase"
 							name="daysUntilNextPurchase"
 							value={newItem.daysUntilNextPurchase}
-							onChange={handleChange}
+							onChange={handleItemChange}
 						>
 							<option value={0}>Select Next Purchase Date</option>
 							<option value={7}>Soon</option>
@@ -57,6 +57,9 @@ export function ManageList({ listPath }) {
 					</label>
 					<button type="submit">Add Item</button>
 				</form>
+			</section>
+			<section>
+				<form></form>
 			</section>
 		</>
 	);
