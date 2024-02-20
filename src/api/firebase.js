@@ -152,6 +152,7 @@ export async function shareList(listPath, currentUserId, recipientEmail) {
 	// If the recipient user doesn't exist, we can't share the list.
 	if (!recipientDoc.exists()) {
 		// Good spot for throwing error to try / catch block for ManageList
+		throw new Error('User does not yet exist.');
 		return;
 	}
 	// Add the list to the recipient user's sharedLists array.

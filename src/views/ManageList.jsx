@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { addItem } from '../api';
+import { shareList } from '../api/firebase.js';
 
 export function ManageList({ listPath, userId }) {
 	const initialItemFormState = {
@@ -7,13 +8,13 @@ export function ManageList({ listPath, userId }) {
 		daysUntilNextPurchase: 0,
 	};
 	const [newItem, setNewItem] = useState(initialItemFormState);
-	const [shareName, setShareName] = useState('');
+	const [shareEmail, setShareEmail] = useState('');
 
 	const handleItemChange = ({ target }) => {
 		setNewItem({ ...newItem, [target.name]: target.value });
 	};
 	const handleShareChange = ({ target }) => {
-		setShareName(target.value);
+		setShareEmail(target.value);
 	};
 
 	const handleItemSubmit = async (event) => {
@@ -30,9 +31,29 @@ export function ManageList({ listPath, userId }) {
 
 	const handleShareSubmit = async (event) => {
 		event.preventDefault();
-		console.log('shareName', shareName);
-		console.log('userId', userId);
-		console.log('listPath', listPath);
+		// shareList(listPath, currentUserId, recipientEmail)
+		try {
+			//if the user hasn't clicked on a list (state == null)
+			if (!listPath) {
+				alert('Please select a list to share.');
+				return;
+			}
+
+			//if user is not the owner of the list
+			const listOwner = listPath.split('/')[0];
+			if (!listOwner === userId) return;
+
+			const response = await shareList(listPath, userId, shareEmail);
+			if (response) {
+				alert('List was shared successfully.');
+			} else {
+				alert('List could not be shared.');
+			}
+		} catch (err) {
+			console.log(err);
+		}
+
+		//
 	};
 
 	return (
@@ -71,13 +92,13 @@ export function ManageList({ listPath, userId }) {
 			</section>
 			<section>
 				<form onSubmit={handleShareSubmit}>
-					<label htmlFor="shareName">
+					<label htmlFor="shareEmail">
 						Share with:
 						<input
-							id="shareName"
-							name="shareName"
-							type="text"
-							value={shareName}
+							id="shareEmail"
+							name="shareEmail"
+							type="email"
+							value={shareEmail}
 							onChange={handleShareChange}
 						></input>
 					</label>
