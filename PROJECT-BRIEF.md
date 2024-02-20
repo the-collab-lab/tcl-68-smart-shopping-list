@@ -64,11 +64,11 @@ Jump to a Week:
 
 ### Week 3, February 18 - 24
 
-| 👋 Sync meetings | Agenda                                                                                                                                                            |
-| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Weekly Sync      | - Demo issues #4 & #5 <br> - Retro <br> - Collabies will be presented with issues #6 and #7                                                                       |
-| Pair Programming | Schedule a pairing session(s) with your partner early in the week to complete the development work required to meet the acceptance criteria of your Github issue. |
-| Optional         | Office Hours                                                                                                                                                      |
+| 👋 Sync meetings                            | Agenda                                                                                                                                                            |
+| ------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Weekly Sync](https://youtu.be/aoW-Mpzkotw) | - Demo issues #4 & #5 <br> - Retro <br> - Collabies will be presented with issues #6 and #7                                                                       |
+| Pair Programming                            | Schedule a pairing session(s) with your partner early in the week to complete the development work required to meet the acceptance criteria of your Github issue. |
+| Optional                                    | Office Hours                                                                                                                                                      |
 
 | 🤝 Developer pairings | 🖥 Assigned Github issue                                                                                                                                                  |
 | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -83,7 +83,7 @@ Jump to a Week:
 
 | 👋 Sync meetings | Agenda                                                                                                                                                            |
 | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Weekly Sync      | - Demo issues #6 & #7 <br> - Discuss Self-study learning Modules <br> - Collabies will be presented with issue #8 and issue #9                                    |
+| Weekly Sync      | - Demo issues #6 & #7 <br> - Discuss Self-study learning Modules from Weeks 3 & 4 <br> - Collabies will be presented with issue #8 and issue #9                   |
 | Pair Programming | Schedule a pairing session(s) with your partner early in the week to complete the development work required to meet the acceptance criteria of your Github issue. |
 | Optional         | Office Hours                                                                                                                                                      |
 
@@ -117,7 +117,7 @@ Jump to a Week:
 
 | 👋 Sync meetings | Agenda                                                                                                                                                            |
 | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Weekly Sync      | - Demo issues #10 & #11 <br> - Discuss Self-study learning Modules <br> - Collabies will be presented with issue #12 and issue #13                                |
+| Weekly Sync      | - Demo issues #10 & #11 <br> - Discuss Self-study learning Modules from Weeks 5 & 6 <br> - Collabies will be presented with issue #12 and issue #13               |
 | Pair Programming | Schedule a pairing session(s) with your partner early in the week to complete the development work required to meet the acceptance criteria of your Github issue. |
 | Optional         | Office Hours                                                                                                                                                      |
 
