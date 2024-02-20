@@ -41,7 +41,12 @@ export function ManageList({ listPath, userId }) {
 
 			//if user is not the owner of the list
 			const listOwner = listPath.split('/')[0];
-			if (!listOwner === userId) return;
+			if (!listOwner === userId) {
+				alert('The list is not yours to share.');
+				return;
+			}
+
+			//Future validation: Check for existence of the list already in recipient's collection.
 
 			const response = await shareList(listPath, userId, shareEmail);
 			if (response) {
@@ -50,10 +55,8 @@ export function ManageList({ listPath, userId }) {
 				alert('List could not be shared.');
 			}
 		} catch (err) {
-			console.log(err);
+			alert(err);
 		}
-
-		//
 	};
 
 	return (
