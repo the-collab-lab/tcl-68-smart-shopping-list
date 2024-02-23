@@ -24,31 +24,24 @@ export function ManageList({ listPath, userId }) {
 			await addItem(listPath, newItem);
 			alert('Item successfully added!');
 		} catch (error) {
-			console.log(error);
 			alert('Unable to add item');
 		}
 	};
 
 	const handleShareSubmit = async (event) => {
 		event.preventDefault();
-		// shareList(listPath, currentUserId, recipientEmail)
 		try {
 			//if the user hasn't clicked on a list (state == null)
 			if (!listPath) {
-				alert('Please select a list to share.');
-				return;
+				throw new Error('Please select a list to share.');
 			}
 
 			//Future validation: Check for existence of the list already in recipient's collection.
 
-			const response = await shareList(listPath, userId, shareEmail);
-			if (response) {
-				alert('List was shared successfully.');
-			} else {
-				alert('List could not be shared.');
-			}
+			await shareList(listPath, userId, shareEmail);
+			alert('You shared successfully.');
 		} catch (err) {
-			alert(err);
+			alert(err.message);
 		}
 	};
 

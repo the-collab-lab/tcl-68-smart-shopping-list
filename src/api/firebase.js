@@ -159,10 +159,10 @@ export async function shareList(listPath, currentUserId, recipientEmail) {
 	// Add the list to the recipient user's sharedLists array.
 	const listDocumentRef = doc(db, listPath);
 	const userDocumentRef = doc(db, 'users', recipientEmail);
+
 	updateDoc(userDocumentRef, {
 		sharedLists: arrayUnion(listDocumentRef),
 	});
-	return true;
 }
 
 /**
