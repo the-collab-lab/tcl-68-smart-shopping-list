@@ -1,9 +1,8 @@
 import { ListItem } from '../components';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 export function List({ data }) {
 	const [searchTerm, setSearchTerm] = useState('');
-	const [filteredData, setFilteredData] = useState(data);
 
 	const handleChange = (e) => {
 		setSearchTerm(e.target.value);
@@ -11,18 +10,13 @@ export function List({ data }) {
 
 	const reset = (e) => {
 		e.preventDefault();
-		setFilteredData(data);
 		setSearchTerm('');
 	};
 
-	useEffect(() => {
-		setFilteredData(
-			data.filter((item) => {
-				const itemName = item.name.toLowerCase();
-				return itemName.includes(searchTerm.toLowerCase());
-			}),
-		);
-	}, [data, searchTerm]);
+	const filteredData = data.filter((item) => {
+		const itemName = item.name.toLowerCase();
+		return itemName.includes(searchTerm.toLowerCase());
+	});
 
 	return (
 		<>
