@@ -22,6 +22,14 @@ export function List({ data }) {
 
 	return (
 		<>
+			{data.length === 0 && (
+				<>
+					<h2>
+						This list is currently empty. Click below to add your first item.
+					</h2>
+					<button>Add first item</button>
+				</>
+			)}
 			{data.length > 0 && (
 				<form>
 					<label htmlFor="itemFilter">
