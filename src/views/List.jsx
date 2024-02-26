@@ -18,24 +18,25 @@ export function List({ data }) {
 		return itemName.includes(searchTerm.toLowerCase());
 	});
 
+	console.log(data);
+
 	return (
 		<>
-			<p>
-				Hello from the <code>/list</code> page!
-			</p>
-			<form>
-				<label htmlFor="itemFilter">
-					Search for an item:
-					<input
-						type="text"
-						id="itemFilter"
-						name="itemFilter"
-						value={searchTerm}
-						onChange={handleChange}
-					/>
-				</label>
-				{searchTerm && <button onClick={reset}>Reset</button>}
-			</form>
+			{data.length > 0 && (
+				<form>
+					<label htmlFor="itemFilter">
+						Search for an item:
+						<input
+							type="text"
+							id="itemFilter"
+							name="itemFilter"
+							value={searchTerm}
+							onChange={handleChange}
+						/>
+					</label>
+					{searchTerm && <button onClick={reset}>Reset</button>}
+				</form>
+			)}
 			<ul>
 				{filteredData.map((item) => {
 					return <ListItem key={item.id} name={item.name} />;
