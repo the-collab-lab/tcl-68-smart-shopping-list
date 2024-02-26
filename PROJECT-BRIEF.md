@@ -81,11 +81,11 @@ Jump to a Week:
 
 ### Week 4, February 25 - March 2
 
-| 👋 Sync meetings | Agenda                                                                                                                                                            |
-| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Weekly Sync      | - Demo issues #6 & #7 <br> - Discuss Self-study learning Modules from Weeks 3 & 4 <br> - Collabies will be presented with issue #8 and issue #9                   |
-| Pair Programming | Schedule a pairing session(s) with your partner early in the week to complete the development work required to meet the acceptance criteria of your Github issue. |
-| Optional         | Office Hours                                                                                                                                                      |
+| 👋 Sync meetings                            | Agenda                                                                                                                                                            |
+| ------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Weekly Sync](https://youtu.be/_lVKkaQHS2A) | - Demo issues #6 & #7 <br> - Discuss Self-study learning Modules from Weeks 3 & 4 <br> - Collabies will be presented with issue #8 and issue #9                   |
+| Pair Programming                            | Schedule a pairing session(s) with your partner early in the week to complete the development work required to meet the acceptance criteria of your Github issue. |
+| Optional                                    | Office Hours                                                                                                                                                      |
 
 | 🤝 Developer pairings | 🖥 Assigned Github issue                                                                                                                                                                                        |
 | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
