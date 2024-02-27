@@ -38,7 +38,7 @@ export function List({ data }) {
 			</form>
 			<ul>
 				{filteredData.map((item) => {
-					return <ListItem key={item.id} name={item.name} />;
+					return <ListItem key={item.id} item={item} />;
 				})}
 			</ul>
 		</>

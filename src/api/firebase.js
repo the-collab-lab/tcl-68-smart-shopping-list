@@ -186,7 +186,8 @@ export async function addItem(listPath, { itemName, daysUntilNextPurchase }) {
 	return newItem;
 }
 
-export async function updateItem() {
+export async function updateItem(dateLastPurchased, totalPurchases) {
+	console.log(dateLastPurchased, totalPurchases);
 	/**
 	 * TODO: Fill this out so that it uses the correct Firestore function
 	 * to update an existing item. You'll need to figure out what arguments
