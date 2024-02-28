@@ -192,11 +192,15 @@ export async function updateItem(listPath, itemID) {
 	// console.log(listPath, itemID);
 	// console.log(listPath, itemID)
 	const listRef = doc(db, listPath, 'items', itemID);
-
-	updateDoc(listRef, {
-		dateLastPurchased: new Date(),
-		totalPurchases: increment(1),
-	}).then(console.log('backend'));
+	try {
+		await updateDoc(listRef, {
+			dateLastPurchased: new Date(),
+			totalPurchases: increment(1),
+		});
+		console.log('updated');
+	} catch (error) {
+		console.error(error.message);
+	}
 
 	/**
 	 * TODO: Fill this out so that it uses the correct Firestore function

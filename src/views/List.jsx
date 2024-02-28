@@ -1,7 +1,7 @@
 import { ListItem } from '../components';
 import { useState } from 'react';
 
-export function List({ data }) {
+export function List({ listPath, data }) {
 	const [searchTerm, setSearchTerm] = useState('');
 
 	const handleChange = (e) => {
@@ -38,7 +38,7 @@ export function List({ data }) {
 			</form>
 			<ul>
 				{filteredData.map((item) => {
-					return <ListItem key={item.id} item={item} />;
+					return <ListItem key={item.id} item={item} listPath={listPath} />;
 				})}
 			</ul>
 		</>

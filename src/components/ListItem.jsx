@@ -1,25 +1,28 @@
 import './ListItem.css';
 import { updateItem } from '../api/firebase.js';
+import { useState, useEffect } from 'react';
 
-export function ListItem({ item }) {
-	let isPurchased = false;
+export function ListItem({ listPath, item }) {
+	const [isPurchased, setIsPurchased] = useState(false);
 
 	function changeHandler(e) {
-		isPurchased = !isPurchased;
-		purchaseItem();
+		console.log('Is purchased before flipping ' + isPurchased);
+		setIsPurchased(!isPurchased);
 	}
 
-	async function purchaseItem() {
-		console.log(isPurchased);
-		let today = new Date();
-		if (isPurchased) {
-			try {
-				await updateItem(today, item.totalPurchases);
-			} catch (error) {
-				console.log(error);
+	useEffect(() => {
+		async function purchaseItem() {
+			if (isPurchased) {
+				console.log(isPurchased + ' is purchased!');
+				try {
+					await updateItem(listPath, item.id);
+				} catch (error) {
+					alert(error.message);
+				}
 			}
 		}
-	}
+		purchaseItem();
+	}, [isPurchased, item.id, listPath]);
 
 	//potential future issue: feature that allows user to uncheck mistakenly checked items without updating database
 
