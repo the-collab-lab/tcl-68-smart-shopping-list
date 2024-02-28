@@ -7,6 +7,7 @@ import {
 	doc,
 	onSnapshot,
 	updateDoc,
+	increment,
 } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { db } from './config';
@@ -186,8 +187,17 @@ export async function addItem(listPath, { itemName, daysUntilNextPurchase }) {
 	return newItem;
 }
 
-export async function updateItem(dateLastPurchased, totalPurchases) {
-	console.log(dateLastPurchased, totalPurchases);
+// export async function updateItem(listPath, itemID) {
+export async function updateItem(listPath, itemID) {
+	// console.log(listPath, itemID);
+	// console.log(listPath, itemID)
+	const listRef = doc(db, listPath, 'items', itemID);
+
+	updateDoc(listRef, {
+		dateLastPurchased: new Date(),
+		totalPurchases: increment(1),
+	}).then(console.log('backend'));
+
 	/**
 	 * TODO: Fill this out so that it uses the correct Firestore function
 	 * to update an existing item. You'll need to figure out what arguments
