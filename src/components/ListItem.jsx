@@ -1,21 +1,16 @@
 import './ListItem.css';
-import { useState } from 'react';
 import { updateItem } from '../api/firebase.js';
 
 export function ListItem({ item }) {
-	// const formData = {
-	// 	dateLastPurchased: item.dateLastPurchased,
-	// 	totalPurchases: item.totalPurchases,
-	// 	purchased: false,
-	// };
-	const [isPurchased, setIsPurchased] = useState(false);
-	// const [updatedItem, setUpdatedItem] = useState(formData);
+	let isPurchased = false;
 
 	function changeHandler(e) {
-		setIsPurchased(!isPurchased);
+		isPurchased = !isPurchased;
+		purchaseItem();
 	}
 
 	async function purchaseItem() {
+		console.log(isPurchased);
 		let today = new Date();
 		if (isPurchased) {
 			try {
@@ -26,10 +21,7 @@ export function ListItem({ item }) {
 		}
 	}
 
-	//const [isPurchased, setIsPurchased] = useState(false);
-	//const toggleIsPurchased = () => setIsPurchased(!isPurchased)
 	//potential future issue: feature that allows user to uncheck mistakenly checked items without updating database
-	//await updateItem(listPath, {updatedItem.dateLastPurchased, updatedItem.totalPurchases})
 
 	return (
 		<li className="ListItem">
