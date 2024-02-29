@@ -1,13 +1,27 @@
 import './ListItem.css';
 import { updateItem } from '../api/firebase.js';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { ONE_DAY_IN_MILLISECONDS } from '../utils/dates.js';
 
 export function ListItem({ listPath, item }) {
-	const [isPurchased, setIsPurchased] = useState(false);
+	const purchasedOneDayAgo = useCallback(() => {
+		if (item.dateLastPurchased !== null) {
+			const timeDiff = Date.now() - item.dateLastPurchased.seconds * 1000;
+			if (timeDiff <= ONE_DAY_IN_MILLISECONDS) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}, [item.dateLastPurchased]);
 
+	const [isPurchased, setIsPurchased] = useState(false);
+	const [isChecked, setIsChecked] = useState(purchasedOneDayAgo);
 	function changeHandler(e) {
 		setIsPurchased(!isPurchased);
+		setIsChecked(!isChecked);
 	}
 
 	useEffect(() => {
@@ -25,16 +39,13 @@ export function ListItem({ listPath, item }) {
 
 	useEffect(() => {
 		const timer = setTimeout(() => {
-			if (
-				item.dateLastPurchased &&
-				Date.now() -
-					(item.dateLastPurchased.seconds * 1000 >= ONE_DAY_IN_MILLISECONDS)
-			) {
-				setIsPurchased(false);
+			if (purchasedOneDayAgo) {
+				console.log(item.name);
+				setIsChecked(false);
 			}
-		}, ONE_DAY_IN_MILLISECONDS);
+		}, 10000);
 		return () => clearTimeout(timer);
-	}, [item.dateLastPurchased, isPurchased]);
+	}, [isChecked, purchasedOneDayAgo]);
 
 	//potential future issue: feature that allows user to uncheck mistakenly checked items without updating database
 
@@ -46,9 +57,8 @@ export function ListItem({ listPath, item }) {
 					type="checkbox"
 					id={item.name}
 					name="purchased"
-					value={isPurchased}
 					onChange={changeHandler}
-					checked={isPurchased}
+					checked={isChecked}
 				/>
 			</label>
 		</li>
