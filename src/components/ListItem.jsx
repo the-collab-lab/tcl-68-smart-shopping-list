@@ -1,10 +1,10 @@
 import './ListItem.css';
 import { updateItem } from '../api/firebase.js';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { ONE_DAY_IN_MILLISECONDS } from '../utils/dates.js';
 
 export function ListItem({ listPath, item }) {
-	const purchasedOneDayAgo = useCallback(() => {
+	const purchasedOneDayAgo = useMemo(() => {
 		if (item.dateLastPurchased !== null) {
 			const timeDiff = Date.now() - item.dateLastPurchased.seconds * 1000;
 			if (timeDiff <= ONE_DAY_IN_MILLISECONDS) {
@@ -17,37 +17,48 @@ export function ListItem({ listPath, item }) {
 		}
 	}, [item.dateLastPurchased]);
 
-	const [isPurchased, setIsPurchased] = useState(false);
 	const [isChecked, setIsChecked] = useState(purchasedOneDayAgo);
 	function changeHandler(e) {
-		setIsPurchased(!isPurchased);
+		// setIsPurchased(!isPurchased);
 		setIsChecked(!isChecked);
-	}
-
-	useEffect(() => {
 		async function purchaseItem() {
-			if (isPurchased) {
-				try {
-					await updateItem(listPath, item.id);
-				} catch (error) {
-					alert(error.message);
-				}
+			try {
+				await updateItem(listPath, item.id, !isChecked);
+			} catch (error) {
+				alert(error.message);
 			}
 		}
 		purchaseItem();
-	}, [isPurchased, item.id, listPath]);
+	}
+
+	// const [isPurchased, setIsPurchased] = useState(false);
+	// const [isChecked, setIsChecked] = useState(purchasedOneDayAgo);
+	// function changeHandler(e) {
+	// setIsPurchased(!isPurchased);
+	// 	setIsChecked(!isChecked);
+	// }
+
+	// useEffect(() => {
+	// 	async function purchaseItem() {
+	// 		if (isChecked) {
+	// 			try {
+	// 				await updateItem(listPath, item.id, isChecked);
+	// 			} catch (error) {
+	// 				alert(error.message);
+	// 			}
+	// 		}
+	// 	}
+	// 	purchaseItem();
+	// }, [isChecked, item.id, listPath]);
 
 	useEffect(() => {
 		const timer = setTimeout(() => {
 			if (purchasedOneDayAgo) {
-				console.log(item.name);
 				setIsChecked(false);
 			}
-		}, 10000);
+		}, ONE_DAY_IN_MILLISECONDS);
 		return () => clearTimeout(timer);
 	}, [isChecked, purchasedOneDayAgo]);
-
-	//potential future issue: feature that allows user to uncheck mistakenly checked items without updating database
 
 	return (
 		<li className="ListItem">
