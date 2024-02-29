@@ -4,6 +4,9 @@ import { useState, useEffect, useMemo } from 'react';
 import { ONE_DAY_IN_MILLISECONDS } from '../utils/dates.js';
 
 export function ListItem({ listPath, item }) {
+	/* Returns a boolean that is passed into isChecked useState
+	On render, box is checked if purchased less than a day ago */
+
 	const purchasedOneDayAgo = useMemo(() => {
 		if (item.dateLastPurchased !== null) {
 			const timeDiff = Date.now() - item.dateLastPurchased.seconds * 1000;
@@ -19,7 +22,6 @@ export function ListItem({ listPath, item }) {
 
 	const [isChecked, setIsChecked] = useState(purchasedOneDayAgo);
 	function changeHandler(e) {
-		// setIsPurchased(!isPurchased);
 		setIsChecked(!isChecked);
 		async function purchaseItem() {
 			try {
@@ -31,26 +33,7 @@ export function ListItem({ listPath, item }) {
 		purchaseItem();
 	}
 
-	// const [isPurchased, setIsPurchased] = useState(false);
-	// const [isChecked, setIsChecked] = useState(purchasedOneDayAgo);
-	// function changeHandler(e) {
-	// setIsPurchased(!isPurchased);
-	// 	setIsChecked(!isChecked);
-	// }
-
-	// useEffect(() => {
-	// 	async function purchaseItem() {
-	// 		if (isChecked) {
-	// 			try {
-	// 				await updateItem(listPath, item.id, isChecked);
-	// 			} catch (error) {
-	// 				alert(error.message);
-	// 			}
-	// 		}
-	// 	}
-	// 	purchaseItem();
-	// }, [isChecked, item.id, listPath]);
-
+	//sets a timer to uncheck an item 24 hours after it's purchased
 	useEffect(() => {
 		const timer = setTimeout(() => {
 			if (purchasedOneDayAgo) {
