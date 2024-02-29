@@ -190,7 +190,6 @@ export async function addItem(listPath, { itemName, daysUntilNextPurchase }) {
 // export async function updateItem(listPath, itemID) {
 export async function updateItem(listPath, itemID, isChecked) {
 	const listRef = doc(db, listPath, 'items', itemID);
-	console.log(isChecked);
 
 	await updateDoc(listRef, {
 		dateLastPurchased: isChecked ? new Date() : null,
