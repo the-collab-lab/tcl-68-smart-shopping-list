@@ -189,21 +189,12 @@ export async function addItem(listPath, { itemName, daysUntilNextPurchase }) {
 
 // export async function updateItem(listPath, itemID) {
 export async function updateItem(listPath, itemID) {
-	// console.log(listPath, itemID);
-	// console.log(listPath, itemID)
 	const listRef = doc(db, listPath, 'items', itemID);
 
 	await updateDoc(listRef, {
 		dateLastPurchased: new Date(),
 		totalPurchases: increment(1),
 	});
-	console.log('updated');
-
-	/**
-	 * TODO: Fill this out so that it uses the correct Firestore function
-	 * to update an existing item. You'll need to figure out what arguments
-	 * this function must accept!
-	 */
 }
 
 export async function deleteItem() {
