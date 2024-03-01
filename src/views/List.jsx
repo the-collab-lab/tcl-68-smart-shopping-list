@@ -27,15 +27,15 @@ export function List({ data, listPath }) {
 
 	return (
 		<>
-			{!listPath && (
+			{!listPath ? (
 				<>
 					<h2>
 						You haven't selected a list yet. Click below to select a list.
 					</h2>
 					<button onClick={() => handleClick('/')}>Select a list</button>
 				</>
-			)}
-			{listPath && data.length === 0 && (
+			) : null}
+			{listPath && data.length === 0 ? (
 				<>
 					<h2>
 						This list is currently empty. Click below to add your first item.
@@ -44,8 +44,8 @@ export function List({ data, listPath }) {
 						Add first item
 					</button>
 				</>
-			)}
-			{data.length > 0 && (
+			) : null}
+			{data.length > 0 ? (
 				<form>
 					<label htmlFor="itemFilter">
 						Search for an item:
@@ -57,9 +57,9 @@ export function List({ data, listPath }) {
 							onChange={handleChange}
 						/>
 					</label>
-					{searchTerm && <button onClick={reset}>Reset</button>}
+					{searchTerm ? <button onClick={reset}>Reset</button> : null}
 				</form>
-			)}
+			) : null}
 			<ul>
 				{filteredData.map((item) => {
 					return <ListItem key={item.id} name={item.name} />;
