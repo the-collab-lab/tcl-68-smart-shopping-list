@@ -43,14 +43,14 @@ export function ListItem({ listPath, item }) {
 
 	//sets a timer to uncheck an item 24 hours after it's purchased
 	useEffect(() => {
-		let timeRemaining = updateTimer();
+		if (purchasedOneDayAgo) {
+			let timeRemaining = updateTimer();
 
-		const timer = setTimeout(() => {
-			if (purchasedOneDayAgo) {
+			const timer = setTimeout(() => {
 				setIsChecked(false);
-			}
-		}, timeRemaining);
-		return () => clearTimeout(timer);
+			}, timeRemaining);
+			return () => clearTimeout(timer);
+		}
 	}, [isChecked, purchasedOneDayAgo]);
 
 	return (
