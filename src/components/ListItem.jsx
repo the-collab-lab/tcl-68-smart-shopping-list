@@ -8,16 +8,12 @@ export function ListItem({ listPath, item }) {
 	On render, box is checked if purchased less than a day ago */
 
 	const purchasedOneDayAgo = useMemo(() => {
-		if (item.dateLastPurchased !== null) {
-			const timeDiff = Date.now() - item.dateLastPurchased.seconds * 1000;
-			if (timeDiff <= ONE_DAY_IN_MILLISECONDS) {
-				return true;
-			} else {
-				return false;
-			}
-		} else {
+		if (item.dateLastPurchased === null) {
 			return false;
 		}
+
+		const timeDiff = Date.now() - item.dateLastPurchased.seconds * 1000;
+		return timeDiff <= ONE_DAY_IN_MILLISECONDS;
 	}, [item.dateLastPurchased]);
 
 	const [isChecked, setIsChecked] = useState(purchasedOneDayAgo);
