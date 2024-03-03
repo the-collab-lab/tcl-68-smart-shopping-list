@@ -21,7 +21,7 @@ export function ListItem({ listPath, item }) {
 	}, [item.dateLastPurchased]);
 
 	const [isChecked, setIsChecked] = useState(purchasedOneDayAgo);
-	function changeHandler(e) {
+	const changeHandler = (e) => {
 		setIsChecked(!isChecked);
 		async function purchaseItem() {
 			try {
@@ -31,7 +31,7 @@ export function ListItem({ listPath, item }) {
 			}
 		}
 		purchaseItem();
-	}
+	};
 
 	//sets a timer to uncheck an item 24 hours after it's purchased
 	useEffect(() => {
