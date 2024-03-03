@@ -2,7 +2,9 @@ import { ListItem } from '../components';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+
 export function List({ data, listPath }) {
+
 	const [searchTerm, setSearchTerm] = useState('');
 
 	const navigate = useNavigate();
@@ -62,7 +64,7 @@ export function List({ data, listPath }) {
 			) : null}
 			<ul>
 				{filteredData.map((item) => {
-					return <ListItem key={item.id} name={item.name} />;
+					return <ListItem key={item.id} item={item} listPath={listPath} />;
 				})}
 			</ul>
 		</>
