@@ -66,7 +66,7 @@ Jump to a Week:
 
 | 👋 Sync meetings                            | Agenda                                                                                                                                                            |
 | ------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Weekly Sync](https://youtu.be/aoW-Mpzkotw) | - Demo issues #4 & #5 <br> - Retro <br> - Collabies will be presented with issues #6 and #7                                                                       |
+| [Weekly Sync](https://youtu.be/aoW-Mpzkotw) | - Demo issues #4 & #5 <br> - [Retro](https://github.com/orgs/the-collab-lab/projects/215) <br> - Collabies will be presented with issues #6 and #7                |
 | Pair Programming                            | Schedule a pairing session(s) with your partner early in the week to complete the development work required to meet the acceptance criteria of your Github issue. |
 | Optional                                    | Office Hours                                                                                                                                                      |
 
@@ -100,7 +100,7 @@ Jump to a Week:
 
 | 👋 Sync meetings | Agenda                                                                                                                                                            |
 | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Weekly Sync      | - Demo issues #8 & #9 <br> - Retro <br> - Collabies will be presented with issue #10 and issue #11                                                                |
+| Weekly Sync      | - Demo issues #8 & #9 <br> - [Retro](https://github.com/orgs/the-collab-lab/projects/216/views/1) <br> - Collabies will be presented with issue #10 and issue #11 |
 | Pair Programming | Schedule a pairing session(s) with your partner early in the week to complete the development work required to meet the acceptance criteria of your Github issue. |
 | Optional         | Office Hours                                                                                                                                                      |
 
@@ -134,7 +134,7 @@ Jump to a Week:
 
 | 👋 Sync meetings | Agenda                                                                                                                                                            |
 | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Weekly Sync      | - Demo issues #12 & #13 <br> - Retro <br> - Collabies will be presented with issue #14                                                                            |
+| Weekly Sync      | - Demo issues #12 & #13 <br> - [Retro](https://github.com/orgs/the-collab-lab/projects/217) <br> - Collabies will be presented with issue #14                     |
 | Pair Programming | Schedule a pairing session(s) with your partner early in the week to complete the development work required to meet the acceptance criteria of your Github issue. |
 | Optional         | - Office Hours <br> - Design meeting with Mark                                                                                                                    |
 
@@ -167,7 +167,7 @@ Jump to a Week:
 
 | 👋 Sync meetings                   | Agenda                                                                                                                            |
 | ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| Final Weekly Sync                  | - Demo <br> - Retro <br> - Planning                                                                                               |
+| Final Weekly Sync                  | - Demo <br> - [Retro](https://github.com/orgs/the-collab-lab/projects/218) <br> - Planning                                        |
 | Pair Programming / Design planning | During this week, you should aim to collaborate as a full team to create a plan for implementing an engaging design for your app. |
 | Optional                           | Office Hours                                                                                                                      |
 
