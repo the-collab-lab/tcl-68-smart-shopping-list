@@ -50,7 +50,7 @@ export function ListItem({ listPath, item }) {
 		let timeRemaining = updateTimer();
 
 		const timer = setTimeout(() => {
-			if (timeRemaining > 0) {
+			if (purchasedOneDayAgo) {
 				setIsChecked(false);
 			}
 		}, timeRemaining);
