@@ -11,7 +11,9 @@ import {
 } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { db } from './config';
-import { getFutureDate } from '../utils';
+import { getFutureDate, getDaysBetweenDates } from '../utils';
+import { calculateEstimate } from '@the-collab-lab/shopping-list-utils';
+// calculateEstimate takes 3 arguments - previousEstimate (number), daysSinceLastPurchase (number), totalPurchases (number)
 
 /**
  * A custom hook that subscribes to the user's shopping lists in our Firestore
@@ -189,7 +191,10 @@ export async function addItem(listPath, { itemName, daysUntilNextPurchase }) {
 
 export async function updateItem(listPath, itemID, isChecked) {
 	const listRef = doc(db, listPath, 'items', itemID);
-
+	// We need : today's date
+	const todaysDate = new Date();
+	console.log('196', listRef);
+	console.log('todaysDate:', todaysDate);
 	await updateDoc(listRef, {
 		dateLastPurchased: isChecked ? new Date() : null,
 		totalPurchases: isChecked ? increment(1) : increment(-1),
