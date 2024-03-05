@@ -191,12 +191,15 @@ export async function addItem(listPath, { itemName, daysUntilNextPurchase }) {
 
 export async function updateItem(listPath, itemID, isChecked) {
 	const listRef = doc(db, listPath, 'items', itemID);
-	// We need : today's date
+	// We need : today's date in MS, dateLastPurchased in MS, convert MS to # of days between, use to calculateEstimate
 	const todaysDate = new Date();
-	console.log('196', listRef);
-	console.log('todaysDate:', todaysDate);
+	const selectedItem = await getDoc(listRef);
+	const selectedLastPurchase = selectedItem.data().dateLastPurchased.toDate();
+	// console.log('196', listRef);
+	console.log('todaysDate as MS:', todaysDate.getTime());
 	await updateDoc(listRef, {
 		dateLastPurchased: isChecked ? new Date() : null,
+		// write logic in place of 'null' that enables user to toggle between 'dateLastPurchased' as found on firebase previously, or today's date
 		totalPurchases: isChecked ? increment(1) : increment(-1),
 	});
 }
