@@ -32,16 +32,16 @@ export function ManageList({ listPath, userId, data }) {
 			const itemName = newItem.itemName
 				.toLowerCase()
 				.replace(/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~/\s]/g, '');
-			const itemMatch = currentList.includes(itemName);
-			if (itemMatch) {
+
+			if (currentList.includes(itemName)) {
 				alert('This item already exists in the list.');
 				return;
 			}
-		} else if (!newItem.itemName) {
+		}
+
+		if (!newItem.itemName) {
 			alert('Please enter an item name');
 			return;
-		} else {
-			return true;
 		}
 
 		//Compare new item name to current list in database
