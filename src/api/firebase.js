@@ -194,25 +194,43 @@ export async function addItem(listPath, { itemName, daysUntilNextPurchase }) {
 export async function updateItem(listPath, itemID, isChecked) {
 	const listRef = doc(db, listPath, 'items', itemID);
 	// We need : today's date in MS, dateLastPurchased in MS, convert MS to # of days between, use to calculateEstimate
-	const todaysDate = new Date();
+	// const todaysDate = new Date();
 	const selectedItem = await getDoc(listRef);
 	const selectedLastPurchase = selectedItem.data().dateLastPurchased;
-	console.log(selectedLastPurchase);
+	const lastPurchased =
+		selectedLastPurchase[selectedLastPurchase.length - 1].toDate();
+	const previousEstimate = getDaysBetweenDates(
+		lastPurchased,
+		selectedItem.data().dateNextPurchased.toDate(),
+	);
+	let daysSincePrevPurchase = getDaysBetweenDates(lastPurchased, new Date());
+	let newEstimate = calculateEstimate(
+		previousEstimate,
+		daysSincePrevPurchase,
+		selectedItem.data().totalPurchases,
+	);
+
 	if (isChecked) {
 		await updateDoc(listRef, {
 			dateLastPurchased: [...selectedLastPurchase, new Date()],
-			// dateLastPurchased[dateLastPurchased.length - 1].toDate();
-			// write logic in place of 'null' that enables user to toggle between 'dateLastPurchased' as found on firebase previously, or today's date
+			dateNextPurchased: getFutureDate(
+				calculateEstimate(
+					previousEstimate,
+					daysSincePrevPurchase,
+					selectedItem.data().totalPurchases,
+				),
+			),
 			totalPurchases: isChecked ? increment(1) : increment(-1),
 		});
 		const updatedItem = await getDoc(listRef);
 
-		console.log(updatedItem.data());
+		console.log(daysSincePrevPurchase + ' days since previous purchase');
+		console.log(updatedItem.data().dateNextPurchased.toDate());
+		console.log(newEstimate);
 	} else {
 		selectedLastPurchase.pop();
 		await updateDoc(listRef, {
 			dateLastPurchased: [...selectedLastPurchase],
-			// write logic in place of 'null' that enables user to toggle between 'dateLastPurchased' as found on firebase previously, or today's date
 			totalPurchases: isChecked ? increment(1) : increment(-1),
 		});
 		const updatedItem = await getDoc(listRef);
