@@ -181,27 +181,44 @@ export async function addItem(listPath, { itemName, daysUntilNextPurchase }) {
 		dateCreated: new Date(),
 		// NOTE: This is null because the item has just been created.
 		// We'll use updateItem to put a Date here when the item is purchased!
-		dateLastPurchased: null,
+		dateLastPurchased: [new Date()],
 		dateNextPurchased: getFutureDate(daysUntilNextPurchase),
 		name: itemName,
 		totalPurchases: 0,
 	});
+	console.log(newItem);
 	return newItem;
 }
 
+//user marks item as purchased
 export async function updateItem(listPath, itemID, isChecked) {
 	const listRef = doc(db, listPath, 'items', itemID);
 	// We need : today's date in MS, dateLastPurchased in MS, convert MS to # of days between, use to calculateEstimate
 	const todaysDate = new Date();
 	const selectedItem = await getDoc(listRef);
-	const selectedLastPurchase = selectedItem.data().dateLastPurchased.toDate();
-	// console.log('196', listRef);
-	console.log('todaysDate as MS:', todaysDate.getTime());
-	await updateDoc(listRef, {
-		dateLastPurchased: isChecked ? new Date() : null,
-		// write logic in place of 'null' that enables user to toggle between 'dateLastPurchased' as found on firebase previously, or today's date
-		totalPurchases: isChecked ? increment(1) : increment(-1),
-	});
+	const selectedLastPurchase = selectedItem.data().dateLastPurchased;
+	console.log(selectedLastPurchase);
+	if (isChecked) {
+		await updateDoc(listRef, {
+			dateLastPurchased: [...selectedLastPurchase, new Date()],
+			// dateLastPurchased[dateLastPurchased.length - 1].toDate();
+			// write logic in place of 'null' that enables user to toggle between 'dateLastPurchased' as found on firebase previously, or today's date
+			totalPurchases: isChecked ? increment(1) : increment(-1),
+		});
+		const updatedItem = await getDoc(listRef);
+
+		console.log(updatedItem.data());
+	} else {
+		selectedLastPurchase.pop();
+		await updateDoc(listRef, {
+			dateLastPurchased: [...selectedLastPurchase],
+			// write logic in place of 'null' that enables user to toggle between 'dateLastPurchased' as found on firebase previously, or today's date
+			totalPurchases: isChecked ? increment(1) : increment(-1),
+		});
+		const updatedItem = await getDoc(listRef);
+
+		console.log(updatedItem.data());
+	}
 }
 
 export async function deleteItem() {
