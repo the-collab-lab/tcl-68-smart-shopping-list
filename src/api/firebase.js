@@ -204,12 +204,12 @@ export async function updateItem(listPath, itemID, isChecked) {
 		selectedItem.data().dateNextPurchased.toDate(),
 	);
 	let daysSincePrevPurchase = getDaysBetweenDates(lastPurchased, new Date());
+
 	let newEstimate = calculateEstimate(
 		previousEstimate,
 		daysSincePrevPurchase,
 		selectedItem.data().totalPurchases,
 	);
-
 	if (isChecked) {
 		await updateDoc(listRef, {
 			dateLastPurchased: [...selectedLastPurchase, new Date()],
@@ -225,7 +225,10 @@ export async function updateItem(listPath, itemID, isChecked) {
 		const updatedItem = await getDoc(listRef);
 
 		console.log(daysSincePrevPurchase + ' days since previous purchase');
-		console.log(updatedItem.data().dateNextPurchased.toDate());
+		console.log(
+			'estimated next purchase:',
+			updatedItem.data().dateNextPurchased.toDate(),
+		);
 		console.log(newEstimate);
 	} else {
 		selectedLastPurchase.pop();
