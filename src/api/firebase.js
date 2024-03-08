@@ -190,55 +190,53 @@ export async function addItem(listPath, { itemName, daysUntilNextPurchase }) {
 	return newItem;
 }
 
-//user marks item as purchased
-export async function updateItem(listPath, itemID, isChecked) {
-	const listRef = doc(db, listPath, 'items', itemID);
-	// We need : today's date in MS, dateLastPurchased in MS, convert MS to # of days between, use to calculateEstimate
-	// const todaysDate = new Date();
+//Helper function to handle estimation logic
+async function handleCalculateEstimate(listRef) {
 	const selectedItem = await getDoc(listRef);
+
+	//access array of dateLastPurchased for the selected item
 	const selectedLastPurchase = selectedItem.data().dateLastPurchased;
+
+	//retrieve the most recent purchase date from the array and convert to a date
 	const lastPurchased =
 		selectedLastPurchase[selectedLastPurchase.length - 1].toDate();
+
+	//calculates the previously estimated days until next purchase
 	const previousEstimate = getDaysBetweenDates(
 		lastPurchased,
 		selectedItem.data().dateNextPurchased.toDate(),
 	);
 	let daysSincePrevPurchase = getDaysBetweenDates(lastPurchased, new Date());
 
+	//calculates a new estimate based on the previous estimate, days since last purchased, and total purchases
 	let newEstimate = calculateEstimate(
 		previousEstimate,
 		daysSincePrevPurchase,
 		selectedItem.data().totalPurchases,
 	);
+
+	return { newEstimate, selectedLastPurchase };
+}
+
+export async function updateItem(listPath, itemID, isChecked) {
+	const listRef = doc(db, listPath, 'items', itemID);
+
+	let { newEstimate, selectedLastPurchase } =
+		await handleCalculateEstimate(listRef);
+
+	//checks to see if checkbox is checked in front end, updates selected item
 	if (isChecked) {
 		await updateDoc(listRef, {
 			dateLastPurchased: [...selectedLastPurchase, new Date()],
-			dateNextPurchased: getFutureDate(
-				calculateEstimate(
-					previousEstimate,
-					daysSincePrevPurchase,
-					selectedItem.data().totalPurchases,
-				),
-			),
-			totalPurchases: isChecked ? increment(1) : increment(-1),
+			dateNextPurchased: getFutureDate(newEstimate),
+			totalPurchases: increment(1),
 		});
-		const updatedItem = await getDoc(listRef);
-
-		console.log(daysSincePrevPurchase + ' days since previous purchase');
-		console.log(
-			'estimated next purchase:',
-			updatedItem.data().dateNextPurchased.toDate(),
-		);
-		console.log(newEstimate);
 	} else {
 		selectedLastPurchase.pop();
 		await updateDoc(listRef, {
 			dateLastPurchased: [...selectedLastPurchase],
-			totalPurchases: isChecked ? increment(1) : increment(-1),
+			totalPurchases: increment(-1),
 		});
-		const updatedItem = await getDoc(listRef);
-
-		console.log(updatedItem.data());
 	}
 }
 
