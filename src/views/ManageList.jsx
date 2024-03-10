@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { addItem } from '../api';
 import { shareList } from '../api/firebase.js';
 
-export function ManageList({ listPath, userId }) {
+export function ManageList({ listPath, userId, data }) {
 	const initialItemFormState = {
 		itemName: '',
 		daysUntilNextPurchase: 0,
@@ -17,9 +17,33 @@ export function ManageList({ listPath, userId }) {
 		setShareEmail(target.value);
 	};
 
+	const currentList = data.map((item) => {
+		return item.name
+			.toLowerCase()
+			.replace(/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~/\s]/g, '');
+	});
+
 	const handleItemSubmit = async (event) => {
 		newItem.daysUntilNextPurchase = Number(newItem.daysUntilNextPurchase);
 		event.preventDefault();
+
+		if (!newItem.itemName) {
+			alert('Please enter an item name');
+			return;
+		}
+
+		//edge case: what if someone decides to put only puncutation as item name
+		const itemName = newItem.itemName
+			.toLowerCase()
+			.replace(/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~/\s]/g, '');
+		console.log('itemName:', itemName);
+
+		if (currentList.includes(itemName)) {
+			alert('This item already exists in the list.');
+			return;
+		}
+
+		//Compare new item name to current list in database
 		try {
 			await addItem(listPath, newItem);
 			alert('Item successfully added!');
