@@ -20,5 +20,5 @@ export function getDaysBetweenDates(firstDate, secondDate) {
 	const secondsBetween = secondTime - firstTime;
 	const daysBetween = secondsBetween / ONE_DAY_IN_MILLISECONDS;
 	// Round number here
-	return Math.round(daysBetween);
+	return daysBetween.toPrecision(3);
 }
