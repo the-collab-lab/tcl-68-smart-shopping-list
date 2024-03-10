@@ -186,7 +186,6 @@ export async function addItem(listPath, { itemName, daysUntilNextPurchase }) {
 		name: itemName,
 		totalPurchases: 0,
 	});
-	console.log(newItem);
 	return newItem;
 }
 
@@ -206,10 +205,10 @@ async function handleCalculateEstimate(listRef) {
 		lastPurchased,
 		selectedItem.data().dateNextPurchased.toDate(),
 	);
-	let daysSincePrevPurchase = getDaysBetweenDates(lastPurchased, new Date());
+	const daysSincePrevPurchase = getDaysBetweenDates(lastPurchased, new Date());
 
 	//calculates a new estimate based on the previous estimate, days since last purchased, and total purchases
-	let newEstimate = calculateEstimate(
+	const newEstimate = calculateEstimate(
 		previousEstimate,
 		daysSincePrevPurchase,
 		selectedItem.data().totalPurchases,
@@ -221,7 +220,7 @@ async function handleCalculateEstimate(listRef) {
 export async function updateItem(listPath, itemID, isChecked) {
 	const listRef = doc(db, listPath, 'items', itemID);
 
-	let { newEstimate, selectedLastPurchase } =
+	const { newEstimate, selectedLastPurchase } =
 		await handleCalculateEstimate(listRef);
 
 	//checks to see if checkbox is checked in front end, updates selected item
