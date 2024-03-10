@@ -27,20 +27,19 @@ export function ManageList({ listPath, userId, data }) {
 		newItem.daysUntilNextPurchase = Number(newItem.daysUntilNextPurchase);
 		event.preventDefault();
 
-		//edge case: what if someone decides to put only puncutation as item name
-		if (newItem.itemName) {
-			const itemName = newItem.itemName
-				.toLowerCase()
-				.replace(/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~/\s]/g, '');
-
-			if (currentList.includes(itemName)) {
-				alert('This item already exists in the list.');
-				return;
-			}
-		}
-
 		if (!newItem.itemName) {
 			alert('Please enter an item name');
+			return;
+		}
+
+		//edge case: what if someone decides to put only puncutation as item name
+		const itemName = newItem.itemName
+			.toLowerCase()
+			.replace(/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~/\s]/g, '');
+		console.log('itemName:', itemName);
+
+		if (currentList.includes(itemName)) {
+			alert('This item already exists in the list.');
 			return;
 		}
 
