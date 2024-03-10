@@ -11,7 +11,9 @@ import {
 } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { db } from './config';
-import { getFutureDate } from '../utils';
+import { getFutureDate, getDaysBetweenDates } from '../utils';
+import { calculateEstimate } from '@the-collab-lab/shopping-list-utils';
+// calculateEstimate takes 3 arguments - previousEstimate (number), daysSinceLastPurchase (number), totalPurchases (number)
 
 /**
  * A custom hook that subscribes to the user's shopping lists in our Firestore
@@ -179,7 +181,7 @@ export async function addItem(listPath, { itemName, daysUntilNextPurchase }) {
 		dateCreated: new Date(),
 		// NOTE: This is null because the item has just been created.
 		// We'll use updateItem to put a Date here when the item is purchased!
-		dateLastPurchased: null,
+		dateLastPurchased: [new Date()],
 		dateNextPurchased: getFutureDate(daysUntilNextPurchase),
 		name: itemName,
 		totalPurchases: 0,
@@ -187,13 +189,54 @@ export async function addItem(listPath, { itemName, daysUntilNextPurchase }) {
 	return newItem;
 }
 
+//Helper function to handle estimation logic
+async function handleCalculateEstimate(listRef) {
+	const selectedItem = await getDoc(listRef);
+
+	//access array of dateLastPurchased for the selected item
+	const selectedLastPurchase = selectedItem.data().dateLastPurchased;
+
+	//retrieve the most recent purchase date from the array and convert to a date
+	const lastPurchased =
+		selectedLastPurchase[selectedLastPurchase.length - 1].toDate();
+
+	//calculates the previously estimated days until next purchase
+	const previousEstimate = getDaysBetweenDates(
+		lastPurchased,
+		selectedItem.data().dateNextPurchased.toDate(),
+	);
+	const daysSincePrevPurchase = getDaysBetweenDates(lastPurchased, new Date());
+
+	//calculates a new estimate based on the previous estimate, days since last purchased, and total purchases
+	const newEstimate = calculateEstimate(
+		previousEstimate,
+		daysSincePrevPurchase,
+		selectedItem.data().totalPurchases,
+	);
+
+	return { newEstimate, selectedLastPurchase };
+}
+
 export async function updateItem(listPath, itemID, isChecked) {
 	const listRef = doc(db, listPath, 'items', itemID);
 
-	await updateDoc(listRef, {
-		dateLastPurchased: isChecked ? new Date() : null,
-		totalPurchases: isChecked ? increment(1) : increment(-1),
-	});
+	const { newEstimate, selectedLastPurchase } =
+		await handleCalculateEstimate(listRef);
+
+	//checks to see if checkbox is checked in front end, updates selected item
+	if (isChecked) {
+		await updateDoc(listRef, {
+			dateLastPurchased: [...selectedLastPurchase, new Date()],
+			dateNextPurchased: getFutureDate(newEstimate),
+			totalPurchases: increment(1),
+		});
+	} else {
+		selectedLastPurchase.pop();
+		await updateDoc(listRef, {
+			dateLastPurchased: [...selectedLastPurchase],
+			totalPurchases: increment(-1),
+		});
+	}
 }
 
 export async function deleteItem() {
