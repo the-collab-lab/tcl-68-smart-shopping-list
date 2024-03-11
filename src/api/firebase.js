@@ -246,3 +246,42 @@ export async function deleteItem() {
 	 * this function must accept!
 	 */
 }
+
+export function comparePurchaseUrgency(a, b) {
+	const today = new Date();
+	const nextPurchaseDaysBetween = Number(
+		getDaysBetweenDates(today, a.dateNextPurchased.toDate()),
+	);
+	const lastPurchaseDaysBetween = getDaysBetweenDates(
+		a.dateLastPurchased[a.dateLastPurchased.length - 1].toDate(),
+		today,
+	);
+	const nextPurchaseDaysBetweenB = Number(
+		getDaysBetweenDates(today, b.dateNextPurchased.toDate()),
+	);
+	const lastPurchaseDaysBetweenB = getDaysBetweenDates(
+		b.dateLastPurchased[b.dateLastPurchased.length - 1].toDate(),
+		today,
+	);
+	if (lastPurchaseDaysBetween > 60 && lastPurchaseDaysBetweenB < 60) {
+		return 1;
+	}
+	if (lastPurchaseDaysBetween < 60 && lastPurchaseDaysBetweenB > 60) {
+		return -1;
+	}
+	if (nextPurchaseDaysBetween < nextPurchaseDaysBetweenB) {
+		return -1;
+	}
+	if (nextPurchaseDaysBetween === nextPurchaseDaysBetweenB) {
+		if (a.name < b.name) {
+			return -1;
+		} else if (a.name === b.name) {
+			return 0;
+		} else {
+			return 1;
+		}
+	}
+	if (nextPurchaseDaysBetween > nextPurchaseDaysBetweenB) {
+		return 1;
+	}
+}

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { getDaysBetweenDates } from './dates';
 
 /**
  * Set some state in React, and also persist that value in localStorage.
@@ -18,4 +19,26 @@ export function useStateWithStorage(storageKey, initialValue) {
 	}, [storageKey, value]);
 
 	return [value, setValue];
+}
+
+export function purchaseUrgency(dateNextPurchased, lastPurchased) {
+	const today = new Date();
+	const nextPurchaseDaysBetween = getDaysBetweenDates(
+		today,
+		dateNextPurchased.toDate(),
+	);
+	const lastPurchaseDaysBetween = getDaysBetweenDates(
+		lastPurchased.toDate(),
+		today,
+	);
+	if (lastPurchaseDaysBetween > 60) {
+		return 'Inactive';
+	}
+	if (nextPurchaseDaysBetween <= 7) {
+		return 'Soon';
+	} else if (nextPurchaseDaysBetween <= 30) {
+		return 'Kind Of Soon';
+	} else {
+		return 'Not Soon';
+	}
 }
