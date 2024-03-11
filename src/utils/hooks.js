@@ -34,7 +34,9 @@ export function purchaseUrgency(dateNextPurchased, lastPurchased) {
 	if (lastPurchaseDaysBetween > 60) {
 		return 'Inactive';
 	}
-	if (nextPurchaseDaysBetween <= 7) {
+	if (nextPurchaseDaysBetween < 0) {
+		return 'Overdue';
+	} else if (nextPurchaseDaysBetween <= 7) {
 		return 'Soon';
 	} else if (nextPurchaseDaysBetween <= 30) {
 		return 'Kind Of Soon';
