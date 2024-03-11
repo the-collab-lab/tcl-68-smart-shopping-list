@@ -263,15 +263,18 @@ export function comparePurchaseUrgency(a, b) {
 		b.dateLastPurchased[b.dateLastPurchased.length - 1].toDate(),
 		today,
 	);
+	// if not purchased within 60 days, sort to bottom of list
 	if (lastPurchaseDaysBetween > 60 && lastPurchaseDaysBetweenB < 60) {
 		return 1;
 	}
 	if (lastPurchaseDaysBetween < 60 && lastPurchaseDaysBetweenB > 60) {
 		return -1;
 	}
+	// sort by days until next purchase
 	if (nextPurchaseDaysBetween < nextPurchaseDaysBetweenB) {
 		return -1;
 	}
+	// if days until next purchase is the same, sort alphabetically
 	if (nextPurchaseDaysBetween === nextPurchaseDaysBetweenB) {
 		if (a.name < b.name) {
 			return -1;
