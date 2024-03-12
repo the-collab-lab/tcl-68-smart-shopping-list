@@ -1,5 +1,5 @@
 import './ListItem.css';
-import { updateItem } from '../api/firebase.js';
+import { updateItem, deleteItem } from '../api/firebase.js';
 import { useState, useEffect, useMemo } from 'react';
 import { ONE_DAY_IN_MILLISECONDS } from '../utils/dates.js';
 
@@ -27,6 +27,18 @@ export function ListItem({ listPath, item }) {
 			}
 		}
 		purchaseItem();
+	};
+
+	const deleteHandler = async (e) => {
+		if (window.confirm(`Are you sure you'd like to delete ${item.name}?`)) {
+			try {
+				deleteItem(listPath, item.id);
+			} catch (error) {
+				console.log(error.message);
+			}
+		} else {
+			// Cancel path
+		}
 	};
 
 	//Calculate time remaining if purchase was less than 24 hours ago
@@ -65,6 +77,9 @@ export function ListItem({ listPath, item }) {
 					checked={isChecked}
 				/>
 			</label>
+			<button type="button" onClick={deleteHandler}>
+				X
+			</button>
 		</li>
 	);
 }
