@@ -30,14 +30,9 @@ export function ListItem({ listPath, item }) {
 	};
 
 	const deleteHandler = async (e) => {
+		// Note: Should we add more user feedback when items are successfully deleted? Some might further interrupt usability.
 		if (window.confirm(`Are you sure you'd like to delete ${item.name}?`)) {
-			try {
-				deleteItem(listPath, item.id);
-			} catch (error) {
-				console.log(error.message);
-			}
-		} else {
-			// Cancel path
+			await deleteItem(listPath, item.id);
 		}
 	};
 

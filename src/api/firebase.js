@@ -241,6 +241,11 @@ export async function updateItem(listPath, itemID, isChecked) {
 }
 
 export async function deleteItem(listPath, itemID) {
+	// Note - firebase deleteDoc will remove the entire collection if the item being removed is the last in said collection!
 	const listRef = doc(db, listPath, 'items', itemID);
-	await deleteDoc(listRef);
+	try {
+		await deleteDoc(listRef);
+	} catch (error) {
+		console.log(error);
+	}
 }
