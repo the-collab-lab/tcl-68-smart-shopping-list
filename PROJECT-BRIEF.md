@@ -136,7 +136,6 @@ Jump to a Week:
 | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Weekly Sync      | - Demo issues #12 & #13 <br> - [Retro](https://github.com/orgs/the-collab-lab/projects/217) <br> - Collabies will be presented with issue #14                     |
 | Pair Programming | Schedule a pairing session(s) with your partner early in the week to complete the development work required to meet the acceptance criteria of your Github issue. |
-| Optional         | - Office Hours <br> - Design meeting with Mark                                                                                                                    |
 
 | 🤝 Developer pairings | 🖥 Assigned Github issue                                                                                                                   |
 | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -153,7 +152,6 @@ Jump to a Week:
 | Weekly Sync                        | - Demo <br> - Planning                                                                                                            |
 | Pair Programming / Design planning | During this week, you should aim to collaborate as a full team to create a plan for implementing an engagind design for your app. |
 | Pair Interview Practice            | Get together with some fellow Collabies to practice some common interview questions.                                              |
-| Optional                           | - Office Hours <br> - Design meeting with Mark                                                                                    |
 
 | 🤝 Developer pairings | 🖥 Assigned Github issue                                                                |
 | --------------------- | --------------------------------------------------------------------------------------- |
