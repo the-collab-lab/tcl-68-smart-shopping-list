@@ -132,10 +132,10 @@ Jump to a Week:
 
 ### Week 7, March 17 - 23
 
-| 👋 Sync meetings | Agenda                                                                                                                                                            |
-| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Weekly Sync      | - Demo issues #12 & #13 <br> - [Retro](https://github.com/orgs/the-collab-lab/projects/217) <br> - Collabies will be presented with issue #14                     |
-| Pair Programming | Schedule a pairing session(s) with your partner early in the week to complete the development work required to meet the acceptance criteria of your Github issue. |
+| 👋 Sync meetings                            | Agenda                                                                                                                                                            |
+| ------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Weekly Sync](https://youtu.be/c9De0mEsumg) | - Demo issues #12 & #13 <br> - [Retro](https://github.com/orgs/the-collab-lab/projects/217) <br> - Collabies will be presented with issue #14                     |
+| Pair Programming                            | Schedule a pairing session(s) with your partner early in the week to complete the development work required to meet the acceptance criteria of your Github issue. |
 
 | 🤝 Developer pairings | 🖥 Assigned Github issue                                                                                                                   |
 | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
