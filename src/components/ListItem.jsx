@@ -73,7 +73,7 @@ export function ListItem({ listPath, item }) {
 				/>
 			</label>
 			<button type="button" onClick={deleteHandler}>
-				X
+				Delete
 			</button>
 		</li>
 	);
