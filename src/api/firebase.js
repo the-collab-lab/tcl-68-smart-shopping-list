@@ -249,3 +249,46 @@ export async function deleteItem(listPath, itemID) {
 		console.log(error);
 	}
 }
+
+export function comparePurchaseUrgency(a, b) {
+	const today = new Date();
+	const nextPurchaseDaysBetween = Number(
+		getDaysBetweenDates(today, a.dateNextPurchased.toDate()),
+	);
+	const lastPurchaseDaysBetween = getDaysBetweenDates(
+		a.dateLastPurchased[a.dateLastPurchased.length - 1].toDate(),
+		today,
+	);
+	const nextPurchaseDaysBetweenB = Number(
+		getDaysBetweenDates(today, b.dateNextPurchased.toDate()),
+	);
+	const lastPurchaseDaysBetweenB = getDaysBetweenDates(
+		b.dateLastPurchased[b.dateLastPurchased.length - 1].toDate(),
+		today,
+	);
+	// if not purchased within 60 days, sort to bottom of list
+	if (lastPurchaseDaysBetween > 60 && lastPurchaseDaysBetweenB < 60) {
+		return 1;
+	} else if (lastPurchaseDaysBetween < 60 && lastPurchaseDaysBetweenB > 60) {
+		return -1;
+	} else if (lastPurchaseDaysBetween > 60 && lastPurchaseDaysBetweenB > 60) {
+		return a.name.localeCompare(b.name);
+	}
+	// sort by days until next purchase
+	if (nextPurchaseDaysBetween < nextPurchaseDaysBetweenB) {
+		return -1;
+	}
+	// if days until next purchase is the same, sort alphabetically
+	if (nextPurchaseDaysBetween === nextPurchaseDaysBetweenB) {
+		if (a.name < b.name) {
+			return -1;
+		} else if (a.name === b.name) {
+			return 0;
+		} else {
+			return 1;
+		}
+	}
+	if (nextPurchaseDaysBetween > nextPurchaseDaysBetweenB) {
+		return 1;
+	}
+}

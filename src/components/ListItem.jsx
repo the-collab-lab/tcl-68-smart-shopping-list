@@ -2,6 +2,7 @@ import './ListItem.css';
 import { updateItem, deleteItem } from '../api/firebase.js';
 import { useState, useEffect, useMemo } from 'react';
 import { ONE_DAY_IN_MILLISECONDS } from '../utils/dates.js';
+import { purchaseUrgency } from '../utils/hooks.js';
 
 export function ListItem({ listPath, item }) {
 	/* Returns a boolean that is passed into isChecked useState
@@ -72,6 +73,12 @@ export function ListItem({ listPath, item }) {
 					checked={isChecked}
 				/>
 			</label>
+			<div>
+				{purchaseUrgency(
+					item.dateNextPurchased,
+					item.dateLastPurchased[item.dateLastPurchased.length - 1],
+				)}
+			</div>
 			<button type="button" onClick={deleteHandler}>
 				Delete
 			</button>
