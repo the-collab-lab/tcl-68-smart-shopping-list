@@ -1,5 +1,5 @@
 import './ListItem.css';
-import { updateItem } from '../api/firebase.js';
+import { updateItem, deleteItem } from '../api/firebase.js';
 import { useState, useEffect, useMemo } from 'react';
 import { ONE_DAY_IN_MILLISECONDS } from '../utils/dates.js';
 import { purchaseUrgency } from '../utils/hooks.js';
@@ -28,6 +28,13 @@ export function ListItem({ listPath, item }) {
 			}
 		}
 		purchaseItem();
+	};
+
+	const deleteHandler = async (e) => {
+		// Note: Should we add more user feedback when items are successfully deleted? Some might further interrupt usability.
+		if (window.confirm(`Are you sure you'd like to delete ${item.name}?`)) {
+			await deleteItem(listPath, item.id);
+		}
 	};
 
 	//Calculate time remaining if purchase was less than 24 hours ago
@@ -72,6 +79,9 @@ export function ListItem({ listPath, item }) {
 					item.dateLastPurchased[item.dateLastPurchased.length - 1],
 				)}
 			</div>
+			<button type="button" onClick={deleteHandler}>
+				Delete
+			</button>
 		</li>
 	);
 }
