@@ -266,9 +266,10 @@ export function comparePurchaseUrgency(a, b) {
 	// if not purchased within 60 days, sort to bottom of list
 	if (lastPurchaseDaysBetween > 60 && lastPurchaseDaysBetweenB < 60) {
 		return 1;
-	}
-	if (lastPurchaseDaysBetween < 60 && lastPurchaseDaysBetweenB > 60) {
+	} else if (lastPurchaseDaysBetween < 60 && lastPurchaseDaysBetweenB > 60) {
 		return -1;
+	} else if (lastPurchaseDaysBetween > 60 && lastPurchaseDaysBetweenB > 60) {
+		return a.name.localeCompare(b.name);
 	}
 	// sort by days until next purchase
 	if (nextPurchaseDaysBetween < nextPurchaseDaysBetweenB) {

@@ -26,7 +26,7 @@ export function List({ data, listPath }) {
 		return itemName.includes(searchTerm.toLowerCase());
 	});
 
-	filteredData = filteredData.sort(comparePurchaseUrgency);
+	filteredData.sort(comparePurchaseUrgency);
 
 	return (
 		<>
