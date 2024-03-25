@@ -41,7 +41,7 @@ export function List({ data, listPath }) {
 			{listPath && data.length === 0 ? (
 				<>
 					<AddItem data={data} listPath={listPath} />
-					<h2>This list is currently empty</h2>
+					<h2>This list is currently empty!</h2>
 				</>
 			) : null}
 			{data.length > 0 ? (
@@ -60,8 +60,8 @@ export function List({ data, listPath }) {
 							</label>
 							{searchTerm ? <button onClick={reset}>Reset</button> : null}
 						</form>
-						<AddItem data={data} listPath={listPath} />
 					</section>
+					<AddItem data={data} listPath={listPath} />
 				</>
 			) : null}
 			<section>
