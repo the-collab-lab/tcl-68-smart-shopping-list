@@ -28,7 +28,7 @@ export function List({ data, listPath }) {
 	});
 
 	filteredData.sort(comparePurchaseUrgency);
-	console.log(listPath);
+
 	return (
 		<>
 			{!listPath ? (
