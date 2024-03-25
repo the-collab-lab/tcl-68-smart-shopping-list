@@ -1,7 +1,7 @@
-import { ListItem } from '../components';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { comparePurchaseUrgency } from '../api/firebase';
+import { AddItem, ListItem } from '../components';
 
 export function List({ data, listPath }) {
 	const [searchTerm, setSearchTerm] = useState('');
@@ -40,34 +40,37 @@ export function List({ data, listPath }) {
 			) : null}
 			{listPath && data.length === 0 ? (
 				<>
-					<h2>
-						This list is currently empty. Click below to add your first item.
-					</h2>
-					<button onClick={() => handleClick('/manage-list')}>
-						Add first item
-					</button>
+					<AddItem data={data} listPath={listPath} />
+					<h2>This list is currently empty</h2>
 				</>
 			) : null}
 			{data.length > 0 ? (
-				<form>
-					<label htmlFor="itemFilter">
-						Search for an item:
-						<input
-							type="text"
-							id="itemFilter"
-							name="itemFilter"
-							value={searchTerm}
-							onChange={handleChange}
-						/>
-					</label>
-					{searchTerm ? <button onClick={reset}>Reset</button> : null}
-				</form>
+				<>
+					<section>
+						<form>
+							<label htmlFor="itemFilter">
+								Search for an item:
+								<input
+									type="text"
+									id="itemFilter"
+									name="itemFilter"
+									value={searchTerm}
+									onChange={handleChange}
+								/>
+							</label>
+							{searchTerm ? <button onClick={reset}>Reset</button> : null}
+						</form>
+						<AddItem data={data} listPath={listPath} />
+					</section>
+				</>
 			) : null}
-			<ul>
-				{filteredData.map((item) => {
-					return <ListItem key={item.id} item={item} listPath={listPath} />;
-				})}
-			</ul>
+			<section>
+				<ul>
+					{filteredData.map((item) => {
+						return <ListItem key={item.id} item={item} listPath={listPath} />;
+					})}
+				</ul>
+			</section>
 		</>
 	);
 }
