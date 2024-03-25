@@ -93,8 +93,9 @@ export function ManageList({ listPath, userId, data }) {
 							name="daysUntilNextPurchase"
 							value={newItem.daysUntilNextPurchase}
 							onChange={handleItemChange}
+							required
 						>
-							<option value={0}>Select Next Purchase Date</option>
+							<option value="">Select Next Purchase Date</option>
 							<option value={7}>Soon</option>
 							<option value={14}>Kind of soon</option>
 							<option value={30}>Not soon</option>
