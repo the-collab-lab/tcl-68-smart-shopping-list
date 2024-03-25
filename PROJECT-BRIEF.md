@@ -151,7 +151,7 @@ Jump to a Week:
 | ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
 | Weekly Sync                        | - Demo <br> - Planning                                                                                                            |
 | Pair Programming / Design planning | During this week, you should aim to collaborate as a full team to create a plan for implementing an engagind design for your app. |
-| Pair Interview Practice            | Get together with some fellow Collabies to practice some common interview questions.                                              |
+| Optional            | Office Hours                                              |
 
 | 🤝 Developer pairings | 🖥 Assigned Github issue                                                                |
 | --------------------- | --------------------------------------------------------------------------------------- |
@@ -166,7 +166,6 @@ Jump to a Week:
 | 👋 Sync meetings                   | Agenda                                                                                                                            |
 | ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
 | Final Weekly Sync                  | - Demo <br> - [Retro](https://github.com/orgs/the-collab-lab/projects/218) <br> - Planning                                        |
-| Pair Programming / Design planning | During this week, you should aim to collaborate as a full team to create a plan for implementing an engaging design for your app. |
 | Optional                           | Office Hours                                                                                                                      |
 
 | 🤝 Developer pairings | 🖥 Assigned Github issue                                                                |
