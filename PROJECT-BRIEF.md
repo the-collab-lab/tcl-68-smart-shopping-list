@@ -147,11 +147,11 @@ Jump to a Week:
 
 ### Week 8, March 24 - 30
 
-| 👋 Sync meetings                   | Agenda                                                                                                                            |
-| ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| Weekly Sync                        | - Demo <br> - Planning                                                                                                            |
-| Pair Programming / Design planning | During this week, you should aim to collaborate as a full team to create a plan for implementing an engagind design for your app. |
-| Optional            | Office Hours                                              |
+| 👋 Sync meetings                            | Agenda                                                                                                                            |
+| ------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| [Weekly Sync](https://youtu.be/wdsuHrwEfN8) | - Demo <br> - Planning                                                                                                            |
+| Pair Programming / Design planning          | During this week, you should aim to collaborate as a full team to create a plan for implementing an engagind design for your app. |
+| Optional                                    | Office Hours                                                                                                                      |
 
 | 🤝 Developer pairings | 🖥 Assigned Github issue                                                                |
 | --------------------- | --------------------------------------------------------------------------------------- |
@@ -163,10 +163,10 @@ Jump to a Week:
 
 ### Week 9, March 31 - April 6
 
-| 👋 Sync meetings                   | Agenda                                                                                                                            |
-| ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| Final Weekly Sync                  | - Demo <br> - [Retro](https://github.com/orgs/the-collab-lab/projects/218) <br> - Planning                                        |
-| Optional                           | Office Hours                                                                                                                      |
+| 👋 Sync meetings  | Agenda                                                                                     |
+| ----------------- | ------------------------------------------------------------------------------------------ |
+| Final Weekly Sync | - Demo <br> - [Retro](https://github.com/orgs/the-collab-lab/projects/218) <br> - Planning |
+| Optional          | Office Hours                                                                               |
 
 | 🤝 Developer pairings | 🖥 Assigned Github issue                                                                |
 | --------------------- | --------------------------------------------------------------------------------------- |
