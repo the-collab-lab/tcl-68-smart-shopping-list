@@ -12,7 +12,7 @@ export function ListItem({ listPath, item }) {
 
 	//Boolean to pass into isChecked state
 	const purchasedWithinDay = () => {
-		//Exclude items that were just created and have never been purchased - new items are added to db with same dateCreated and first dateLastPurchased.
+		//Exclude new, never purchased items - new items are added to db with same dateCreated + first dateLastPurchased
 		if (item.dateCreated.seconds == lastPurchase.seconds) {
 			return false;
 		} else {
@@ -22,6 +22,14 @@ export function ListItem({ listPath, item }) {
 
 	//Box is checked on render if purchased within 24 hrs
 	const [isChecked, setIsChecked] = useState(purchasedWithinDay);
+
+	//If item is checked on render, calculate time until isChecked state is set to false/unchecked
+	if (purchasedWithinDay) {
+		const timeRemaining = ONE_DAY_IN_MILLISECONDS - timeElapsed;
+		setTimeout(() => {
+			setIsChecked(false);
+		}, timeRemaining);
+	}
 
 	const changeHandler = (e) => {
 		setIsChecked(!isChecked);
