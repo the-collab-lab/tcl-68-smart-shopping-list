@@ -9,8 +9,16 @@ export function ListItem({ listPath, item }) {
 	const lastPurchase =
 		item.dateLastPurchased[item.dateLastPurchased.length - 1];
 	const timeElapsed = Date.now() - lastPurchase.seconds * 1000;
+
 	//Boolean to pass into isChecked state
-	const purchasedWithinDay = timeElapsed <= ONE_DAY_IN_MILLISECONDS;
+	const purchasedWithinDay = () => {
+		//Exclude items that were just created and have never been purchased - new items are added to db with same dateCreated and first dateLastPurchased.
+		if (item.dateCreated.seconds == lastPurchase.seconds) {
+			return false;
+		} else {
+			return timeElapsed <= ONE_DAY_IN_MILLISECONDS;
+		}
+	};
 
 	//Box is checked on render if purchased within 24 hrs
 	const [isChecked, setIsChecked] = useState(purchasedWithinDay);
