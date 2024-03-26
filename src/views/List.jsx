@@ -5,7 +5,7 @@ import { comparePurchaseUrgency } from '../api/firebase';
 
 export function List({ data, listPath }) {
 	const [searchTerm, setSearchTerm] = useState('');
-	const listName = listPath.split('/')[1];
+	const listName = listPath?.split('/')[1];
 
 	const navigate = useNavigate();
 
@@ -42,9 +42,9 @@ export function List({ data, listPath }) {
 			{listPath && data.length === 0 ? (
 				<>
 					<h2>{listName}</h2>
-					<h2>
+					<h3>
 						This list is currently empty. Click below to add your first item.
-					</h2>
+					</h3>
 					<button onClick={() => handleClick('/manage-list')}>
 						Add first item
 					</button>
