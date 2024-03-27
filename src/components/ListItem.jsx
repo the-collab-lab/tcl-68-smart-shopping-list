@@ -52,30 +52,6 @@ export function ListItem({ listPath, item }) {
 		}
 	};
 
-	//Calculate time remaining if purchase was less than 24 hours ago
-	// const updateTimer = () => {
-	// 	if (item.dateLastPurchased) {
-	// 		const timeElapsed = Date.now() - item.dateLastPurchased.seconds * 1000;
-	// 		if (timeElapsed < ONE_DAY_IN_MILLISECONDS) {
-	// 			return ONE_DAY_IN_MILLISECONDS - timeElapsed;
-	// 		} else {
-	// 			return 0;
-	// 		}
-	// 	}
-	// };
-
-	//sets a timer to uncheck an item 24 hours after it's purchased
-	// useEffect(() => {
-	// 	if (purchasedOneDayAgo) {
-	// 		let timeRemaining = updateTimer();
-
-	// 		const timer = setTimeout(() => {
-	// 			setIsChecked(false);
-	// 		}, timeRemaining);
-	// 		return () => clearTimeout(timer);
-	// 	}
-	// }, [isChecked, purchasedOneDayAgo]);
-
 	return (
 		<li className="ListItem">
 			<label htmlFor={item.name}>
