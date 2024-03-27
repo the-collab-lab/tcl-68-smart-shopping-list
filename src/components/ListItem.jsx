@@ -35,10 +35,10 @@ export function ListItem({ listPath, item }) {
 	}, [isChecked, timeElapsed]);
 
 	const changeHandler = (e) => {
-		setIsChecked(!isChecked);
 		async function purchaseItem() {
 			try {
 				await updateItem(listPath, item.id, !isChecked);
+				setIsChecked(!isChecked);
 			} catch (error) {
 				alert(error.message);
 			}
