@@ -140,6 +140,20 @@ export async function createList(userId, userEmail, listName) {
 	}
 }
 
+// Delete selected list from firestore
+
+export async function deleteList(userId, userEmail, listName) {
+	const listDocRef = doc(db, userId, listName);
+
+	await setDoc(listDocRef, {
+		owner: userId,
+	});
+
+	const userDocumentRef = doc(db, 'users', userEmail);
+
+	console.log('listRef:', listDocRef, 'userDocRef:', userDocumentRef);
+}
+
 /**
  * Shares a list with another user.
  * @param {string} listPath The path to the list to share.
