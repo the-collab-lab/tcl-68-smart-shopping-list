@@ -142,11 +142,16 @@ export async function createList(userId, userEmail, listName) {
 
 // Delete selected list from firestore
 
-export async function deleteList(userId, userEmail, listName) {
-	const listDocRef = doc(db, userId, listName);
-	const userDocumentRef = doc(db, 'users', userEmail);
+export async function deleteList(userId, listPath, listName) {
+	// console.log('name', listName)
+	const listDocRef = doc(db, listPath);
+	// console.log(listDocRef)
 
-	console.log('listRef:', listDocRef, 'userDocRef:', userDocumentRef);
+	try {
+		await deleteDoc(listDocRef);
+	} catch (error) {
+		console.log(error);
+	}
 }
 
 /**

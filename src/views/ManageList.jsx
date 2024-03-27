@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { shareList } from '../api/firebase.js';
+import { shareList, deleteList } from '../api/firebase.js';
+import { deleteDoc } from 'firebase/firestore';
 
 export function ManageList({ listPath, userId }) {
 	const listName = listPath?.split('/')[1];
@@ -26,6 +27,10 @@ export function ManageList({ listPath, userId }) {
 		}
 	};
 
+	const handleDelete = async () => {
+		deleteList(userId, listPath, listName);
+	};
+
 	return (
 		<>
 			<h2>{listName}</h2>
@@ -43,7 +48,7 @@ export function ManageList({ listPath, userId }) {
 					</label>
 					<button type="submit">Send invite!</button>
 				</form>
-				<button>DELETE this list!</button>
+				<button onClick={() => handleDelete()}>DELETE this list!</button>
 			</section>
 		</>
 	);
