@@ -27,7 +27,11 @@ export function ManageList({ listPath, userEmail, userId }) {
 	};
 
 	const handleDelete = async () => {
-		deleteList(userEmail, listPath, listName);
+		try {
+			deleteList(userEmail, listPath, userId);
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	return (

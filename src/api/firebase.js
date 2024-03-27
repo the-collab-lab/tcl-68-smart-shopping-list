@@ -141,19 +141,24 @@ export async function createList(userId, userEmail, listName) {
 	}
 }
 
-// Delete selected list from firestore
-
-export async function deleteList(userEmail, listPath) {
-	// console.log('name', listName)
+/**
+ * Deletes the currently selected list
+ * @param {string} userEmail The email of the user that is currently logged in.
+ * @param {string} listPath The path to the list to share.
+ * @param {string} userId The id assigned to the user within firebase (uid)
+ */
+export async function deleteList(userEmail, listPath, userId) {
+	// reference to current list:
 	const listDocumentRef = doc(db, listPath);
+	// reference to this user and sharedLists:
 	const userDocReference = doc(db, 'users', userEmail);
-	try {
-		deleteDoc(listDocumentRef);
+	// removing list from user's lists:
+	deleteDoc(listDocumentRef);
+	// check for ownership (users ID present within listPath or not), if present, also deletes list from sharedLists:
+	if (listPath.includes(userId)) {
 		updateDoc(userDocReference, {
 			sharedLists: arrayRemove(listDocumentRef),
 		});
-	} catch (error) {
-		console.log(error);
 	}
 }
 
