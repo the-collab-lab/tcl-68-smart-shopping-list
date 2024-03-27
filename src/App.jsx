@@ -63,6 +63,7 @@ export function App() {
 						path="/manage-list"
 						element={
 							<ManageList
+								setListPath={setListPath}
 								listPath={listPath}
 								userId={userId}
 								userEmail={userEmail}

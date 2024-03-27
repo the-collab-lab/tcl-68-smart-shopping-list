@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { shareList, deleteList } from '../api/firebase.js';
+import { useNavigate } from 'react-router-dom';
 
-export function ManageList({ listPath, userEmail, userId }) {
+export function ManageList({ setListPath, listPath, userEmail, userId }) {
+	const navigate = useNavigate();
 	const listName = listPath?.split('/')[1];
 	const [shareEmail, setShareEmail] = useState('');
 
@@ -40,7 +42,11 @@ export function ManageList({ listPath, userEmail, userId }) {
 				? alert(`${listName} has been deleted successfully!`)
 				: alert('An error has occurred.');
 		}
+		// resets selection / removes just-deleted list from localStorage:
+		setListPath(null);
+		navigate('/');
 	};
+
 	return (
 		<>
 			<h2>{listName}</h2>

@@ -163,7 +163,7 @@ export async function deleteList(userEmail, listPath, userId) {
 		}
 		return true;
 	} catch (error) {
-		console.log(error);
+		alert(error);
 		return false;
 	}
 }
