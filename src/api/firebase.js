@@ -153,12 +153,18 @@ export async function deleteList(userEmail, listPath, userId) {
 	// reference to this user and sharedLists:
 	const userDocReference = doc(db, 'users', userEmail);
 	// removing list from user's lists:
-	deleteDoc(listDocumentRef);
-	// check for ownership (users ID present within listPath or not), if present, also deletes list from sharedLists:
-	if (listPath.includes(userId)) {
-		updateDoc(userDocReference, {
-			sharedLists: arrayRemove(listDocumentRef),
-		});
+	try {
+		deleteDoc(listDocumentRef);
+		// check for ownership (users ID present within listPath or not), if present, also deletes list from sharedLists:
+		if (listPath.includes(userId)) {
+			updateDoc(userDocReference, {
+				sharedLists: arrayRemove(listDocumentRef),
+			});
+		}
+		return true;
+	} catch (error) {
+		console.log(error);
+		return false;
 	}
 }
 

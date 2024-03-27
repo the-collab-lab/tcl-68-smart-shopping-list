@@ -27,13 +27,20 @@ export function ManageList({ listPath, userEmail, userId }) {
 	};
 
 	const handleDelete = async () => {
-		try {
-			deleteList(userEmail, listPath, userId);
-		} catch (error) {
-			console.log(error);
+		if (!listPath) {
+			alert('Please select a list before continuing.');
+		}
+		if (
+			window.confirm(
+				`Would you like to delete ${listName}? This action cannot be undone.`,
+			)
+		) {
+			const deleteConfirmation = await deleteList(userEmail, listPath, userId);
+			deleteConfirmation
+				? alert(`${listName} has been deleted successfully!`)
+				: alert('An error has occurred.');
 		}
 	};
-
 	return (
 		<>
 			<h2>{listName}</h2>
