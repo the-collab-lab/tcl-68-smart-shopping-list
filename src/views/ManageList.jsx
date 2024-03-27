@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { shareList, deleteList } from '../api/firebase.js';
-import { deleteDoc } from 'firebase/firestore';
 
-export function ManageList({ listPath, userId }) {
+export function ManageList({ listPath, userEmail, userId }) {
 	const listName = listPath?.split('/')[1];
 	const [shareEmail, setShareEmail] = useState('');
 
@@ -28,7 +27,7 @@ export function ManageList({ listPath, userId }) {
 	};
 
 	const handleDelete = async () => {
-		deleteList(userId, listPath, listName);
+		deleteList(userEmail, listPath, listName);
 	};
 
 	return (
