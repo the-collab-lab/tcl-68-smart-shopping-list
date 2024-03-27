@@ -2,6 +2,7 @@ import {
 	addDoc,
 	deleteDoc,
 	arrayUnion,
+	arrayRemove,
 	getDoc,
 	setDoc,
 	collection,
@@ -142,14 +143,15 @@ export async function createList(userId, userEmail, listName) {
 
 // Delete selected list from firestore
 
-export async function deleteList(userEmail, listPath, listName) {
+export async function deleteList(userEmail, listPath) {
 	// console.log('name', listName)
 	const listDocumentRef = doc(db, listPath);
-	// const userListsDocumentRef = doc(db, 'users', userEmail, 'sharedLists', listName)
-	// console.log(userListsDocumentRef)
+	const userDocReference = doc(db, 'users', userEmail);
 	try {
-		await deleteDoc(listDocumentRef);
-		// await deleteDoc(userListsDocumentRef)
+		deleteDoc(listDocumentRef);
+		updateDoc(userDocReference, {
+			sharedLists: arrayRemove(listDocumentRef),
+		});
 	} catch (error) {
 		console.log(error);
 	}
