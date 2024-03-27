@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { shareList } from '../api/firebase.js';
 
 export function ManageList({ listPath, userId }) {
+	const listName = listPath?.split('/')[1];
 	const [shareEmail, setShareEmail] = useState('');
 
 	const handleShareChange = ({ target }) => {
@@ -27,6 +28,7 @@ export function ManageList({ listPath, userId }) {
 
 	return (
 		<>
+			<h2>{listName}</h2>
 			<section>
 				<form onSubmit={handleShareSubmit}>
 					<label htmlFor="shareEmail">

@@ -5,6 +5,7 @@ import { AddItem, ListItem } from '../components';
 
 export function List({ data, listPath }) {
 	const [searchTerm, setSearchTerm] = useState('');
+	const listName = listPath?.split('/')[1];
 
 	const navigate = useNavigate();
 
@@ -30,6 +31,12 @@ export function List({ data, listPath }) {
 
 	return (
 		<>
+    	{listPath ? (
+        <>
+          <h2>{listName}</h2>
+          <AddItem data={data} listPath={listPath} />
+        </>
+       ) : null}
 			{data.length > 0 ? (
 				<section>
 					<form>
@@ -47,7 +54,6 @@ export function List({ data, listPath }) {
 					</form>
 				</section>
 			) : null}
-			{listPath ? <AddItem data={data} listPath={listPath} /> : null}
 			{listPath && data.length === 0 ? (
 				<h2>This list is currently empty!</h2>
 			) : null}
