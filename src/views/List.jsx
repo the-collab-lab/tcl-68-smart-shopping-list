@@ -5,6 +5,7 @@ import { comparePurchaseUrgency } from '../api/firebase';
 
 export function List({ data, listPath }) {
 	const [searchTerm, setSearchTerm] = useState('');
+	const listName = listPath?.split('/')[1];
 
 	const navigate = useNavigate();
 
@@ -40,28 +41,32 @@ export function List({ data, listPath }) {
 			) : null}
 			{listPath && data.length === 0 ? (
 				<>
-					<h2>
+					<h2>{listName}</h2>
+					<h3>
 						This list is currently empty. Click below to add your first item.
-					</h2>
+					</h3>
 					<button onClick={() => handleClick('/manage-list')}>
 						Add first item
 					</button>
 				</>
 			) : null}
 			{data.length > 0 ? (
-				<form>
-					<label htmlFor="itemFilter">
-						Search for an item:
-						<input
-							type="text"
-							id="itemFilter"
-							name="itemFilter"
-							value={searchTerm}
-							onChange={handleChange}
-						/>
-					</label>
-					{searchTerm ? <button onClick={reset}>Reset</button> : null}
-				</form>
+				<>
+					<h2>{listName}</h2>
+					<form>
+						<label htmlFor="itemFilter">
+							Search for an item:
+							<input
+								type="text"
+								id="itemFilter"
+								name="itemFilter"
+								value={searchTerm}
+								onChange={handleChange}
+							/>
+						</label>
+						{searchTerm ? <button onClick={reset}>Reset</button> : null}
+					</form>
+				</>
 			) : null}
 			<ul>
 				{filteredData.map((item) => {

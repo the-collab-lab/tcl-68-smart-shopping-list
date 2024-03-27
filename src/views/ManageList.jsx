@@ -3,6 +3,8 @@ import { addItem } from '../api';
 import { shareList } from '../api/firebase.js';
 
 export function ManageList({ listPath, userId, data }) {
+	const listName = listPath?.split('/')[1];
+
 	const initialItemFormState = {
 		itemName: '',
 		daysUntilNextPurchase: 0,
@@ -71,9 +73,7 @@ export function ManageList({ listPath, userId, data }) {
 
 	return (
 		<>
-			<p>
-				Hello from the <code>/manage-list</code> page!
-			</p>
+			<h2>{listName}</h2>
 			<section>
 				<form onSubmit={handleItemSubmit}>
 					<label htmlFor="itemName">
