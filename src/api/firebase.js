@@ -144,11 +144,6 @@ export async function createList(userId, userEmail, listName) {
 
 export async function deleteList(userId, userEmail, listName) {
 	const listDocRef = doc(db, userId, listName);
-
-	await setDoc(listDocRef, {
-		owner: userId,
-	});
-
 	const userDocumentRef = doc(db, 'users', userEmail);
 
 	console.log('listRef:', listDocRef, 'userDocRef:', userDocumentRef);
@@ -261,5 +256,48 @@ export async function deleteItem(listPath, itemID) {
 		await deleteDoc(listRef);
 	} catch (error) {
 		console.log(error);
+	}
+}
+
+export function comparePurchaseUrgency(a, b) {
+	const today = new Date();
+	const nextPurchaseDaysBetween = Number(
+		getDaysBetweenDates(today, a.dateNextPurchased.toDate()),
+	);
+	const lastPurchaseDaysBetween = getDaysBetweenDates(
+		a.dateLastPurchased[a.dateLastPurchased.length - 1].toDate(),
+		today,
+	);
+	const nextPurchaseDaysBetweenB = Number(
+		getDaysBetweenDates(today, b.dateNextPurchased.toDate()),
+	);
+	const lastPurchaseDaysBetweenB = getDaysBetweenDates(
+		b.dateLastPurchased[b.dateLastPurchased.length - 1].toDate(),
+		today,
+	);
+	// if not purchased within 60 days, sort to bottom of list
+	if (lastPurchaseDaysBetween > 60 && lastPurchaseDaysBetweenB < 60) {
+		return 1;
+	} else if (lastPurchaseDaysBetween < 60 && lastPurchaseDaysBetweenB > 60) {
+		return -1;
+	} else if (lastPurchaseDaysBetween > 60 && lastPurchaseDaysBetweenB > 60) {
+		return a.name.localeCompare(b.name);
+	}
+	// sort by days until next purchase
+	if (nextPurchaseDaysBetween < nextPurchaseDaysBetweenB) {
+		return -1;
+	}
+	// if days until next purchase is the same, sort alphabetically
+	if (nextPurchaseDaysBetween === nextPurchaseDaysBetweenB) {
+		if (a.name < b.name) {
+			return -1;
+		} else if (a.name === b.name) {
+			return 0;
+		} else {
+			return 1;
+		}
+	}
+	if (nextPurchaseDaysBetween > nextPurchaseDaysBetweenB) {
+		return 1;
 	}
 }

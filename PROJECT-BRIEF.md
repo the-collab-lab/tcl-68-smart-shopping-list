@@ -126,32 +126,32 @@ Jump to a Week:
 | Andrea & Shane        | [12. As a user, I want to be able to delete items from my shopping list so that my list isn’t cluttered with items I don’t want to buy in the future.](https://github.com/the-collab-lab/tcl-68-smart-shopping-list/issues/12)                          |
 | Devina & Emily        | [13. As a user, I want to view a list of my shopping list items in order of how soon I am likely to need to buy each of them again so that it’s clear what I need to buy soon.](https://github.com/the-collab-lab/tcl-68-smart-shopping-list/issues/13) |
 
-| 📖 Self-study learning modules                                                       | Description                                                                                                                       |
-| ------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------- |
-| [What to ask your interviewers](./learning-modules/what-to-ask-your-interviewers.md) | Practice the art of asking impactful interview questions and crafting your wording to leave a positive impression as a candidate. |
+| 📖 Self-study learning modules                                                       | Description                                                                                                                       | Additional Resources                                                                                                                                                                                                                                                                                                                              |
+| ------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [What to ask your interviewers](./learning-modules/what-to-ask-your-interviewers.md) | Practice the art of asking impactful interview questions and crafting your wording to leave a positive impression as a candidate. | - [TCL job search resources repo: What to ask during an interview](https://github.com/the-collab-lab/job-search-resources/blob/main/what-to-ask-during-an-interview.md) <br/> - [Interview tips](https://advice.caitlinfloyd.com/early-career/job-interviews/interview-tips) <br/> - [Culture queries](https://www.keyvalues.com/culture-queries) |
 
 ### Week 7, March 17 - 23
 
-| 👋 Sync meetings | Agenda                                                                                                                                                            |
-| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Weekly Sync      | - Demo issues #12 & #13 <br> - [Retro](https://github.com/orgs/the-collab-lab/projects/217) <br> - Collabies will be presented with issue #14                     |
-| Pair Programming | Schedule a pairing session(s) with your partner early in the week to complete the development work required to meet the acceptance criteria of your Github issue. |
+| 👋 Sync meetings                            | Agenda                                                                                                                                                            |
+| ------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Weekly Sync](https://youtu.be/c9De0mEsumg) | - Demo issues #12 & #13 <br> - [Retro](https://github.com/orgs/the-collab-lab/projects/217) <br> - Collabies will be presented with issue #14                     |
+| Pair Programming                            | Schedule a pairing session(s) with your partner early in the week to complete the development work required to meet the acceptance criteria of your Github issue. |
 
 | 🤝 Developer pairings | 🖥 Assigned Github issue                                                                                                                   |
 | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
 | Full team             | [14. As a user, I want the app to look professional and welcoming](https://github.com/the-collab-lab/tcl-68-smart-shopping-list/issues/14) |
 
-| 📖 Self-study learning modules                                                     | Description                                                                                                 |
-| ---------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| [How to rock the technical interview](https://www.youtube.com/watch?v=X-7eKmYqM8M) | This video is packed with invaluable insights to enhance your success in a variety of technical interviews. |
+| 📖 Self-study learning modules                                                     | Description                                                                                                 | Additional Resources                                                                                                                                  |
+| ---------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [How to rock the technical interview](https://www.youtube.com/watch?v=X-7eKmYqM8M) | This video is packed with invaluable insights to enhance your success in a variety of technical interviews. | - [TCL job search resources repo: Prepare for Interviews](https://github.com/the-collab-lab/job-search-resources/blob/main/prepare-for-interviews.md) |
 
 ### Week 8, March 24 - 30
 
-| 👋 Sync meetings                   | Agenda                                                                                                                            |
-| ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| Weekly Sync                        | - Demo <br> - Planning                                                                                                            |
-| Pair Programming / Design planning | During this week, you should aim to collaborate as a full team to create a plan for implementing an engagind design for your app. |
-| Pair Interview Practice            | Get together with some fellow Collabies to practice some common interview questions.                                              |
+| 👋 Sync meetings                            | Agenda                                                                                                                            |
+| ------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| [Weekly Sync](https://youtu.be/wdsuHrwEfN8) | - Demo <br> - Planning                                                                                                            |
+| Pair Programming / Design planning          | During this week, you should aim to collaborate as a full team to create a plan for implementing an engagind design for your app. |
+| Optional                                    | Office Hours                                                                                                                      |
 
 | 🤝 Developer pairings | 🖥 Assigned Github issue                                                                |
 | --------------------- | --------------------------------------------------------------------------------------- |
@@ -163,11 +163,10 @@ Jump to a Week:
 
 ### Week 9, March 31 - April 6
 
-| 👋 Sync meetings                   | Agenda                                                                                                                            |
-| ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| Final Weekly Sync                  | - Demo <br> - [Retro](https://github.com/orgs/the-collab-lab/projects/218) <br> - Planning                                        |
-| Pair Programming / Design planning | During this week, you should aim to collaborate as a full team to create a plan for implementing an engaging design for your app. |
-| Optional                           | Office Hours                                                                                                                      |
+| 👋 Sync meetings  | Agenda                                                                                     |
+| ----------------- | ------------------------------------------------------------------------------------------ |
+| Final Weekly Sync | - Demo <br> - [Retro](https://github.com/orgs/the-collab-lab/projects/218) <br> - Planning |
+| Optional          | Office Hours                                                                               |
 
 | 🤝 Developer pairings | 🖥 Assigned Github issue                                                                |
 | --------------------- | --------------------------------------------------------------------------------------- |
