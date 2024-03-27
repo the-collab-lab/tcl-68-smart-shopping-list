@@ -30,38 +30,33 @@ export function List({ data, listPath }) {
 
 	return (
 		<>
+			{data.length > 0 ? (
+				<section>
+					<form>
+						<label htmlFor="itemFilter">
+							Search for an item:
+							<input
+								type="text"
+								id="itemFilter"
+								name="itemFilter"
+								value={searchTerm}
+								onChange={handleChange}
+							/>
+						</label>
+						{searchTerm ? <button onClick={reset}>Reset</button> : null}
+					</form>
+				</section>
+			) : null}
+			{listPath ? <AddItem data={data} listPath={listPath} /> : null}
+			{listPath && data.length === 0 ? (
+				<h2>This list is currently empty!</h2>
+			) : null}
 			{!listPath ? (
 				<>
 					<h2>
 						You haven't selected a list yet. Click below to select a list.
 					</h2>
 					<button onClick={() => handleClick('/')}>Select a list</button>
-				</>
-			) : null}
-			{listPath && data.length === 0 ? (
-				<>
-					<AddItem data={data} listPath={listPath} />
-					<h2>This list is currently empty!</h2>
-				</>
-			) : null}
-			{data.length > 0 ? (
-				<>
-					<section>
-						<form>
-							<label htmlFor="itemFilter">
-								Search for an item:
-								<input
-									type="text"
-									id="itemFilter"
-									name="itemFilter"
-									value={searchTerm}
-									onChange={handleChange}
-								/>
-							</label>
-							{searchTerm ? <button onClick={reset}>Reset</button> : null}
-						</form>
-					</section>
-					<AddItem data={data} listPath={listPath} />
 				</>
 			) : null}
 			<section>
