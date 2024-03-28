@@ -64,7 +64,10 @@ export function useShoppingListData(listPath) {
 	const [data, setData] = useState(initialState);
 
 	useEffect(() => {
-		if (!listPath) return;
+		if (!listPath) {
+			setData(initialState);
+			return;
+		}
 
 		// When we get a listPath, we use it to subscribe to real-time updates
 		// from Firestore.
@@ -147,18 +150,15 @@ export async function createList(userId, userEmail, listName) {
  * @param {string} listPath The path to the list to share.
  * @param {string} userId The id assigned to the user within firebase (uid)
  */
-export async function deleteList(userEmail, listPath, userId) {
+export async function deleteList(userEmail, listPath) {
 	const listDocumentRef = doc(db, listPath);
 	const userDocumentRef = doc(db, 'users', userEmail);
 	try {
 		// removing list from current user's lists:
 		deleteDoc(listDocumentRef);
-		// check for ownership, if present, also deletes list from sharedLists:
-		if (listPath.includes(userId)) {
-			updateDoc(userDocumentRef, {
-				sharedLists: arrayRemove(listDocumentRef),
-			});
-		}
+		updateDoc(userDocumentRef, {
+			sharedLists: arrayRemove(listDocumentRef),
+		});
 		return true;
 	} catch (error) {
 		console.log(error);
