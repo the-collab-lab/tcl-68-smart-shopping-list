@@ -42,7 +42,7 @@ export function ManageList({ setListPath, listPath, userEmail, userId }) {
 				? alert(`${listName} has been deleted successfully!`)
 				: alert('An error has occurred.');
 		}
-		// resets selection / removes just-deleted list from localStorage:
+		// reset selection, remove just-deleted list from localStorage, redirect to Home:
 		setListPath(null);
 		navigate('/');
 	};
