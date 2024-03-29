@@ -5,48 +5,41 @@ import { ONE_DAY_IN_MILLISECONDS } from '../utils/dates.js';
 import { purchaseUrgency } from '../utils/hooks.js';
 
 export function ListItem({ listPath, item }) {
-	//Time variables for each item on render
-	const lastPurchase =
-		item.dateLastPurchased[item.dateLastPurchased.length - 1];
-	const timeElapsed = Date.now() - lastPurchase.seconds * 1000;
-
-	//Boolean to pass into isChecked state
-	const purchasedWithinDay = () => {
-		//Exclude new, never purchased items - new items are added to db with same dateCreated + first dateLastPurchased
-		if (item.dateCreated.seconds === lastPurchase.seconds) {
-			return false;
-		} else {
-			return timeElapsed <= ONE_DAY_IN_MILLISECONDS;
-		}
-	};
-
 	//Box is checked on render if purchased within 24 hrs
-	const [isChecked, setIsChecked] = useState(purchasedWithinDay);
+	const [isChecked, setIsChecked] = useState(false);
 
-	//If item is checked on render, calculate time until isChecked state is set to false/unchecked
 	useEffect(() => {
+		//Time variables for each item
+		const lastPurchase =
+			item.dateLastPurchased[item.dateLastPurchased.length - 1];
+		const timeElapsed = Date.now() - lastPurchase.seconds * 1000;
+
+		//New, never purchased items created in db with same dateCreated and dateLastPurchased
+		const hasBeenPurchased = item.dateCreated.seconds !== lastPurchase.seconds;
+		const lessThanOneDay = timeElapsed <= ONE_DAY_IN_MILLISECONDS;
+		const isChecked = hasBeenPurchased && lessThanOneDay;
+		setIsChecked(isChecked);
+
 		if (isChecked) {
+			//If item is checked on render, calculate time until isChecked state is set to false/unchecked
 			const timeRemaining = ONE_DAY_IN_MILLISECONDS - timeElapsed;
 			const timer = setTimeout(() => {
 				setIsChecked(false);
 			}, timeRemaining);
 			return () => clearTimeout(timer);
 		}
-	}, [isChecked, timeElapsed]);
+	}, [item.dateLastPurchased, item.dateCreated]);
 
-	const changeHandler = (e) => {
-		async function purchaseItem() {
-			try {
-				await updateItem(listPath, item.id, !isChecked);
-				setIsChecked(!isChecked);
-			} catch (error) {
-				alert(error.message);
-			}
+	const changeHandler = async () => {
+		try {
+			await updateItem(listPath, item.id, !isChecked);
+			setIsChecked(!isChecked);
+		} catch (error) {
+			alert(error.message);
 		}
-		purchaseItem();
 	};
 
-	const deleteHandler = async (e) => {
+	const deleteHandler = async () => {
 		if (window.confirm(`Are you sure you'd like to delete ${item.name}?`)) {
 			await deleteItem(listPath, item.id);
 		}
