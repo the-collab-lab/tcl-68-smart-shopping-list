@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 export function ManageList({ setListPath, listPath, userEmail, userId }) {
 	const navigate = useNavigate();
+
 	const listName = listPath?.split('/')[1];
 	const [shareEmail, setShareEmail] = useState('');
 

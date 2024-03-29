@@ -1,65 +1,49 @@
 import './ListItem.css';
 import { updateItem, deleteItem } from '../api/firebase.js';
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { ONE_DAY_IN_MILLISECONDS } from '../utils/dates.js';
 import { purchaseUrgency } from '../utils/hooks.js';
 
 export function ListItem({ listPath, item }) {
-	/* Returns a boolean that is passed into isChecked useState
-	On render, box is checked if purchased less than a day ago */
+	//Box is checked on render if purchased within 24 hrs
+	const [isChecked, setIsChecked] = useState(false);
 
-	const purchasedOneDayAgo = useMemo(() => {
-		if (item.dateLastPurchased === null) {
-			return false;
-		}
-
-		const timeDiff = Date.now() - item.dateLastPurchased.seconds * 1000;
-		return timeDiff <= ONE_DAY_IN_MILLISECONDS;
-	}, [item.dateLastPurchased]);
-
-	const [isChecked, setIsChecked] = useState(purchasedOneDayAgo);
-	const changeHandler = (e) => {
-		setIsChecked(!isChecked);
-		async function purchaseItem() {
-			try {
-				await updateItem(listPath, item.id, !isChecked);
-			} catch (error) {
-				alert(error.message);
-			}
-		}
-		purchaseItem();
-	};
-
-	const deleteHandler = async (e) => {
-		// Note: Should we add more user feedback when items are successfully deleted? Some might further interrupt usability.
-		if (window.confirm(`Are you sure you'd like to delete ${item.name}?`)) {
-			await deleteItem(listPath, item.id);
-		}
-	};
-
-	//Calculate time remaining if purchase was less than 24 hours ago
-	const updateTimer = () => {
-		if (item.dateLastPurchased) {
-			const timeElapsed = Date.now() - item.dateLastPurchased.seconds * 1000;
-			if (timeElapsed < ONE_DAY_IN_MILLISECONDS) {
-				return ONE_DAY_IN_MILLISECONDS - timeElapsed;
-			} else {
-				return 0;
-			}
-		}
-	};
-
-	//sets a timer to uncheck an item 24 hours after it's purchased
 	useEffect(() => {
-		if (purchasedOneDayAgo) {
-			let timeRemaining = updateTimer();
+		//Time variables for each item
+		const lastPurchase =
+			item.dateLastPurchased[item.dateLastPurchased.length - 1];
+		const timeElapsed = Date.now() - lastPurchase.seconds * 1000;
 
+		//New, never purchased items created in db with same dateCreated and dateLastPurchased
+		const hasBeenPurchased = item.dateCreated.seconds !== lastPurchase.seconds;
+		const lessThanOneDay = timeElapsed <= ONE_DAY_IN_MILLISECONDS;
+		const isChecked = hasBeenPurchased && lessThanOneDay;
+		setIsChecked(isChecked);
+
+		if (isChecked) {
+			//If item is checked on render, calculate time until isChecked state is set to false/unchecked
+			const timeRemaining = ONE_DAY_IN_MILLISECONDS - timeElapsed;
 			const timer = setTimeout(() => {
 				setIsChecked(false);
 			}, timeRemaining);
 			return () => clearTimeout(timer);
 		}
-	}, [isChecked, purchasedOneDayAgo]);
+	}, [item.dateLastPurchased, item.dateCreated]);
+
+	const changeHandler = async () => {
+		try {
+			await updateItem(listPath, item.id, !isChecked);
+			setIsChecked(!isChecked);
+		} catch (error) {
+			alert(error.message);
+		}
+	};
+
+	const deleteHandler = async () => {
+		if (window.confirm(`Are you sure you'd like to delete ${item.name}?`)) {
+			await deleteItem(listPath, item.id);
+		}
+	};
 
 	return (
 		<li className="ListItem">
