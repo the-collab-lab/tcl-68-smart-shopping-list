@@ -68,7 +68,7 @@ export function ManageList({ setListPath, listPath, userEmail, userId }) {
 					</label>
 					<button type="submit">Send invite!</button>
 				</form>
-				<button onClick={() => handleDelete()}>DELETE this list!</button>
+				<button onClick={handleDelete}>DELETE this list!</button>
 			</section>
 		</>
 	);
