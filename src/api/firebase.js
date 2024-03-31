@@ -88,7 +88,7 @@ export function useShoppingListData(listPath) {
 			// Update our React state with the new data.
 			setData(nextData);
 		});
-	}, [listPath]);
+	}, [initialState, listPath]);
 
 	// Return the data so it can be used by our React components.
 	return data;

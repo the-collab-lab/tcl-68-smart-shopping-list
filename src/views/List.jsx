@@ -31,12 +31,12 @@ export function List({ data, listPath }) {
 
 	return (
 		<>
-    	{listPath ? (
-        <>
-          <h2>{listName}</h2>
-          <AddItem data={data} listPath={listPath} />
-        </>
-       ) : null}
+			{listPath ? (
+				<>
+					<h2>{listName}</h2>
+					<AddItem data={data} listPath={listPath} />
+				</>
+			) : null}
 			{data.length > 0 ? (
 				<section>
 					<form>
@@ -64,26 +64,6 @@ export function List({ data, listPath }) {
 				</>
 			) : null}
 
-			{data.length > 0 ? (
-				<section>
-					<form>
-						<label htmlFor="itemFilter">
-							Search for an item:
-							<input
-								type="text"
-								id="itemFilter"
-								name="itemFilter"
-								value={searchTerm}
-								onChange={handleChange}
-							/>
-						</label>
-						{searchTerm ? <button onClick={reset}>Reset</button> : null}
-					</form>
-				</section>
-			) : null}
-			{listPath && data.length === 0 ? (
-				<h2>This list is currently empty!</h2>
-			) : null}
 			{!listPath ? (
 				<>
 					<h2>
