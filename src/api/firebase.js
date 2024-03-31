@@ -271,24 +271,14 @@ export function comparePurchaseUrgency(a, b) {
 		return 1;
 	} else if (lastPurchaseDaysBetween < 60 && lastPurchaseDaysBetweenB > 60) {
 		return -1;
-	} else if (lastPurchaseDaysBetween > 60 && lastPurchaseDaysBetweenB > 60) {
+	}
+	//sort alphabetically if same nextPurchaseDate or both items are inactive
+	if (
+		nextPurchaseDaysBetween === nextPurchaseDaysBetweenB ||
+		(lastPurchaseDaysBetween > 60 && lastPurchaseDaysBetweenB > 60)
+	) {
 		return a.name.localeCompare(b.name);
 	}
-	// sort by days until next purchase
-	if (nextPurchaseDaysBetween < nextPurchaseDaysBetweenB) {
-		return -1;
-	}
-	// if days until next purchase is the same, sort alphabetically
-	if (nextPurchaseDaysBetween === nextPurchaseDaysBetweenB) {
-		if (a.name < b.name) {
-			return -1;
-		} else if (a.name === b.name) {
-			return 0;
-		} else {
-			return 1;
-		}
-	}
-	if (nextPurchaseDaysBetween > nextPurchaseDaysBetweenB) {
-		return 1;
-	}
+	//sort by days until next purchase
+	return nextPurchaseDaysBetween - nextPurchaseDaysBetweenB;
 }
