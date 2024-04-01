@@ -81,7 +81,15 @@ export function ManageList({ setListPath, listPath, userEmail, userId }) {
 						</button>
 					</div>
 				</form>
-				{/* <button onClick={handleDelete}>DELETE this list!</button> */}
+			</section>
+			<section className="mx-8 md:mx-24 mt-24">
+				<h3 className="text-4xl">List Options</h3>
+				<button
+					onClick={handleDelete}
+					className="mt-4 bg-red-400/80 min-h-14 px-24 rounded-xl text-3xl w-full"
+				>
+					Delete List
+				</button>
 			</section>
 		</>
 	);
