@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { comparePurchaseUrgency } from '../api/firebase';
 import { AddItem, ListItem } from '../components';
+import { ListHeader } from '../components/ListHeader.jsx';
 
 export function List({ data, listPath }) {
 	const [searchTerm, setSearchTerm] = useState('');
@@ -33,7 +34,7 @@ export function List({ data, listPath }) {
 		<>
 			{listPath ? (
 				<>
-					<h2>{listName}</h2>
+					<ListHeader text={listName} />
 					<AddItem data={data} listPath={listPath} />
 				</>
 			) : null}

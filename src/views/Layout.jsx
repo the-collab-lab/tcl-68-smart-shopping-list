@@ -8,7 +8,7 @@ export function Layout() {
 	const { user } = useAuth();
 	return (
 		<>
-			<div className="Layout">
+			<div className="Layout bg-eggshell">
 				<header className="Layout-header">
 					<h1>Smart shopping list</h1>
 					{!!user ? (
@@ -20,7 +20,7 @@ export function Layout() {
 						<SignInButton />
 					)}
 				</header>
-				<main className="Layout-main">
+				<main className="Layout-main flex flex-col p-0 font-Rubik">
 					<Outlet />
 				</main>
 				<nav className="Nav">

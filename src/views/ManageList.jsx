@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { shareList, deleteList } from '../api/firebase.js';
 import { useNavigate } from 'react-router-dom';
+import { ListHeader } from '../components/ListHeader.jsx';
 
 export function ManageList({ setListPath, listPath, userEmail, userId }) {
 	const navigate = useNavigate();
@@ -54,7 +55,7 @@ export function ManageList({ setListPath, listPath, userEmail, userId }) {
 
 	return (
 		<>
-			<h2>{listName}</h2>
+			<ListHeader text={listName} />
 			<section>
 				<form onSubmit={handleShareSubmit}>
 					<label htmlFor="shareEmail">
