@@ -57,10 +57,11 @@ export function useShoppingLists(userId, userEmail) {
  * @param {string | null} listPath
  * @see https://firebase.google.com/docs/firestore/query-data/listen
  */
+// Start with an empty array for our data.
+/** @type {import('firebase/firestore').DocumentData[]} */
+const initialState = [];
+
 export function useShoppingListData(listPath) {
-	// Start with an empty array for our data.
-	/** @type {import('firebase/firestore').DocumentData[]} */
-	const initialState = [];
 	const [data, setData] = useState(initialState);
 
 	useEffect(() => {
@@ -88,7 +89,7 @@ export function useShoppingListData(listPath) {
 			// Update our React state with the new data.
 			setData(nextData);
 		});
-	}, [initialState, listPath]);
+	}, [listPath]);
 
 	// Return the data so it can be used by our React components.
 	return data;
