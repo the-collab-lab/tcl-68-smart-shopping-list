@@ -2,6 +2,7 @@ import {
 	addDoc,
 	deleteDoc,
 	arrayUnion,
+	arrayRemove,
 	getDoc,
 	setDoc,
 	collection,
@@ -63,7 +64,10 @@ export function useShoppingListData(listPath) {
 	const [data, setData] = useState(initialState);
 
 	useEffect(() => {
-		if (!listPath) return;
+		if (!listPath) {
+			setData(initialState);
+			return;
+		}
 
 		// When we get a listPath, we use it to subscribe to real-time updates
 		// from Firestore.
@@ -84,7 +88,7 @@ export function useShoppingListData(listPath) {
 			// Update our React state with the new data.
 			setData(nextData);
 		});
-	}, [listPath]);
+	}, [initialState, listPath]);
 
 	// Return the data so it can be used by our React components.
 	return data;
@@ -136,6 +140,28 @@ export async function createList(userId, userEmail, listName) {
 
 		return true;
 	} catch (error) {
+		return false;
+	}
+}
+
+/**
+ * Deletes the currently selected list, returns boolean for user feedback.
+ * @param {string} userEmail The email of the user that is currently logged in.
+ * @param {string} listPath The path to the list to share.
+ * @param {string} userId The id assigned to the user within firebase (uid)
+ */
+export async function deleteList(userEmail, listPath) {
+	const listDocumentRef = doc(db, listPath);
+	const userDocumentRef = doc(db, 'users', userEmail);
+	try {
+		// removing list from current user's lists:
+		deleteDoc(listDocumentRef);
+		updateDoc(userDocumentRef, {
+			sharedLists: arrayRemove(listDocumentRef),
+		});
+		return true;
+	} catch (error) {
+		console.log(error);
 		return false;
 	}
 }

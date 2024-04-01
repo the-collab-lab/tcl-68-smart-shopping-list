@@ -31,12 +31,12 @@ export function List({ data, listPath }) {
 
 	return (
 		<>
-    	{listPath ? (
-        <>
-          <h2>{listName}</h2>
-          <AddItem data={data} listPath={listPath} />
-        </>
-       ) : null}
+			{listPath ? (
+				<>
+					<h2>{listName}</h2>
+					<AddItem data={data} listPath={listPath} />
+				</>
+			) : null}
 			{data.length > 0 ? (
 				<section>
 					<form>
@@ -59,12 +59,20 @@ export function List({ data, listPath }) {
 			) : null}
 			{!listPath ? (
 				<>
+					<h2>{listName}</h2>
+					<AddItem data={data} listPath={listPath} />
+				</>
+			) : null}
+
+			{!listPath ? (
+				<>
 					<h2>
 						You haven't selected a list yet. Click below to select a list.
 					</h2>
 					<button onClick={() => handleClick('/')}>Select a list</button>
 				</>
 			) : null}
+
 			<section>
 				<ul>
 					{filteredData.map((item) => {

@@ -31,7 +31,6 @@ export function AddItem({ data, listPath }) {
 		const itemName = newItem.itemName
 			.toLowerCase()
 			.replace(/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~/\s]/g, '');
-		console.log('itemName:', itemName);
 
 		if (currentList.includes(itemName)) {
 			alert('This item already exists in the list.');

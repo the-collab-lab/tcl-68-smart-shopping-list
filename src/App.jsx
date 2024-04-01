@@ -62,7 +62,13 @@ export function App() {
 					<Route
 						path="/manage-list"
 						element={
-							<ManageList listPath={listPath} userId={userId} data={data} />
+							<ManageList
+								setListPath={setListPath}
+								listPath={listPath}
+								userId={userId}
+								userEmail={userEmail}
+								data={data}
+							/>
 						}
 					/>
 				</Route>
