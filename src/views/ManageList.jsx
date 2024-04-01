@@ -56,21 +56,32 @@ export function ManageList({ setListPath, listPath, userEmail, userId }) {
 	return (
 		<>
 			<ListHeader text={listName} />
-			<section>
-				<form onSubmit={handleShareSubmit}>
-					<label htmlFor="shareEmail">
-						Share with:
+			<section className="mx-8 md:mx-24">
+				<form onSubmit={handleShareSubmit} className="w-full">
+					<div>
+						<label htmlFor="shareEmail" className="text-4xl">
+							Share List
+						</label>
+					</div>
+					<div className="flex flex-wrap">
 						<input
 							id="shareEmail"
 							name="shareEmail"
 							type="email"
 							value={shareEmail}
+							placeholder="Enter Recipient Email"
 							onChange={handleShareChange}
+							className="bg-pale-green border-solid border-2 rounded-xl border-sage pl-2 min-h-14 mr-6 md:w-8/12 grow mt-4"
 						></input>
-					</label>
-					<button type="submit">Send invite!</button>
+						<button
+							type="submit"
+							className="bg-sage p-2 px-4 rounded-xl text-3xl min-h-14 mt-4"
+						>
+							Send invite!
+						</button>
+					</div>
 				</form>
-				<button onClick={handleDelete}>DELETE this list!</button>
+				{/* <button onClick={handleDelete}>DELETE this list!</button> */}
 			</section>
 		</>
 	);
