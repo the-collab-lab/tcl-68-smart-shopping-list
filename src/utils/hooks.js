@@ -39,7 +39,7 @@ export function purchaseUrgency(dateNextPurchased, lastPurchased) {
 	} else if (nextPurchaseDaysBetween <= 7) {
 		return 'Soon';
 	} else if (nextPurchaseDaysBetween < 30) {
-		return 'Kind Of Soon';
+		return 'Kinda Soon';
 	} else {
 		return 'Not Soon';
 	}
