@@ -65,11 +65,11 @@ export function Home({ data, userId, userEmail, setListPath }) {
 						className="w-2/3 ml-2 border-2 border-sage rounded-lg"
 					/>
 				</label>
-				<button className="bg-sage rounded-lg px-3 py-1 text-eggshell">
+				<button className="bg-pale-green rounded-lg px-3 py-1 text-eggshell border-2 border-sage text-off-black">
 					Create
 				</button>
 			</form>
-			<ul>
+			<ul className="flex flex-col my-8 items-center text-2xl">
 				{data.map((item, index) => {
 					return (
 						<SingleList
