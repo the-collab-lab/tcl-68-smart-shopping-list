@@ -31,7 +31,7 @@
 
 :root.theme-light {
 	--color-accent: var(--color-cobalt-blue);
-	--color-bg: var(--color-white);
+	--color-bg: #fdfdf2;
 	--color-border: hsla(220, 13%, 78%, 1);
 	--color-text: var(--color-black);
 }
@@ -59,7 +59,7 @@ html {
 }
 
 body {
-	background-color: var(--color-bg);
+	background-color: #fdfdf2;
 	color: var(--color-text);
 	font-family:
 		-apple-system,
