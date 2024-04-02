@@ -10,7 +10,7 @@ export function SingleList({ name, path, setListPath }) {
 	}
 
 	return (
-		<li className="SingleList border-2 border-sage rounded-lg bg-pale-green my-2 px-3 py-2 text-off-black">
+		<li className="SingleList border-2 border-sage rounded-lg bg-pale-green my-2 px-3 py-2 text-off-black w-full md:w-1/2">
 			<button onClick={handleClick}>{name}</button>
 		</li>
 	);
