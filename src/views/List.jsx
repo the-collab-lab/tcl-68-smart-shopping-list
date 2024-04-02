@@ -31,7 +31,7 @@ export function List({ data, listPath }) {
 	filteredData.sort(comparePurchaseUrgency);
 
 	return (
-		<>
+		<section className="mx-8 md:mx-24">
 			{listPath ? (
 				<>
 					<ListHeader text={listName} />
@@ -81,6 +81,6 @@ export function List({ data, listPath }) {
 					})}
 				</ul>
 			</section>
-		</>
+		</section>
 	);
 }

@@ -3,6 +3,7 @@ import { updateItem, deleteItem } from '../api/firebase.js';
 import { useState, useEffect } from 'react';
 import { ONE_DAY_IN_MILLISECONDS } from '../utils/dates.js';
 import { purchaseUrgency } from '../utils/hooks.js';
+import { FaRegTrashCan } from 'react-icons/fa6';
 
 export function ListItem({ listPath, item }) {
 	//Box is checked on render if purchased within 24 hrs
@@ -46,25 +47,30 @@ export function ListItem({ listPath, item }) {
 	};
 
 	return (
-		<li className="ListItem">
-			<label htmlFor={item.name}>
-				{item.name}
+		<li className="ListItem bg-pale-green border border-dark-green h-14 rounded-xl text-3xl mb-2 items-center">
+			<label htmlFor={item.name} className="w-auto">
 				<input
 					type="checkbox"
 					id={item.name}
 					name="purchased"
 					onChange={changeHandler}
 					checked={isChecked}
+					className="rounded-full w-8 h-8 mx-4"
 				/>
+				{item.name}
 			</label>
-			<div>
+			<div className="ml-auto">
 				{purchaseUrgency(
 					item.dateNextPurchased,
 					item.dateLastPurchased[item.dateLastPurchased.length - 1],
 				)}
 			</div>
-			<button type="button" onClick={deleteHandler}>
-				Delete
+			<button
+				type="button"
+				onClick={deleteHandler}
+				className="border border-dark-green p-1 px-3 rounded-lg mr-2"
+			>
+				<FaRegTrashCan aria-hidden="true" title="Delete" />
 			</button>
 		</li>
 	);

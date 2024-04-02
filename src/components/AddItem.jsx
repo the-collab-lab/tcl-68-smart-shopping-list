@@ -50,31 +50,27 @@ export function AddItem({ data, listPath }) {
 	return (
 		<section>
 			<form onSubmit={handleItemSubmit}>
-				<label htmlFor="itemName">
-					Item Name
-					<input
-						id="itemName"
-						name="itemName"
-						type="text"
-						value={newItem.itemName}
-						onChange={handleItemChange}
-					></input>
-				</label>
-				<label htmlFor="daysUntilNextPurchase">
-					Next Purchase
-					<select
-						id="daysUntilNextPurchase"
-						name="daysUntilNextPurchase"
-						value={newItem.daysUntilNextPurchase}
-						onChange={handleItemChange}
-						required
-					>
-						<option value="">Select Next Purchase Date</option>
-						<option value={7}>Soon</option>
-						<option value={14}>Kind of soon</option>
-						<option value={30}>Not soon</option>
-					</select>
-				</label>
+				<label htmlFor="itemName">Item Name</label>
+				<input
+					id="itemName"
+					name="itemName"
+					type="text"
+					value={newItem.itemName}
+					onChange={handleItemChange}
+				></input>
+				<label htmlFor="daysUntilNextPurchase">Next Purchase</label>
+				<select
+					id="daysUntilNextPurchase"
+					name="daysUntilNextPurchase"
+					value={newItem.daysUntilNextPurchase}
+					onChange={handleItemChange}
+					required
+				>
+					<option value="">Select Next Purchase Date</option>
+					<option value={7}>Soon</option>
+					<option value={14}>Kind of soon</option>
+					<option value={30}>Not soon</option>
+				</select>
 				<button type="submit">Add Item</button>
 			</form>
 		</section>

@@ -16,8 +16,9 @@ export default {
 				yellow: '#FEFAE0',
 				vanilla: '#FAEDCD',
 				'pale-green': '#E9EDC9',
+				'dark-green': '#4D5A3A',
 			},
 		},
 	},
-	plugins: [],
+	plugins: [require('@tailwindcss/forms')],
 };
