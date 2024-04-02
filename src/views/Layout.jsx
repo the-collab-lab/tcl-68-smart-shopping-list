@@ -9,12 +9,14 @@ export function Layout() {
 	return (
 		<>
 			<div className="Layout">
-				<header className="Layout-header">
+				<header className="Layout-header font-Rubik flex flex-col">
 					<h1>Smart shopping list</h1>
 					{!!user ? (
 						<div>
-							<span>Signed in as {auth.currentUser.displayName}</span> (
-							<SignOutButton />)
+							<span className="mx-3">
+								Signed in as {auth.currentUser.displayName}
+							</span>
+							<SignOutButton />
 						</div>
 					) : (
 						<SignInButton />
