@@ -54,7 +54,7 @@ export function Home({ data, userId, userEmail, setListPath }) {
 				onSubmit={handleSubmit}
 				className="flex justify-between rounded-lg items-center"
 			>
-				<label htmlFor="listName">
+				<label htmlFor="listName" className="text-off-black">
 					New list:
 					<input
 						type="text"
@@ -62,7 +62,7 @@ export function Home({ data, userId, userEmail, setListPath }) {
 						name="listName"
 						value={newListName}
 						onChange={handleChange}
-						className="w-2/3 ml-2 border-2 border-sage rounded-lg"
+						className="w-2/3 ml-2 border-2 border-sage rounded-lg bg-eggshell"
 					/>
 				</label>
 				<button className="bg-pale-green rounded-lg px-3 py-1 text-eggshell border-2 border-sage text-off-black">
