@@ -32,12 +32,8 @@ export function List({ data, listPath }) {
 
 	return (
 		<section className="mx-8 md:mx-24">
-			{listPath ? (
-				<>
-					<ListHeader text={listName} />
-					<AddItem data={data} listPath={listPath} />
-				</>
-			) : null}
+			{listPath ? <ListHeader text={listName} /> : null}
+
 			{data.length > 0 ? (
 				<section>
 					<form>
@@ -55,21 +51,13 @@ export function List({ data, listPath }) {
 					</form>
 				</section>
 			) : null}
+			{listPath ? <AddItem data={data} listPath={listPath} /> : null}
 			{listPath && data.length === 0 ? (
-				<h2>This list is currently empty!</h2>
+				<h3>This list is currently empty!</h3>
 			) : null}
 			{!listPath ? (
 				<>
-					<h2>{listName}</h2>
-					<AddItem data={data} listPath={listPath} />
-				</>
-			) : null}
-
-			{!listPath ? (
-				<>
-					<h2>
-						You haven't selected a list yet. Click below to select a list.
-					</h2>
+					<ListHeader text="You haven't selected a list yet. Click below to select a list." />
 					<button onClick={() => handleClick('/')}>Select a list</button>
 				</>
 			) : null}
