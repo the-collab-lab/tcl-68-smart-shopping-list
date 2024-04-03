@@ -62,7 +62,7 @@ export function ManageList({ setListPath, listPath, userEmail, userId }) {
 			{listPath ? (
 				<>
 					<ListHeader text={listName} />
-					<section className="mx-8 md:mx-24">
+					<section className="mx-8 md:mx-24 w-full">
 						<form onSubmit={handleShareSubmit} className="w-full">
 							<div>
 								<label htmlFor="shareEmail" className="text-4xl">

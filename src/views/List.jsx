@@ -35,19 +35,27 @@ export function List({ data, listPath }) {
 			{listPath ? <ListHeader text={listName} /> : null}
 			<section className="mx-8 md:mx-24">
 				{data.length > 0 ? (
-					<section>
-						<form>
-							<label htmlFor="itemFilter">
-								Search for an item:
-								<input
-									type="text"
-									id="itemFilter"
-									name="itemFilter"
-									value={searchTerm}
-									onChange={handleChange}
-								/>
+					<section className="mt-8 mb-4">
+						<form className="flex flex-wrap items-center">
+							<label htmlFor="itemFilter" className="">
+								Search:
 							</label>
-							{searchTerm ? <button onClick={reset}>Reset</button> : null}
+							<input
+								type="text"
+								id="itemFilter"
+								name="itemFilter"
+								value={searchTerm}
+								onChange={handleChange}
+								className="border-solid border-2 rounded-xl border-sage pl-2 min-h-14 mx-4 grow mt-2 text-2xl"
+							/>
+							{searchTerm ? (
+								<button
+									onClick={reset}
+									className="bg-red-400 rounded-xl px-2 py-1 grow md:ml-6 max-w-28 mt-2"
+								>
+									Reset
+								</button>
+							) : null}
 						</form>
 					</section>
 				) : null}
