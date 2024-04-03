@@ -5,6 +5,7 @@ import { ONE_DAY_IN_MILLISECONDS } from '../utils/dates.js';
 import { purchaseUrgency } from '../utils/hooks.js';
 import { FaRegTrashCan } from 'react-icons/fa6';
 import { UrgencyLabel } from './UrgencyLabel.jsx';
+import { RiShoppingCart2Fill } from 'react-icons/ri';
 
 export function ListItem({ listPath, item }) {
 	//Box is checked on render if purchased within 24 hrs
@@ -57,7 +58,9 @@ export function ListItem({ listPath, item }) {
 				checked={isChecked}
 				className="rounded-full border-dark-green w-8 h-8 mx-4 hover:bg-slate-100"
 			/>
-			<label htmlFor={item.name}>{item.name}</label>
+			<label htmlFor={item.name}>
+				<RiShoppingCart2Fill className="inline" /> {item.name}
+			</label>
 			<div className="ml-auto flex items-center">
 				<UrgencyLabel
 					text={purchaseUrgency(
