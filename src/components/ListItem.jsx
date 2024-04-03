@@ -58,19 +58,21 @@ export function ListItem({ listPath, item }) {
 				className="rounded-full border-dark-green w-8 h-8 mx-4 hover:bg-slate-100"
 			/>
 			<label htmlFor={item.name}>{item.name}</label>
-			<UrgencyLabel
-				text={purchaseUrgency(
-					item.dateNextPurchased,
-					item.dateLastPurchased[item.dateLastPurchased.length - 1],
-				)}
-			/>
-			<button
-				type="button"
-				onClick={deleteHandler}
-				className="border border-dark-green p-1 px-3 rounded-lg mr-2 hover:bg-red-400"
-			>
-				<FaRegTrashCan aria-hidden="true" title="Delete" />
-			</button>
+			<div className="ml-auto flex items-center">
+				<UrgencyLabel
+					text={purchaseUrgency(
+						item.dateNextPurchased,
+						item.dateLastPurchased[item.dateLastPurchased.length - 1],
+					)}
+				/>
+				<button
+					type="button"
+					onClick={deleteHandler}
+					className="border border-dark-green p-1 px-3 rounded-lg mr-2 hover:bg-red-400"
+				>
+					<FaRegTrashCan aria-hidden="true" title="Delete" />
+				</button>
+			</div>
 		</li>
 	);
 }
