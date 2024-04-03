@@ -31,44 +31,56 @@ export function List({ data, listPath }) {
 	filteredData.sort(comparePurchaseUrgency);
 
 	return (
-		<section className="mx-8 md:mx-24">
+		<>
 			{listPath ? <ListHeader text={listName} /> : null}
+			<section className="mx-8 md:mx-24">
+				{data.length > 0 ? (
+					<section>
+						<form>
+							<label htmlFor="itemFilter">
+								Search for an item:
+								<input
+									type="text"
+									id="itemFilter"
+									name="itemFilter"
+									value={searchTerm}
+									onChange={handleChange}
+								/>
+							</label>
+							{searchTerm ? <button onClick={reset}>Reset</button> : null}
+						</form>
+					</section>
+				) : null}
+				{listPath ? <AddItem data={data} listPath={listPath} /> : null}
+				{listPath && data.length === 0 ? (
+					<div className="bg-pale-green border border-dark-green rounded-2xl py-8 mt-8">
+						<h3 className="text-center font-semibold">
+							This list is currently empty!
+						</h3>
+					</div>
+				) : null}
+				{!listPath ? (
+					<>
+						<ListHeader text="You haven't selected a list yet. Click below to select a list." />
+						<div className="flex justify-center">
+							<button
+								onClick={() => handleClick('/')}
+								className="border border-dark-green rounded-2xl px-4 py-2 hover:bg-pale-green"
+							>
+								Select a list
+							</button>
+						</div>
+					</>
+				) : null}
 
-			{data.length > 0 ? (
 				<section>
-					<form>
-						<label htmlFor="itemFilter">
-							Search for an item:
-							<input
-								type="text"
-								id="itemFilter"
-								name="itemFilter"
-								value={searchTerm}
-								onChange={handleChange}
-							/>
-						</label>
-						{searchTerm ? <button onClick={reset}>Reset</button> : null}
-					</form>
+					<ul>
+						{filteredData.map((item) => {
+							return <ListItem key={item.id} item={item} listPath={listPath} />;
+						})}
+					</ul>
 				</section>
-			) : null}
-			{listPath ? <AddItem data={data} listPath={listPath} /> : null}
-			{listPath && data.length === 0 ? (
-				<h3>This list is currently empty!</h3>
-			) : null}
-			{!listPath ? (
-				<>
-					<ListHeader text="You haven't selected a list yet. Click below to select a list." />
-					<button onClick={() => handleClick('/')}>Select a list</button>
-				</>
-			) : null}
-
-			<section>
-				<ul>
-					{filteredData.map((item) => {
-						return <ListItem key={item.id} item={item} listPath={listPath} />;
-					})}
-				</ul>
 			</section>
-		</section>
+		</>
 	);
 }
