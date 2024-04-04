@@ -48,30 +48,44 @@ export function AddItem({ data, listPath }) {
 	};
 
 	return (
-		<section>
-			<form onSubmit={handleItemSubmit}>
-				<label htmlFor="itemName">Item Name</label>
+		<section className="mt-8 mb-8">
+			<form
+				onSubmit={handleItemSubmit}
+				className="grid grid-cols-addItem grid-rows-2 items-center"
+			>
+				<label htmlFor="itemName" className="col-span-1">
+					New Item:
+				</label>
 				<input
 					id="itemName"
 					name="itemName"
 					type="text"
 					value={newItem.itemName}
 					onChange={handleItemChange}
+					className="border-solid border-2 rounded-xl border-sage pl-2 min-h-14 mx-4 grow mt-2 text-2xl col-span-1"
 				></input>
-				<label htmlFor="daysUntilNextPurchase">Next Purchase</label>
+				<label htmlFor="daysUntilNextPurchase" className="col-span-1">
+					Urgency:
+				</label>
 				<select
 					id="daysUntilNextPurchase"
 					name="daysUntilNextPurchase"
 					value={newItem.daysUntilNextPurchase}
 					onChange={handleItemChange}
 					required
+					className="border-solid border-2 rounded-xl border-sage pl-2 min-h-14 mx-4 grow mt-2 text-2xl"
 				>
-					<option value="">Select Next Purchase Date</option>
+					<option value="">Select Urgency</option>
 					<option value={7}>Soon</option>
 					<option value={14}>Kind of soon</option>
 					<option value={30}>Not soon</option>
 				</select>
-				<button type="submit">Add Item</button>
+				<button
+					type="submit"
+					className="bg-sage p-2 px-4 rounded-xl text-3xl min-h-14 mt-4 col-span-2 md:m-w-2xl justify-self-center"
+				>
+					Add Item
+				</button>
 			</form>
 		</section>
 	);

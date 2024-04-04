@@ -1,8 +1,8 @@
-import { Outlet, NavLink } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 
-import './Layout.css';
 import { auth } from '../api/config.js';
-import { useAuth, SignInButton, SignOutButton } from '../api/useAuth.jsx';
+import { SignInButton, SignOutButton, useAuth } from '../api/useAuth.jsx';
+import './Layout.css';
 
 export function Layout() {
 	const { user } = useAuth();
@@ -20,7 +20,7 @@ export function Layout() {
 						<SignInButton />
 					)}
 				</header>
-				<main className="Layout-main flex flex-col p-0 font-Rubik">
+				<main className="Layout-main flex flex-col px-0 font-Rubik">
 					<Outlet />
 				</main>
 				<nav className="Nav">

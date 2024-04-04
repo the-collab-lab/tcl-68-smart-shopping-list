@@ -33,12 +33,13 @@ export function List({ data, listPath }) {
 	return (
 		<>
 			{listPath ? <ListHeader text={listName} /> : null}
-			<section className="mx-8 md:mx-24">
+			<section className="mx-8 md:mx-24 flex flex-col">
+				{listPath ? <AddItem data={data} listPath={listPath} /> : null}
 				{data.length > 0 ? (
 					<section className="mt-8 mb-4">
 						<form className="flex flex-wrap items-center">
 							<label htmlFor="itemFilter" className="">
-								Search:
+								Filter:
 							</label>
 							<input
 								type="text"
@@ -59,7 +60,6 @@ export function List({ data, listPath }) {
 						</form>
 					</section>
 				) : null}
-				{listPath ? <AddItem data={data} listPath={listPath} /> : null}
 				{listPath && data.length === 0 ? (
 					<div className="bg-pale-green border border-dark-green rounded-2xl py-8 mt-8">
 						<h3 className="text-center font-semibold">

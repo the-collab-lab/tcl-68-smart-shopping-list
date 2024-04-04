@@ -19,6 +19,9 @@ export default {
 				'dark-green': '#4D5A3A',
 				'green-hover': '#DAE1A6',
 			},
+			gridTemplateColumns: {
+				addItem: 'max-content 1fr',
+			},
 		},
 	},
 	plugins: [require('@tailwindcss/forms')],
