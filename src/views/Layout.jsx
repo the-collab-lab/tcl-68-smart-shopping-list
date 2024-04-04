@@ -8,6 +8,10 @@ import buddyLogo from '../../public/img/basket-buddy-logo.png';
 
 export function Layout() {
 	const { user } = useAuth();
+	const activeLink =
+		'Nav-link text-sage border-2 border-sage rounded-full bg-eggshell';
+	const link =
+		'Nav-link text-eggshell border-2 rounded-full border-vanilla  hover:text-sage hover:border-sage';
 	return (
 		<>
 			<div className="Layout">
@@ -32,19 +36,19 @@ export function Layout() {
 					<div className="Nav-container flex flex-row justify-around">
 						<NavLink
 							to="/"
-							className="Nav-link border-2 rounded-full border-vanilla text-eggshell hover:text-sage"
+							className={({ isActive }) => (isActive ? activeLink : link)}
 						>
 							<IoHome alt="Home" />
 						</NavLink>
 						<NavLink
 							to="/list"
-							className="Nav-link text-eggshell border-2 rounded-full border-vanilla hover:text-sage"
+							className={({ isActive }) => (isActive ? activeLink : link)}
 						>
 							<IoList alt="List" />
 						</NavLink>
 						<NavLink
 							to="/manage-list"
-							className="Nav-link text-eggshell border-2 rounded-full border-vanilla hover:text-sage"
+							className={({ isActive }) => (isActive ? activeLink : link)}
 						>
 							<IoCreate alt="Manage List" />
 						</NavLink>
