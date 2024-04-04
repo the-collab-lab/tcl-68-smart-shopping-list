@@ -12,6 +12,7 @@ export default {
 			yellow: '#FEFAE0',
 			vanilla: '#FAEDCD',
 			'pale-green': '#E9EDC9',
+			'off-black': '#353839',
 		},
 		extend: {
 			fontFamily: {

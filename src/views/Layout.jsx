@@ -4,14 +4,18 @@ import { IoHome, IoList, IoCreate } from 'react-icons/io5';
 import './Layout.css';
 import { auth } from '../api/config.js';
 import { useAuth, SignInButton, SignOutButton } from '../api/useAuth.jsx';
+import buddyLogo from '../../public/img/basket-buddy-logo.png';
 
 export function Layout() {
 	const { user } = useAuth();
 	return (
 		<>
 			<div className="Layout">
-				<header className="Layout-header bg-brown">
-					<h1>Smart shopping list</h1>
+				<header
+					className="Layout-header flex flex-col items-center  bg-eggshell
+				text-off-black"
+				>
+					<img className="md:w-1/3" src={buddyLogo} alt="Basket Buddy" />
 					{!!user ? (
 						<div>
 							<span>Signed in as {auth.currentUser.displayName}</span>
