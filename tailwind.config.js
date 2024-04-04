@@ -7,7 +7,7 @@ export default {
 	theme: {
 		screens: {
 			tiny: '100px',
-			xs: '375px',
+			xs: '395px',
 			...defaultTheme.screens,
 		},
 		extend: {
@@ -25,7 +25,7 @@ export default {
 				'green-hover': '#DAE1A6',
 			},
 			gridTemplateColumns: {
-				addItem: 'max-content 1fr 1fr',
+				addItem: 'max-content 4fr 1fr',
 				addItemTiny: 'max-content minmax(10px, 1fr)',
 			},
 		},

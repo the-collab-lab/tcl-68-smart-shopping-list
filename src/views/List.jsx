@@ -37,7 +37,7 @@ export function List({ data, listPath }) {
 				{listPath ? <AddItem data={data} listPath={listPath} /> : null}
 				{data.length > 0 ? (
 					<section className="mt-8 mb-4">
-						<form className="flex flex-wrap items-center">
+						<form className="flex flex-wrap items-center gap-x-6">
 							<label htmlFor="itemFilter" className="">
 								Filter:
 							</label>
@@ -47,12 +47,12 @@ export function List({ data, listPath }) {
 								name="itemFilter"
 								value={searchTerm}
 								onChange={handleChange}
-								className="border-solid border-2 rounded-xl border-sage pl-2 min-h-14 mx-4 grow mt-2 text-2xl"
+								className="border-solid border-2 rounded-xl border-sage pl-2 min-h-14 grow max-w-full mt-2 text-2xl"
 							/>
 							{searchTerm ? (
 								<button
 									onClick={reset}
-									className="bg-red-400 rounded-xl px-2 py-1 grow md:ml-6 max-w-28 mt-2"
+									className="bg-red-400 rounded-xl px-2 py-1 grow min-h-14 xs:max-w-28 mt-2"
 								>
 									Reset
 								</button>

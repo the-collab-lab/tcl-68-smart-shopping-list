@@ -51,7 +51,7 @@ export function AddItem({ data, listPath }) {
 		<section className="mt-8 mb-8">
 			<form
 				onSubmit={handleItemSubmit}
-				className="grid xs:grid-cols-addItem grid-cols-addItemTiny grid-rows-2 items-center flex"
+				className="grid xs:grid-cols-addItem grid-cols-addItemTiny grid-rows-2 items-center"
 			>
 				<label htmlFor="itemName" className="col-span-1">
 					New Item:
