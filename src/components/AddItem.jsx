@@ -51,7 +51,7 @@ export function AddItem({ data, listPath }) {
 		<section className="mt-8 mb-8">
 			<form
 				onSubmit={handleItemSubmit}
-				className="grid xs:grid-cols-addItem grid-cols-addItemTiny grid-rows-2 items-center"
+				className="grid xs:grid-cols-addItem grid-cols-gridTiny grid-rows-2 items-center"
 			>
 				<label htmlFor="itemName" className="col-span-1">
 					New Item:
@@ -86,12 +86,6 @@ export function AddItem({ data, listPath }) {
 					<option value={14}>Kind of soon</option>
 					<option value={30}>Not soon</option>
 				</select>
-				{/* <button
-					type="submit"
-					className="bg-sage p-2 px-4 rounded-xl text-3xl min-h-14 mt-4 col-span-2 md:m-w-2xl justify-self-center"
-				>
-					Add Item
-				</button> */}
 			</form>
 		</section>
 	);

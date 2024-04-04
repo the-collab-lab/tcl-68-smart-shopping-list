@@ -26,7 +26,8 @@ export default {
 			},
 			gridTemplateColumns: {
 				addItem: 'max-content 4fr 1fr',
-				addItemTiny: 'max-content minmax(10px, 1fr)',
+				listItem: 'max-content minmax(10px, 1fr) max-content',
+				gridTiny: 'max-content minmax(10px, 1fr)',
 			},
 		},
 	},
