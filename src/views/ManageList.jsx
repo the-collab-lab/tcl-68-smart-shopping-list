@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { shareList, deleteList } from '../api/firebase.js';
 import { useNavigate } from 'react-router-dom';
+import { deleteList, shareList } from '../api/firebase.js';
 import { ListHeader } from '../components/ListHeader.jsx';
 
 export function ManageList({ setListPath, listPath, userEmail, userId }) {
@@ -62,14 +62,14 @@ export function ManageList({ setListPath, listPath, userEmail, userId }) {
 			{listPath ? (
 				<>
 					<ListHeader text={listName} />
-					<section className="mx-8 md:mx-24 w-full">
+					<section className="mx-8 md:mx-24">
 						<form onSubmit={handleShareSubmit} className="w-full">
 							<div>
 								<label htmlFor="shareEmail" className="text-4xl">
 									Share List
 								</label>
 							</div>
-							<div className="flex flex-wrap">
+							<div className="flex flex-wrap xs:flex-nowrap gap-x-6">
 								<input
 									id="shareEmail"
 									name="shareEmail"
@@ -77,11 +77,11 @@ export function ManageList({ setListPath, listPath, userEmail, userId }) {
 									value={shareEmail}
 									placeholder="Enter Recipient Email"
 									onChange={handleShareChange}
-									className="bg-pale-green border-solid border-2 rounded-xl border-sage pl-2 min-h-14 mr-6 md:w-8/12 grow mt-4"
+									className="bg-pale-green border-solid border-2 rounded-xl border-sage pl-2 min-h-14 md:w-8/12 grow mt-4 text-xl xs:text-2xl"
 								></input>
 								<button
 									type="submit"
-									className="bg-sage p-2 px-4 rounded-xl text-3xl min-h-14 mt-4"
+									className="bg-sage p-2 px-4 rounded-xl text-3xl min-h-14 mt-4 grow xs:grow-0"
 								>
 									Send invite!
 								</button>

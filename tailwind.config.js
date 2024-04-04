@@ -5,6 +5,11 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 export default {
 	content: ['./src/**/*.{js,jsx,ts,tsx}'],
 	theme: {
+		screens: {
+			tiny: '100px',
+			xs: '375px',
+			...defaultTheme.screens,
+		},
 		extend: {
 			fontFamily: {
 				Rubik: ['Rubik', ...defaultTheme.fontFamily.sans],
@@ -20,7 +25,8 @@ export default {
 				'green-hover': '#DAE1A6',
 			},
 			gridTemplateColumns: {
-				addItem: 'max-content 1fr',
+				addItem: 'max-content 1fr 1fr',
+				addItemTiny: 'max-content minmax(10px, 1fr)',
 			},
 		},
 	},
