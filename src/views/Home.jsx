@@ -49,24 +49,27 @@ export function Home({ data, userId, userEmail, setListPath }) {
 	};
 
 	return (
-		<div className="Home">
-			<p>
-				Hello from the home (<code>/</code>) page!
-			</p>
-			<form onSubmit={handleSubmit}>
-				<label htmlFor="listName">
-					New list name:
+		<div className="Home mt-8 font-Rubik">
+			<form
+				onSubmit={handleSubmit}
+				className="flex justify-between rounded-lg items-center"
+			>
+				<label htmlFor="listName" className="text-off-black">
+					New list:
 					<input
 						type="text"
 						id="listName"
 						name="listName"
 						value={newListName}
 						onChange={handleChange}
+						className="w-2/3 ml-2 border-2 border-sage rounded-lg bg-eggshell"
 					/>
 				</label>
-				<button>Create</button>
+				<button className="bg-pale-green rounded-lg px-3 py-1 text-eggshell border-2 border-sage text-off-black">
+					Create
+				</button>
 			</form>
-			<ul>
+			<ul className="flex flex-col my-8 items-center text-2xl">
 				{data.map((item, index) => {
 					return (
 						<SingleList
