@@ -16,7 +16,7 @@ export function Layout() {
 		<>
 			<div className="Layout">
 				<header
-					className="Layout-header flex flex-col items-center  bg-eggshell
+					className="Layout-header flex flex-col items-center  bg-eggshell font-Rubik
 				text-off-black"
 				>
 					<img className="md:w-1/3" src={buddyLogo} alt="Basket Buddy" />

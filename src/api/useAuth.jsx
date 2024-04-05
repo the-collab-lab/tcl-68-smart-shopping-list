@@ -10,6 +10,7 @@ import { addUserToDatabase } from './firebase.js';
  */
 export const SignInButton = () => (
 	<button
+		className="bg-pale-green rounded-lg px-3 py-1 text-eggshell border-2 border-sage text-off-black"
 		type="button"
 		onClick={() => signInWithPopup(auth, new GoogleAuthProvider())}
 	>
