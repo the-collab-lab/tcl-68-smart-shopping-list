@@ -62,7 +62,7 @@ export function AddItem({ data, listPath }) {
 					type="text"
 					value={newItem.itemName}
 					onChange={handleItemChange}
-					className="border-solid border-2 rounded-xl border-sage pl-2 min-h-14 mx-4 max-w-full mt-2 text-2xl col-span-1 shrink"
+					className="bg-white border-solid border-2 rounded-xl border-sage pl-2 min-h-14 mx-4 max-w-full mt-2 text-2xl col-span-1 shrink"
 				></input>
 				<button
 					type="submit"
@@ -79,7 +79,7 @@ export function AddItem({ data, listPath }) {
 					value={newItem.daysUntilNextPurchase}
 					onChange={handleItemChange}
 					required
-					className="border-solid border-2 rounded-xl border-sage pl-2 min-h-14 mx-4 max-w-full grow mt-2 text-xl xs:text-2xl"
+					className="bg-white border-solid border-2 rounded-xl border-sage pl-2 min-h-14 mx-4 max-w-full grow mt-2 text-xl xs:text-2xl"
 				>
 					<option value="">Select Urgency</option>
 					<option value={7}>Soon</option>
