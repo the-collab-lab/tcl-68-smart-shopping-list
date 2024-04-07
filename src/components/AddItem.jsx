@@ -66,7 +66,7 @@ export function AddItem({ data, listPath }) {
 				></input>
 				<button
 					type="submit"
-					className="bg-sage p-2 px-4 rounded-xl text-3xl min-h-14 mt-4 md:m-w-2xl order-last xs:order-none col-span-2 xs:col-span-1"
+					className="bg-sage p-2 px-3 rounded-xl text-3xl min-h-14 mt-4 md:m-w-2xl order-last xs:order-none col-span-2 xs:col-span-1"
 				>
 					Add
 				</button>

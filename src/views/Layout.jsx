@@ -14,7 +14,7 @@ export function Layout() {
 		'Nav-link text-eggshell border-2 rounded-full border-vanilla  hover:text-sage hover:border-sage';
 	return (
 		<>
-			<div className="Layout bg-eggshell">
+			<div className="Layout">
 				<header className="Layout-header flex flex-col items-center bg-eggshell font-Rubik text-off-black">
 					<img className="md:w-1/3" src={buddyLogo} alt="Basket Buddy" />
 					{!!user ? (

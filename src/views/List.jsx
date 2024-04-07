@@ -52,7 +52,7 @@ export function List({ data, listPath }) {
 							{searchTerm ? (
 								<button
 									onClick={reset}
-									className="bg-red-400 rounded-xl px-2 py-1 grow min-h-14 xs:max-w-28 mt-2"
+									className="bg-red-400 rounded-xl px-3 py-1 grow min-h-14 xs:max-w-28 mt-2"
 								>
 									Reset
 								</button>

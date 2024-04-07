@@ -52,19 +52,19 @@ export function Home({ data, userId, userEmail, setListPath }) {
 		<div className="Home mt-8 font-Rubik mx-8 md:mx-24">
 			<form
 				onSubmit={handleSubmit}
-				className="flex justify-between rounded-lg items-center"
+				className="flex rounded-lg items-center gap-x-6"
 			>
 				<label htmlFor="listName" className="text-off-black">
 					New list:
-					<input
-						type="text"
-						id="listName"
-						name="listName"
-						value={newListName}
-						onChange={handleChange}
-						className="w-2/3 ml-2 border-2 border-sage rounded-lg bg-white"
-					/>
 				</label>
+				<input
+					type="text"
+					id="listName"
+					name="listName"
+					value={newListName}
+					onChange={handleChange}
+					className="border-2 border-sage rounded-lg min-h-14 bg-white grow"
+				/>
 				<button className="bg-pale-green rounded-lg px-3 py-1 border-2 border-sage text-off-black">
 					Create
 				</button>
