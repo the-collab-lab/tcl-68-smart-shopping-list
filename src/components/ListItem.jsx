@@ -56,7 +56,7 @@ export function ListItem({ listPath, item }) {
 				name="purchased"
 				onChange={changeHandler}
 				checked={isChecked}
-				className="rounded-full border-dark-green w-8 h-8 mx-4 hover:bg-slate-100 row-span-2 xs:row-span-1"
+				className="rounded-full border-dark-green w-8 h-8 mx-4 hover:bg-slate-100 row-span-2 xs:row-span-1 "
 			/>
 			<label htmlFor={item.name}>
 				<RiShoppingCart2Fill className="inline" /> {item.name}

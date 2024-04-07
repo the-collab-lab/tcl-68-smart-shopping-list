@@ -77,7 +77,7 @@ export function ManageList({ setListPath, listPath, userEmail, userId }) {
 									value={shareEmail}
 									placeholder="Enter Recipient Email"
 									onChange={handleShareChange}
-									className="bg-white border-solid border-2 rounded-xl border-sage pl-2 min-h-14 md:w-8/12 grow mt-4 text-xl xs:text-2xl"
+									className="bg-white border-solid border-2 rounded-xl border-sage pl-2 min-h-14 md:w-8/12 grow mt-4 text-xl xs:text-2xl text-off-black"
 								></input>
 								<button
 									type="submit"
