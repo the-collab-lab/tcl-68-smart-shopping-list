@@ -5,20 +5,32 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 export default {
 	content: ['./src/**/*.{js,jsx,ts,tsx}'],
 	theme: {
-		colors: {
-			eggshell: '#FDFDF2',
-			sage: '#BBC893',
-			brown: '#D4A373',
-			yellow: '#FEFAE0',
-			vanilla: '#FAEDCD',
-			'pale-green': '#E9EDC9',
-			'off-black': '#353839',
+		screens: {
+			tiny: '100px',
+			xs: '395px',
+			...defaultTheme.screens,
 		},
 		extend: {
 			fontFamily: {
 				Rubik: ['Rubik', ...defaultTheme.fontFamily.sans],
 			},
+			colors: {
+				eggshell: '#FDFDF2',
+				sage: '#BBC893',
+				brown: '#D4A373',
+				yellow: '#FEFAE0',
+				vanilla: '#FAEDCD',
+				'pale-green': '#E9EDC9',
+				'dark-green': '#4D5A3A',
+				'green-hover': '#DAE1A6',
+        'off-black': '#353839',
+			},
+			gridTemplateColumns: {
+				addItem: 'max-content 4fr 1fr',
+				listItem: 'max-content minmax(10px, 1fr) max-content',
+				gridTiny: 'max-content minmax(10px, 1fr)',
+			},
 		},
 	},
-	plugins: [],
+	plugins: [require('@tailwindcss/forms')],
 };

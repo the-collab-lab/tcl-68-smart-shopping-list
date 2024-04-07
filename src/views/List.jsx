@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { comparePurchaseUrgency } from '../api/firebase';
 import { AddItem, ListItem } from '../components';
+import { ListHeader } from '../components/ListHeader.jsx';
 
 export function List({ data, listPath }) {
 	const [searchTerm, setSearchTerm] = useState('');
@@ -31,54 +32,62 @@ export function List({ data, listPath }) {
 
 	return (
 		<>
-			{listPath ? (
-				<>
-					<h2>{listName}</h2>
-					<AddItem data={data} listPath={listPath} />
-				</>
-			) : null}
-			{data.length > 0 ? (
-				<section>
-					<form>
-						<label htmlFor="itemFilter">
-							Search for an item:
+			{listPath ? <ListHeader text={listName} /> : null}
+			<section className="mx-8 md:mx-24 flex flex-col">
+				{listPath ? <AddItem data={data} listPath={listPath} /> : null}
+				{data.length > 0 ? (
+					<section className="mt-8 mb-4">
+						<form className="flex flex-wrap items-center gap-x-6">
+							<label htmlFor="itemFilter" className="">
+								Filter:
+							</label>
 							<input
 								type="text"
 								id="itemFilter"
 								name="itemFilter"
 								value={searchTerm}
 								onChange={handleChange}
+								className="bg-white border-solid border-2 rounded-xl border-sage pl-2 min-h-14 grow max-w-full mt-2 text-2xl"
 							/>
-						</label>
-						{searchTerm ? <button onClick={reset}>Reset</button> : null}
-					</form>
+							{searchTerm ? (
+								<button
+									onClick={reset}
+									className="bg-red-400 rounded-xl px-2 py-1 grow min-h-14 xs:max-w-28 mt-2"
+								>
+									Reset
+								</button>
+							) : null}
+						</form>
+					</section>
+				) : null}
+				{listPath && data.length === 0 ? (
+					<div className="bg-pale-green border border-dark-green rounded-2xl py-8 mt-8">
+						<h3 className="text-center font-semibold">
+							This list is currently empty!
+						</h3>
+					</div>
+				) : null}
+				{!listPath ? (
+					<>
+						<ListHeader text="You haven't selected a list yet. Click below to select a list." />
+						<div className="flex justify-center">
+							<button
+								onClick={() => handleClick('/')}
+								className="border border-dark-green rounded-2xl px-4 py-2 hover:bg-pale-green"
+							>
+								Select a list
+							</button>
+						</div>
+					</>
+				) : null}
+
+				<section>
+					<ul>
+						{filteredData.map((item) => {
+							return <ListItem key={item.id} item={item} listPath={listPath} />;
+						})}
+					</ul>
 				</section>
-			) : null}
-			{listPath && data.length === 0 ? (
-				<h2>This list is currently empty!</h2>
-			) : null}
-			{!listPath ? (
-				<>
-					<h2>{listName}</h2>
-					<AddItem data={data} listPath={listPath} />
-				</>
-			) : null}
-
-			{!listPath ? (
-				<>
-					<h2>
-						You haven't selected a list yet. Click below to select a list.
-					</h2>
-					<button onClick={() => handleClick('/')}>Select a list</button>
-				</>
-			) : null}
-
-			<section>
-				<ul>
-					{filteredData.map((item) => {
-						return <ListItem key={item.id} item={item} listPath={listPath} />;
-					})}
-				</ul>
 			</section>
 		</>
 	);

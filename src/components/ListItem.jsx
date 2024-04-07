@@ -3,6 +3,9 @@ import { updateItem, deleteItem } from '../api/firebase.js';
 import { useState, useEffect } from 'react';
 import { ONE_DAY_IN_MILLISECONDS } from '../utils/dates.js';
 import { purchaseUrgency } from '../utils/hooks.js';
+import { FaRegTrashCan } from 'react-icons/fa6';
+import { UrgencyLabel } from './UrgencyLabel.jsx';
+import { RiShoppingCart2Fill } from 'react-icons/ri';
 
 export function ListItem({ listPath, item }) {
 	//Box is checked on render if purchased within 24 hrs
@@ -46,26 +49,33 @@ export function ListItem({ listPath, item }) {
 	};
 
 	return (
-		<li className="ListItem">
+		<li className="ListItem bg-pale-green hover:bg-green-hover border border-dark-green min-h-14 rounded-xl text-3xl mb-2 items-center grid grid-cols-gridTiny xs:grid-cols-listItem">
+			<input
+				type="checkbox"
+				id={item.name}
+				name="purchased"
+				onChange={changeHandler}
+				checked={isChecked}
+				className="rounded-full border-dark-green w-8 h-8 mx-4 hover:bg-slate-100 row-span-2 xs:row-span-1"
+			/>
 			<label htmlFor={item.name}>
-				{item.name}
-				<input
-					type="checkbox"
-					id={item.name}
-					name="purchased"
-					onChange={changeHandler}
-					checked={isChecked}
-				/>
+				<RiShoppingCart2Fill className="inline" /> {item.name}
 			</label>
-			<div>
-				{purchaseUrgency(
-					item.dateNextPurchased,
-					item.dateLastPurchased[item.dateLastPurchased.length - 1],
-				)}
+			<div className="ml-auto flex items-center">
+				<UrgencyLabel
+					text={purchaseUrgency(
+						item.dateNextPurchased,
+						item.dateLastPurchased[item.dateLastPurchased.length - 1],
+					)}
+				/>
+				<button
+					type="button"
+					onClick={deleteHandler}
+					className="border border-dark-green p-1 px-3 rounded-lg mr-2 hover:bg-red-400"
+				>
+					<FaRegTrashCan aria-hidden="true" title="Delete" />
+				</button>
 			</div>
-			<button type="button" onClick={deleteHandler}>
-				Delete
-			</button>
 		</li>
 	);
 }

@@ -1,8 +1,8 @@
 import { Outlet, NavLink } from 'react-router-dom';
 import { IoHome, IoList, IoCreate } from 'react-icons/io5';
+import { auth } from '../api/config.js';
 
 import './Layout.css';
-import { auth } from '../api/config.js';
 import { useAuth, SignInButton, SignOutButton } from '../api/useAuth.jsx';
 import buddyLogo from '../../public/img/basket-buddy-logo.png';
 
@@ -14,9 +14,9 @@ export function Layout() {
 		'Nav-link text-eggshell border-2 rounded-full border-vanilla  hover:text-sage hover:border-sage';
 	return (
 		<>
-			<div className="Layout">
+			<div className="Layout bg-eggshell">
 				<header
-					className="Layout-header flex flex-col items-center  bg-eggshell font-Rubik
+					className="Layout-header flex flex-col items-center bg-eggshell font-Rubik
 				text-off-black"
 				>
 					<img className="md:w-1/3" src={buddyLogo} alt="Basket Buddy" />
@@ -29,7 +29,7 @@ export function Layout() {
 						<SignInButton />
 					)}
 				</header>
-				<main className="Layout-main">
+				<main className="Layout-main flex flex-col px-0 font-Rubik">
 					<Outlet />
 				</main>
 				<nav className="Nav bg-brown">

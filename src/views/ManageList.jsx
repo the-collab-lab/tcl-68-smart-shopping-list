@@ -1,12 +1,17 @@
 import { useState } from 'react';
-import { shareList, deleteList } from '../api/firebase.js';
 import { useNavigate } from 'react-router-dom';
+import { deleteList, shareList } from '../api/firebase.js';
+import { ListHeader } from '../components/ListHeader.jsx';
 
 export function ManageList({ setListPath, listPath, userEmail, userId }) {
 	const navigate = useNavigate();
 
 	const listName = listPath?.split('/')[1];
 	const [shareEmail, setShareEmail] = useState('');
+
+	const handleClick = (selectedPath) => {
+		navigate(selectedPath);
+	};
 
 	const handleShareChange = ({ target }) => {
 		setShareEmail(target.value);
@@ -54,23 +59,59 @@ export function ManageList({ setListPath, listPath, userEmail, userId }) {
 
 	return (
 		<>
-			<h2>{listName}</h2>
-			<section>
-				<form onSubmit={handleShareSubmit}>
-					<label htmlFor="shareEmail">
-						Share with:
-						<input
-							id="shareEmail"
-							name="shareEmail"
-							type="email"
-							value={shareEmail}
-							onChange={handleShareChange}
-						></input>
-					</label>
-					<button type="submit">Send invite!</button>
-				</form>
-				<button onClick={handleDelete}>DELETE this list!</button>
-			</section>
+			{listPath ? (
+				<>
+					<ListHeader text={listName} />
+					<section className="mx-8 md:mx-24">
+						<form onSubmit={handleShareSubmit} className="w-full">
+							<div>
+								<label htmlFor="shareEmail" className="text-4xl">
+									Share List
+								</label>
+							</div>
+							<div className="flex flex-wrap xs:flex-nowrap gap-x-6">
+								<input
+									id="shareEmail"
+									name="shareEmail"
+									type="email"
+									value={shareEmail}
+									placeholder="Enter Recipient Email"
+									onChange={handleShareChange}
+									className="bg-white border-solid border-2 rounded-xl border-sage pl-2 min-h-14 md:w-8/12 grow mt-4 text-xl xs:text-2xl"
+								></input>
+								<button
+									type="submit"
+									className="bg-sage p-2 px-4 rounded-xl text-3xl min-h-14 mt-4 grow xs:grow-0"
+								>
+									Send invite!
+								</button>
+							</div>
+						</form>
+					</section>
+					<section className="mx-8 md:mx-24 mt-24">
+						<h3 className="text-4xl">List Options</h3>
+						<button
+							onClick={handleDelete}
+							className="mt-4 bg-red-400/80 min-h-14 px-24 rounded-xl text-3xl w-full"
+						>
+							Delete List
+						</button>
+					</section>
+				</>
+			) : null}
+			{!listPath ? (
+				<>
+					<ListHeader text="You haven't selected a list yet. Click below to select a list." />
+					<div className="flex justify-center">
+						<button
+							onClick={() => handleClick('/')}
+							className="border border-dark-green rounded-2xl px-4 py-2 hover:bg-pale-green"
+						>
+							Select a list
+						</button>
+					</div>
+				</>
+			) : null}
 		</>
 	);
 }

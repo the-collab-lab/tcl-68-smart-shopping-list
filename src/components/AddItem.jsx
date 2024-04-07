@@ -48,34 +48,44 @@ export function AddItem({ data, listPath }) {
 	};
 
 	return (
-		<section>
-			<form onSubmit={handleItemSubmit}>
-				<label htmlFor="itemName">
-					Item Name
-					<input
-						id="itemName"
-						name="itemName"
-						type="text"
-						value={newItem.itemName}
-						onChange={handleItemChange}
-					></input>
+		<section className="mt-8 mb-8">
+			<form
+				onSubmit={handleItemSubmit}
+				className="grid xs:grid-cols-addItem grid-cols-gridTiny grid-rows-2 items-center"
+			>
+				<label htmlFor="itemName" className="col-span-1">
+					New Item:
 				</label>
-				<label htmlFor="daysUntilNextPurchase">
-					Next Purchase
-					<select
-						id="daysUntilNextPurchase"
-						name="daysUntilNextPurchase"
-						value={newItem.daysUntilNextPurchase}
-						onChange={handleItemChange}
-						required
-					>
-						<option value="">Select Next Purchase Date</option>
-						<option value={7}>Soon</option>
-						<option value={14}>Kind of soon</option>
-						<option value={30}>Not soon</option>
-					</select>
+				<input
+					id="itemName"
+					name="itemName"
+					type="text"
+					value={newItem.itemName}
+					onChange={handleItemChange}
+					className="bg-white border-solid border-2 rounded-xl border-sage pl-2 min-h-14 mx-4 max-w-full mt-2 text-2xl col-span-1 shrink"
+				></input>
+				<button
+					type="submit"
+					className="bg-sage p-2 px-4 rounded-xl text-3xl min-h-14 mt-4 md:m-w-2xl order-last xs:order-none col-span-2 xs:col-span-1"
+				>
+					Add
+				</button>
+				<label htmlFor="daysUntilNextPurchase" className="col-span-1">
+					Urgency:
 				</label>
-				<button type="submit">Add Item</button>
+				<select
+					id="daysUntilNextPurchase"
+					name="daysUntilNextPurchase"
+					value={newItem.daysUntilNextPurchase}
+					onChange={handleItemChange}
+					required
+					className="bg-white border-solid border-2 rounded-xl border-sage pl-2 min-h-14 mx-4 max-w-full grow mt-2 text-xl xs:text-2xl"
+				>
+					<option value="">Select Urgency</option>
+					<option value={7}>Soon</option>
+					<option value={14}>Kind of soon</option>
+					<option value={30}>Not soon</option>
+				</select>
 			</form>
 		</section>
 	);
