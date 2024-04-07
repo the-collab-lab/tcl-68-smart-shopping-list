@@ -49,7 +49,7 @@ export function ListItem({ listPath, item }) {
 	};
 
 	return (
-		<li className="ListItem bg-pale-green hover:bg-green-hover border border-dark-green min-h-14 rounded-xl text-3xl mb-2 items-center grid grid-cols-gridTiny xs:grid-cols-listItem">
+		<li className="ListItem bg-pale-green hover:bg-green-hover border border-dark-green min-h-14 rounded-xl text-3xl mb-2 items-center grid grid-cols-gridTiny xs:grid-cols-listItem text-off-black">
 			<input
 				type="checkbox"
 				id={item.name}

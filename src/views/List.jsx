@@ -38,7 +38,7 @@ export function List({ data, listPath }) {
 				{data.length > 0 ? (
 					<section className="mt-8 mb-4">
 						<form className="flex flex-wrap items-center gap-x-6">
-							<label htmlFor="itemFilter" className="">
+							<label htmlFor="itemFilter" className="text-off-black">
 								Filter:
 							</label>
 							<input
@@ -52,7 +52,7 @@ export function List({ data, listPath }) {
 							{searchTerm ? (
 								<button
 									onClick={reset}
-									className="bg-red-400 rounded-xl px-3 py-1 grow min-h-14 xs:max-w-28 mt-2"
+									className="bg-red-400 rounded-xl px-3 py-1 grow min-h-14 xs:max-w-28 mt-2 text-off-black"
 								>
 									Reset
 								</button>
@@ -61,8 +61,8 @@ export function List({ data, listPath }) {
 					</section>
 				) : null}
 				{listPath && data.length === 0 ? (
-					<div className="bg-pale-green border border-dark-green rounded-2xl py-8 mt-8">
-						<h3 className="text-center font-semibold">
+					<div className="bg-pale-green border border-dark-green rounded-xl py-8 mt-8">
+						<h3 className="text-center font-semibold text-off-black">
 							This list is currently empty!
 						</h3>
 					</div>
@@ -73,7 +73,7 @@ export function List({ data, listPath }) {
 						<div className="flex justify-center">
 							<button
 								onClick={() => handleClick('/')}
-								className="border border-dark-green rounded-2xl px-4 py-2 hover:bg-pale-green"
+								className="border border-dark-green rounded-xl px-4 py-2 hover:bg-pale-green text-off-black"
 							>
 								Select a list
 							</button>

@@ -22,7 +22,7 @@ export function UrgencyLabel({ text }) {
 	return (
 		<span
 			className={
-				'ml-auto mr-4 rounded-lg px-2 py-1 text-center uppercase text-xl ' +
+				'ml-auto mr-4 rounded-lg px-2 py-1 text-center uppercase text-xl text-off-black ' +
 				labelColor
 			}
 		>
