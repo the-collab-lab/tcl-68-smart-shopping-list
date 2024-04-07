@@ -53,7 +53,7 @@ export function AddItem({ data, listPath }) {
 				onSubmit={handleItemSubmit}
 				className="grid xs:grid-cols-addItem grid-cols-gridTiny grid-rows-2 items-center"
 			>
-				<label htmlFor="itemName" className="col-span-1">
+				<label htmlFor="itemName" className="col-span-1 text-off-black">
 					New Item:
 				</label>
 				<input
@@ -70,7 +70,10 @@ export function AddItem({ data, listPath }) {
 				>
 					Add
 				</button>
-				<label htmlFor="daysUntilNextPurchase" className="col-span-1">
+				<label
+					htmlFor="daysUntilNextPurchase"
+					className="col-span-1 text-off-black"
+				>
 					Urgency:
 				</label>
 				<select
