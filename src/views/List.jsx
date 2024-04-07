@@ -61,7 +61,7 @@ export function List({ data, listPath }) {
 								name="itemFilter"
 								value={searchTerm}
 								onChange={handleChange}
-								className="bg-white border-solid border-2 rounded-xl border-sage pl-2 min-h-14 grow max-w-full mt-2 text-2xl"
+								className="bg-white border-solid border-2 rounded-xl border-sage pl-2 min-h-14 grow max-w-full mt-2 text-xl xs:text-2xl"
 							/>
 							{searchTerm ? (
 								<button

@@ -63,7 +63,7 @@ export function Home({ data, userId, userEmail, setListPath }) {
 					name="listName"
 					value={newListName}
 					onChange={handleChange}
-					className="border-2 border-sage rounded-lg min-h-14 bg-white grow"
+					className="border-2 border-sage rounded-lg min-h-14 bg-white grow text-xl xs:text-2xl"
 				/>
 				<button className="bg-pale-green rounded-lg px-3 py-1 border-2 border-sage text-off-black">
 					Create

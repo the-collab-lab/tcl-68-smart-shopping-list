@@ -62,7 +62,7 @@ export function AddItem({ data, listPath }) {
 					type="text"
 					value={newItem.itemName}
 					onChange={handleItemChange}
-					className="bg-white border-solid border-2 rounded-xl border-sage pl-2 min-h-14 mx-4 max-w-full mt-2 text-2xl col-span-1 shrink"
+					className="bg-white border-solid border-2 rounded-xl border-sage pl-2 min-h-14 mx-4 max-w-full mt-2 col-span-1 shrink text-xl xs:text-2xl"
 				></input>
 				<button
 					type="submit"
