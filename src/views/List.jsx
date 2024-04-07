@@ -33,6 +33,20 @@ export function List({ data, listPath }) {
 	return (
 		<>
 			{listPath ? <ListHeader text={listName} /> : null}
+			{!listPath ? (
+				<>
+					<ListHeader text="You haven't selected a list yet. Click below to select a list." />
+					<div className="flex justify-center">
+						<button
+							onClick={() => handleClick('/')}
+							className="border border-dark-green rounded-xl px-4 py-2 hover:bg-pale-green text-off-black"
+						>
+							Select a list
+						</button>
+					</div>
+				</>
+			) : null}
+
 			<section className="mx-8 md:mx-24 flex flex-col">
 				{listPath ? <AddItem data={data} listPath={listPath} /> : null}
 				{data.length > 0 ? (
@@ -66,19 +80,6 @@ export function List({ data, listPath }) {
 							This list is currently empty!
 						</h3>
 					</div>
-				) : null}
-				{!listPath ? (
-					<>
-						<ListHeader text="You haven't selected a list yet. Click below to select a list." />
-						<div className="flex justify-center">
-							<button
-								onClick={() => handleClick('/')}
-								className="border border-dark-green rounded-xl px-4 py-2 hover:bg-pale-green text-off-black"
-							>
-								Select a list
-							</button>
-						</div>
-					</>
 				) : null}
 
 				<section>
