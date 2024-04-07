@@ -53,7 +53,7 @@ export function AddItem({ data, listPath }) {
 				onSubmit={handleItemSubmit}
 				className="grid xs:grid-cols-addItem grid-cols-gridTiny grid-rows-2 items-center"
 			>
-				<label htmlFor="itemName" className="col-span-1">
+				<label htmlFor="itemName" className="col-span-1 text-off-black">
 					New Item:
 				</label>
 				<input
@@ -62,15 +62,18 @@ export function AddItem({ data, listPath }) {
 					type="text"
 					value={newItem.itemName}
 					onChange={handleItemChange}
-					className="bg-white border-solid border-2 rounded-xl border-sage pl-2 min-h-14 mx-4 max-w-full mt-2 text-2xl col-span-1 shrink"
+					className="bg-white border-solid border-2 rounded-xl border-sage pl-2 min-h-14 mx-4 max-w-full mt-2 col-span-1 shrink text-xl xs:text-2xl text-off-black"
 				></input>
 				<button
 					type="submit"
-					className="bg-sage p-2 px-4 rounded-xl text-3xl min-h-14 mt-4 md:m-w-2xl order-last xs:order-none col-span-2 xs:col-span-1"
+					className="bg-sage p-2 px-3 rounded-xl text-3xl min-h-14 mt-4 md:m-w-2xl order-last xs:order-none col-span-2 xs:col-span-1"
 				>
 					Add
 				</button>
-				<label htmlFor="daysUntilNextPurchase" className="col-span-1">
+				<label
+					htmlFor="daysUntilNextPurchase"
+					className="col-span-1 text-off-black"
+				>
 					Urgency:
 				</label>
 				<select
@@ -79,7 +82,7 @@ export function AddItem({ data, listPath }) {
 					value={newItem.daysUntilNextPurchase}
 					onChange={handleItemChange}
 					required
-					className="bg-white border-solid border-2 rounded-xl border-sage pl-2 min-h-14 mx-4 max-w-full grow mt-2 text-xl xs:text-2xl"
+					className="bg-white border-solid border-2 rounded-xl border-sage pl-2 min-h-14 mx-4 max-w-full grow mt-2 text-xl xs:text-2xl text-off-black"
 				>
 					<option value="">Select Urgency</option>
 					<option value={7}>Soon</option>

@@ -10,7 +10,7 @@ import { addUserToDatabase } from './firebase.js';
  */
 export const SignInButton = () => (
 	<button
-		className="bg-pale-green rounded-lg px-3 py-1 text-eggshell border-2 border-sage text-off-black"
+		className="bg-pale-green rounded-lg px-3 py-1 text-eggshell border-2 border-sage text-off-black hover:bg-green-hover"
 		type="button"
 		onClick={() => signInWithPopup(auth, new GoogleAuthProvider())}
 	>
@@ -23,7 +23,7 @@ export const SignInButton = () => (
  */
 export const SignOutButton = () => (
 	<button
-		className=" bg-pale-green rounded-lg px-3 py-1 border-2 border-sage text-off-black"
+		className=" bg-pale-green rounded-lg px-3 py-1 border-2 border-sage text-off-black hover:bg-green-hover"
 		type="button"
 		onClick={() => auth.signOut()}
 	>

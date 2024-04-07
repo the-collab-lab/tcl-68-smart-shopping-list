@@ -4,7 +4,7 @@ import { auth } from '../api/config.js';
 
 import './Layout.css';
 import { useAuth, SignInButton, SignOutButton } from '../api/useAuth.jsx';
-import buddyLogo from '../../public/img/basket-buddy-logo.png';
+import buddyLogo from '/img/basket-buddy-logo.png';
 
 export function Layout() {
 	const { user } = useAuth();
@@ -14,15 +14,14 @@ export function Layout() {
 		'Nav-link text-eggshell border-2 rounded-full border-vanilla  hover:text-sage hover:border-sage';
 	return (
 		<>
-			<div className="Layout bg-eggshell">
-				<header
-					className="Layout-header flex flex-col items-center bg-eggshell font-Rubik
-				text-off-black"
-				>
+			<div className="Layout">
+				<header className="Layout-header flex flex-col items-center bg-eggshell font-Rubik text-off-black">
 					<img className="md:w-1/3" src={buddyLogo} alt="Basket Buddy" />
 					{!!user ? (
 						<div>
-							<span>Signed in as {auth.currentUser.displayName}</span>
+							<span className="mx-3">
+								Signed in as {auth.currentUser.displayName}
+							</span>
 							<SignOutButton />
 						</div>
 					) : (
