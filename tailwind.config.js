@@ -23,6 +23,7 @@ export default {
 				'pale-green': '#E9EDC9',
 				'dark-green': '#4D5A3A',
 				'green-hover': '#DAE1A6',
+        'off-black': '#353839',
 			},
 			gridTemplateColumns: {
 				addItem: 'max-content 4fr 1fr',
