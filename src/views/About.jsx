@@ -71,7 +71,11 @@ export function About() {
 			<section className="flex flex-col border border-dark-green py-8 px-12 text-off-black tiny:mt-14 items-center justify-center bg-sage/50 rounded-2xl">
 				<h2 className="font-bold text-off-black">Special thanks to:</h2>
 				<span className="text-2xl">Our mentors: Caitlyn, Luis, Raynaldo</span>
-				<a href="https://the-collab-lab.codes/">
+				<a
+					href="https://the-collab-lab.codes/"
+					target="_blank"
+					rel="noreferrer"
+				>
 					<span className="font-semibold text-off-black">The Collab Lab</span>
 				</a>
 			</section>
