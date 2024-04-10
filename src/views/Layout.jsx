@@ -1,5 +1,6 @@
 import { Outlet, NavLink } from 'react-router-dom';
 import { IoHome, IoList, IoCreate } from 'react-icons/io5';
+import { BsQuestionCircleFill } from 'react-icons/bs';
 import { auth } from '../api/config.js';
 
 import './Layout.css';
@@ -27,6 +28,9 @@ export function Layout() {
 					) : (
 						<SignInButton />
 					)}
+					<NavLink to="/about" className="m-4">
+						<BsQuestionCircleFill className="text-off-black" />
+					</NavLink>
 				</header>
 				<main className="Layout-main flex flex-col px-0 font-Rubik">
 					<Outlet />
