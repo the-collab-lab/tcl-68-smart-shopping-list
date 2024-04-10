@@ -29,7 +29,10 @@ export function Layout() {
 						<SignInButton />
 					)}
 					<NavLink to="/about" className="m-4">
-						<BsQuestionCircleFill className="text-off-black" />
+						<BsQuestionCircleFill
+							className="text-off-black text-5xl"
+							alt="about page link"
+						/>
 					</NavLink>
 				</header>
 				<main className="Layout-main flex flex-col px-0 font-Rubik">
