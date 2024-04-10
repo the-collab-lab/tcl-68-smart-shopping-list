@@ -26,7 +26,7 @@ export function Layout() {
 							<AboutButton />
 						</div>
 					) : (
-						<div className="flex items-center justify-center w-full">
+						<div className="flex items-center justify-around w-full">
 							<SignInButton />
 							<AboutButton />
 						</div>
