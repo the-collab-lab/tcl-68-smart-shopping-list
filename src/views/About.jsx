@@ -2,7 +2,7 @@ import { IoLogoLinkedin } from 'react-icons/io5';
 export function About() {
 	return (
 		<>
-			<section className="flex flex-col border border-dark-green py-8 px-12 text-off-black tiny:mt-14 items-center justify-center bg-sage/50 rounded-2xl">
+			<section className="flex flex-col border border-dark-green py-8 px-12 mx-8 md:mx-24 text-off-black tiny:mt-14 items-center justify-center bg-sage/50 rounded-2xl">
 				<h1 className="font-bold text-off-black my-2">
 					About this application:
 				</h1>
@@ -25,7 +25,7 @@ export function About() {
 					</li>
 				</ul>
 			</section>
-			<section className="flex flex-col border border-dark-green py-8 px-12 text-off-black tiny:mt-14 items-center justify-center bg-sage/50 rounded-2xl">
+			<section className="flex flex-col border border-dark-green py-8 px-12 mx-8 md:mx-24 text-off-black tiny:mt-14 items-center justify-center bg-sage/50 rounded-2xl">
 				<h2 className="font-bold text-off-black">The Creators:</h2>
 				<div className="flex justify-between items-center w-2/3 md:w-1/3 my-4">
 					<a
@@ -68,7 +68,7 @@ export function About() {
 					<span>Devina Gillis</span>
 				</div>
 			</section>
-			<section className="flex flex-col border border-dark-green py-8 px-12 text-off-black tiny:mt-14 items-center justify-center bg-sage/50 rounded-2xl">
+			<section className="flex flex-col border border-dark-green py-8 px-12 mx-8 md:mx-24 text-off-black tiny:mt-14 items-center justify-center bg-sage/50 rounded-2xl">
 				<h2 className="font-bold text-off-black">Special thanks to:</h2>
 				<span className="text-2xl">Our mentors: Caitlyn, Luis, Raynaldo</span>
 				<a
