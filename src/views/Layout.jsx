@@ -1,7 +1,7 @@
 import { Outlet, NavLink } from 'react-router-dom';
 import { IoHome, IoList, IoCreate } from 'react-icons/io5';
 import { auth } from '../api/config.js';
-
+import { AboutButton } from '../components/AboutButton.jsx';
 import './Layout.css';
 import { useAuth, SignInButton, SignOutButton } from '../api/useAuth.jsx';
 import buddyLogo from '/img/basket-buddy-logo.png';
@@ -18,14 +18,18 @@ export function Layout() {
 				<header className="Layout-header flex flex-col items-center bg-eggshell font-Rubik text-off-black">
 					<img className="md:w-1/3" src={buddyLogo} alt="Basket Buddy" />
 					{!!user ? (
-						<div>
-							<span className="mx-3">
+						<div className="flex items-center w-full md:w-3/5 justify-around	">
+							<span className="text-2xl">
 								Signed in as {auth.currentUser.displayName}
 							</span>
 							<SignOutButton />
+							<AboutButton />
 						</div>
 					) : (
-						<SignInButton />
+						<div className="flex items-center justify-around w-full md:w-4/5">
+							<SignInButton />
+							<AboutButton />
+						</div>
 					)}
 				</header>
 				<main className="Layout-main flex flex-col px-0 font-Rubik">
