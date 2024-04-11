@@ -1,4 +1,4 @@
-import { IoLogoLinkedin } from 'react-icons/io5';
+import { IoLogoLinkedin, IoLogoGithub } from 'react-icons/io5';
 export function About() {
 	return (
 		<>
@@ -36,6 +36,13 @@ export function About() {
 						<IoLogoLinkedin className="text-5xl" />
 					</a>
 					<span>Andrea Pang</span>
+					<a
+						href="https://github.com/andiedoescode"
+						target="_blank"
+						rel="noreferrer"
+					>
+						<IoLogoGithub className="text-5xl" />
+					</a>
 				</div>
 				<div className="flex justify-between items-center w-2/3 md:w-1/3 my-4">
 					<a
@@ -46,6 +53,9 @@ export function About() {
 						<IoLogoLinkedin className="text-5xl" />
 					</a>
 					<span>Shane Misra</span>
+					<a href="https://github.com/sdmisra" target="_blank" rel="noreferrer">
+						<IoLogoGithub className="text-5xl" />
+					</a>
 				</div>
 				<div className="flex justify-between items-center w-2/3 md:w-1/3 my-4">
 					<a
@@ -56,6 +66,9 @@ export function About() {
 						<IoLogoLinkedin className="text-5xl" />
 					</a>
 					<span>Emily Tiry</span>
+					<a href="https://github.com/etiry" target="_blank" rel="noreferrer">
+						<IoLogoGithub className="text-5xl" />
+					</a>
 				</div>
 				<div className="flex justify-between items-center w-2/3 md:w-1/3 my-4">
 					<a
@@ -66,6 +79,13 @@ export function About() {
 						<IoLogoLinkedin className="text-5xl" />
 					</a>
 					<span>Devina Gillis</span>
+					<a
+						href="https://github.com/DevinaG007"
+						target="_blank"
+						rel="noreferrer"
+					>
+						<IoLogoGithub className="text-5xl" />
+					</a>
 				</div>
 			</section>
 			<section className="flex flex-col border border-dark-green py-8 px-12 mx-8 md:mx-24 text-off-black tiny:mt-14 items-center justify-center bg-sage/50 rounded-2xl">
